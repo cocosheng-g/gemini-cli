@@ -87,12 +87,20 @@ def main():
     days_labels = []
     opened_by_day = {}
     merged_by_day = {}
+    new_issues_by_day = {}
+    closed_unmerged_by_day = {}
+    ttfr_by_day_lists = {}
+    ttm_by_day_lists = {}
     
     for i in range(30):
         d = (thirty_days_ago + datetime.timedelta(days=i)).strftime('%m-%d')
         days_labels.append(d)
         opened_by_day[d] = 0
         merged_by_day[d] = 0
+        new_issues_by_day[d] = 0
+        closed_unmerged_by_day[d] = 0
+        ttfr_by_day_lists[d] = []
+        ttm_by_day_lists[d] = []
 
     BOTS = {"google-gemini-bot", "gemini-cli[bot]", "github-actions[bot]", "gemini-code-assist"}
     
@@ -100,6 +108,8 @@ def main():
         created_at = parse_date(issue['createdAt'])
         if created_at >= thirty_days_ago:
             new_issues += 1
+            d_label = created_at.strftime('%m-%d')
+            if d_label in new_issues_by_day: new_issues_by_day[d_label] += 1
             
         if issue['state'] == 'CLOSED' and issue['closedAt']:
             closed_at = parse_date(issue['closedAt'])
@@ -136,7 +146,9 @@ def main():
                             first_review_time = c_time
                             
                 if first_review_time:
-                    ttfr_list.append((first_review_time - pr_created).total_seconds() / 3600.0)
+                    ttfr_val = (first_review_time - pr_created).total_seconds() / 3600.0
+                    ttfr_list.append(ttfr_val)
+                    if d_label in ttfr_by_day_lists: ttfr_by_day_lists[d_label].append(ttfr_val)
                     
             if pr['state'] == 'MERGED' and pr['mergedAt']:
                 merged_at = parse_date(pr['mergedAt'])
@@ -144,15 +156,22 @@ def main():
                     merged_prs += 1
                     d_label = merged_at.strftime('%m-%d')
                     if d_label in merged_by_day: merged_by_day[d_label] += 1
-                    ttm_list.append((merged_at - pr_created).total_seconds() / 3600.0 / 24.0)
+                    ttm_val = (merged_at - pr_created).total_seconds() / 3600.0 / 24.0
+                    ttm_list.append(ttm_val)
+                    if d_label in ttm_by_day_lists: ttm_by_day_lists[d_label].append(ttm_val)
                     
             elif pr['state'] == 'CLOSED' and pr['closedAt']:
                 pr_closed = parse_date(pr['closedAt'])
                 if pr_closed >= thirty_days_ago:
                     unmerged_closed_prs += 1
+                    d_label = pr_closed.strftime('%m-%d')
+                    if d_label in closed_unmerged_by_day: closed_unmerged_by_day[d_label] += 1
                     
     avg_ttfr = sum(ttfr_list) / len(ttfr_list) if ttfr_list else 0
     avg_ttm = sum(ttm_list) / len(ttm_list) if ttm_list else 0
+    
+    ttfr_data = [round(sum(ttfr_by_day_lists[d]) / len(ttfr_by_day_lists[d]), 1) if ttfr_by_day_lists[d] else 0 for d in days_labels]
+    ttm_data = [round(sum(ttm_by_day_lists[d]) / len(ttm_by_day_lists[d]), 1) if ttm_by_day_lists[d] else 0 for d in days_labels]
     
     conversion_rate = merged_prs / new_prs * 100 if new_prs > 0 else 0
     dropoff_rate = unmerged_closed_prs / (merged_prs + unmerged_closed_prs) * 100 if (merged_prs + unmerged_closed_prs) > 0 else 0
@@ -162,19 +181,32 @@ def main():
     
     opened_data = [opened_by_day[d] for d in days_labels]
     merged_data = [merged_by_day[d] for d in days_labels]
+    new_issues_data = [new_issues_by_day[d] for d in days_labels]
+    closed_unmerged_data = [closed_unmerged_by_day[d] for d in days_labels]
 
-    md += "## 📊 Daily PR Activity\n"
+    md += "## 🚀 Velocity & Throughput\n"
+    md += "Tracks the sheer volume of contribution activity over the past 30 days.\n\n"
+    
+    md += "### Daily Volume Activity\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
-    md += f'    title "PRs Opened vs Merged (Last 30 Days)"\n'
+    md += f'    title "PRs Opened vs Merged vs Closed (Unmerged)"\n'
     md += f'    x-axis {json.dumps(days_labels)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {opened_data}\n'
     md += f'    line {merged_data}\n'
+    md += f'    line {closed_unmerged_data}\n'
     md += "```\n\n"
     
-    md += "## 🚀 Velocity & Throughput\n"
-    md += "Tracks the sheer volume of contribution activity over the past 30 days.\n\n"
+    md += "### Daily New Issues\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "New Help Wanted Issues"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Count"\n'
+    md += f'    bar {new_issues_data}\n'
+    md += "```\n\n"
+    
     md += "| Metric | Last 30 Days | Calculation |\n"
     md += "| :--- | :--- | :--- |\n"
     md += f"| 🆕 New Help Wanted Issues | **{new_issues}** | Number of new issues created with the `help wanted` label. |\n"
@@ -185,6 +217,25 @@ def main():
     
     md += "## ⏱️ Efficiency & Bottlenecks\n"
     md += "Measures the speed and responsiveness of the maintainer team in processing community PRs.\n\n"
+    
+    md += "### Time to First Review (TTFR) Trend\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "Average TTFR per Day (Hours)"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Hours"\n'
+    md += f'    line {ttfr_data}\n'
+    md += "```\n\n"
+    
+    md += "### Time to Merge (TTM) Trend\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "Average TTM per Day (Days)"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Days"\n'
+    md += f'    line {ttm_data}\n'
+    md += "```\n\n"
+    
     md += "| Metric | Average | Calculation |\n"
     md += "| :--- | :--- | :--- |\n"
     md += f"| ⚡ Time to First Review (TTFR) | **{avg_ttfr:.1f} hours** | Average time from PR creation until the first comment or review from a maintainer. (Target: < 24h) |\n"
@@ -192,6 +243,16 @@ def main():
     
     md += "## ❤️ Community Health\n"
     md += "Indicates the general success and retention rate of contributors attempting to resolve issues.\n\n"
+    
+    md += "### Drop-off Trend\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "PRs Closed Without Merge (Drop-off)"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Count"\n'
+    md += f'    bar {closed_unmerged_data}\n'
+    md += "```\n\n"
+    
     md += "| Metric | Rate | Calculation |\n"
     md += "| :--- | :--- | :--- |\n"
     md += f"| 📉 Author Drop-off Rate | **{dropoff_rate:.1f}%** | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |\n\n"
