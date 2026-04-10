@@ -200,7 +200,6 @@ def automate_cleanup(stale_assignments, stale_blocked_prs):
 
 def main():
     print(f"LOG: Starting dashboard generation for {TARGET_REPO}...")
-    print(f"LOG: Search Query: {SEARCH_QUERY}")
     
     all_issue_nodes = []
     cursor = None
@@ -211,7 +210,6 @@ def main():
         if not res: break
         search_data = res['data']['search']
         all_issue_nodes.extend(search_data['nodes'])
-        print(f"LOG: Loaded {len(search_data['nodes'])} issues from this page.")
         if not search_data['pageInfo']['hasNextPage']: break
         cursor = search_data['pageInfo']['endCursor']
         page += 1
@@ -239,7 +237,6 @@ def main():
     pr_list = sorted(list(pr_to_fetch))
     for i in range(0, len(pr_list), 20):
         batch = pr_list[i:i+20]
-        print(f"LOG: Fetching PR batch {i//20 + 1} ({len(batch)} PRs)...")
         res = gh_api_graphql(get_pr_batch_query(batch))
         if res and 'data' in res:
             repo_data = res['data']['repository']
@@ -251,7 +248,6 @@ def main():
 
     now = datetime.datetime.now(datetime.timezone.utc)
     report_start = (now - datetime.timedelta(days=now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
-    print(f"LOG: Reporting period starts from {report_start.strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Lists for HELP_ISSUES_TRIAGE.md
     oncaller_attention = []
@@ -299,7 +295,9 @@ def main():
                             if login and login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
                         elif rr['__typename'] == 'Team':
                             slug = rr.get('slug', '').split('/')[-1]
-                            if slug in ONCALLER_TEAMS: special_teams.add(slug)
+                            if slug in ONCALLER_TEAMS:
+                                print(f"LOG: Found special team request: {slug} on PR #{pr_no}")
+                                special_teams.add(slug)
             
             for rev in pr.get('latestReviews', {}).get('nodes', []):
                 if rev.get('author'):
@@ -330,6 +328,7 @@ def main():
             # 2. Dashboard Logic
             if issue['state'] != 'OPEN': continue
             
+            # Enforce ownership: PR must be authored or assigned by an issue assignee
             if author not in assignees and not any(pa in assignees for pa in pr_assignees):
                 unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
                 continue
@@ -340,6 +339,7 @@ def main():
             
             found_open_pr = True
             if special_teams:
+                print(f"LOG: Issue #{issue_no} / PR #{pr_no} categorized as Specialized Approval. Teams: {special_teams}")
                 oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no})
 
             is_blocked = "Blocked" in status_label
