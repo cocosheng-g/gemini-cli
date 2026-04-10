@@ -246,13 +246,13 @@ def main():
     md += f'    bar {new_issues_data}\n'
     md += "```\n\n"
     
-    md += "| Metric | Last 30 Days | Calculation |\n"
-    md += "| :--- | :--- | :--- |\n"
-    md += f"| 🆕 New Help Wanted Issues | **{new_issues}** | Number of new issues created with the `help wanted` label. |\n"
-    md += f"| 🛠️ PRs Opened | **{new_prs}** | Number of new PRs opened linked to a `help wanted` issue. |\n"
-    md += f"| 🟣 PRs Merged | **{merged_prs}** | Number of those linked PRs that were successfully merged. |\n"
-    md += f"| ⚪ PRs Closed (Unmerged) | **{unmerged_closed_prs}** | Number of those linked PRs that were closed without merging (e.g. abandoned, stale). |\n"
-    md += f"| 🔄 Issue to PR Conversion Rate | **{conversion_rate:.1f}%** | Percentage of opened PRs that successfully get merged (`Merged / Opened`). |\n\n"
+    md += "| Metric | Last 30 Days | Target / Goal | Calculation |\n"
+    md += "| :--- | :--- | :--- | :--- |\n"
+    md += f"| 🆕 New Help Wanted Issues | **{new_issues}** | Steady / Growing | Number of new issues created with the `help wanted` label. |\n"
+    md += f"| 🛠️ PRs Opened | **{new_prs}** | - | Number of new PRs opened linked to a `help wanted` issue. |\n"
+    md += f"| 🟣 PRs Merged | **{merged_prs}** | Track closely to Opened | Number of those linked PRs that were successfully merged. |\n"
+    md += f"| ⚪ PRs Closed (Unmerged) | **{unmerged_closed_prs}** | - | Number of those linked PRs that were closed without merging (e.g. abandoned, stale). |\n"
+    md += f"| 🔄 Issue to PR Conversion Rate | **{conversion_rate:.1f}%** | > 50% | Percentage of opened PRs that successfully get merged (`Merged / Opened`). |\n\n"
     
     md += "## ⏱️ Efficiency & Bottlenecks\n"
     md += "Measures the speed and responsiveness of the maintainer team in processing community PRs.\n\n"
@@ -279,17 +279,17 @@ def main():
     md += f'    line {ttm_data}\n'
     md += "```\n\n"
     
-    md += "| Metric | Average | Calculation |\n"
-    md += "| :--- | :--- | :--- |\n"
-    md += f"| ⚡ Time to First Review (TTFR) | **{avg_ttfr:.1f} hours** | Average time from PR creation until the first comment or review from a maintainer. (Target: < 168h / 1 week) |\n"
-    md += f"| 🚢 Time to Merge (TTM) | **{avg_ttm:.1f} days** | Average time from PR creation to when it is successfully merged into the codebase. (Target: < 14 days) |\n\n"
+    md += "| Metric | Average | Target / Goal | Calculation |\n"
+    md += "| :--- | :--- | :--- | :--- |\n"
+    md += f"| ⚡ Time to First Review (TTFR) | **{avg_ttfr:.1f} hours** | < 168 hours (1 week) | Average time from PR creation until the first comment or review from a maintainer. |\n"
+    md += f"| 🚢 Time to Merge (TTM) | **{avg_ttm:.1f} days** | < 14 days (2 weeks) | Average time from PR creation to when it is successfully merged into the codebase. |\n\n"
     
     md += "## ❤️ Community Health\n"
     md += "Indicates the general success and retention rate of contributors attempting to resolve issues.\n\n"
     
-    md += "| Metric | Rate | Calculation |\n"
-    md += "| :--- | :--- | :--- |\n"
-    md += f"| 📉 Author Drop-off Rate | **{dropoff_rate:.1f}%** | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |\n\n"
+    md += "| Metric | Rate | Target / Goal | Calculation |\n"
+    md += "| :--- | :--- | :--- | :--- |\n"
+    md += f"| 📉 Author Drop-off Rate | **{dropoff_rate:.1f}%** | < 20% | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |\n\n"
     
     md += "### 👥 Contributor Engagement\n"
     active_contributors_count = len([c for c in contributors.values() if c['opened'] > 0 or c['merged'] > 0 or c['closed'] > 0])
@@ -326,11 +326,11 @@ def main():
     md += f'    line {avg_merged_data}\n'
     md += "```\n\n"
 
-    md += "| Metric | Value | Calculation |\n"
-    md += "| :--- | :--- | :--- |\n"
-    md += f"| 🧑‍💻 Total Active Contributors | **{active_contributors_count}** | Number of unique human contributors who opened, merged, or closed a PR in the last 30 days. |\n"
-    md += f"| 📈 Avg PRs Opened | **{avg_prs_opened:.1f}** | Total PRs opened divided by total active contributors over 30 days. |\n"
-    md += f"| 🎯 Avg PRs Merged | **{avg_prs_merged:.1f}** | Total PRs merged divided by total active contributors over 30 days. |\n\n"
+    md += "| Metric | Value | Target / Goal | Calculation |\n"
+    md += "| :--- | :--- | :--- | :--- |\n"
+    md += f"| 🧑‍💻 Total Active Contributors | **{active_contributors_count}** | Steady Growth | Number of unique human contributors who opened, merged, or closed a PR in the last 30 days. |\n"
+    md += f"| 📈 Avg PRs Opened | **{avg_prs_opened:.1f}** | > 1.5 PRs | Total PRs opened divided by total active contributors over 30 days. |\n"
+    md += f"| 🎯 Avg PRs Merged | **{avg_prs_merged:.1f}** | > 1.5 PRs | Total PRs merged divided by total active contributors over 30 days. |\n\n"
 
     md += "---\n*Metrics maintained by automated daily script.*"
     
