@@ -1,7 +1,10 @@
 # 📊 Gemini CLI Weekly Team Review Stats
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 14:25 (UTC)*
+*Last Updated: 2026-04-10 14:29 (UTC)*
+
+> This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
+> **Motivation:** Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
 
 ## 📈 Weekly Summary
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
