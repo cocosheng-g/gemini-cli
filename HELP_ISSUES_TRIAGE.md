@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 03:36 (UTC)*
+*Last Synchronized: 2026-04-10 03:40 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
@@ -108,7 +108,7 @@
 </details>
 
 <details>
-<summary><b>✍️ Awaiting Author Action (2)</b> — <i>Waiting for contributor.</i></summary>
+<summary><b>✍️ Awaiting Author Action (3)</b> — <i>Waiting for contributor.</i></summary>
 
 **Criteria: Reviewer acted last, waiting for contributor to address comments.**
 
@@ -116,6 +116,7 @@
 | :--- | :--- | :--- | :--- |
 | [#19675 Make the CLI more friendly with tmux](https://github.com/google-gemini/gemini-cli/issues/19675) | [#22067](https://github.com/google-gemini/gemini-cli/pull/22067) | @anowardear062-svg, @mrpmohiburrahman, @spencer426 | `2026-04-05` |
 | [#20655 Token estimation falls through to generic fallback for audio/video parts](https://github.com/google-gemini/gemini-cli/issues/20655) | [#20658](https://github.com/google-gemini/gemini-cli/pull/20658) | @mrpmohiburrahman | `2026-04-05` |
+| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21233](https://github.com/google-gemini/gemini-cli/pull/21233) | @ishaanxgupta, @mrpmohiburrahman | `2026-04-10` |
 </details>
 
 <details>
@@ -209,13 +210,12 @@
 ## 🌱 Community & Backlog
 
 <details>
-<summary><b>🌱 Available for Pickup (72)</b> — <i>Open for contributors.</i></summary>
+<summary><b>🌱 Available for Pickup (71)</b> — <i>Open for contributors.</i></summary>
 
 **Criteria: Open issues with no assignee and no active PR.**
 
 | Issue | Days Idle |
 | :--- | :--- |
-| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | 0 |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | 0 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 0 |
 | [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 0 |
@@ -290,14 +290,14 @@
 </details>
 
 <details>
-<summary><b>⚠️ Unowned PRs (45)</b> — <i>Ownership mismatch.</i></summary>
+<summary><b>⚠️ Unowned PRs (44)</b> — <i>Ownership mismatch.</i></summary>
 
 **Criteria: PRs where author/assignee does not match the linked issue's assignee.**
 
 | Issue | Linked PR | PR Author | Issue Assignee | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
 | [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#21631](https://github.com/google-gemini/gemini-cli/pull/21631) | @Sangini-spec | @fayerman-source | `2026-03-11` |
-| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21141](https://github.com/google-gemini/gemini-cli/pull/21141) | @neeraj-par | _Unassigned_ | `2026-03-11` |
+| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21141](https://github.com/google-gemini/gemini-cli/pull/21141) | @neeraj-par | @ved015 | `2026-03-11` |
 | [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | [#21440](https://github.com/google-gemini/gemini-cli/pull/21440) | @hrishi2814 | _Unassigned_ | `2026-03-12` |
 | [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | @nivbrook | @sahilkirad | `2026-03-23` |
 | [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#21840](https://github.com/google-gemini/gemini-cli/pull/21840) | @imadraude | @student-ankitpandit | `2026-03-23` |
@@ -339,7 +339,6 @@
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | [#25068](https://github.com/google-gemini/gemini-cli/pull/25068) | @dovahkiin-v | @tusaryan | `2026-04-09` |
 | [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | @achaljhawar | @ChandanKT-git | `2026-04-10` |
 | [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | [#19332](https://github.com/google-gemini/gemini-cli/pull/19332) | @AbdulTawabJuly | _Unassigned_ | `2026-04-10` |
-| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21233](https://github.com/google-gemini/gemini-cli/pull/21233) | @ved015 | _Unassigned_ | `2026-04-10` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#22894](https://github.com/google-gemini/gemini-cli/pull/22894) | @Neil-N4 | _Unassigned_ | `2026-04-10` |
 </details>
 

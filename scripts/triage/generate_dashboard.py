@@ -300,17 +300,29 @@ def main():
             
             # Reviewer collection
             if 'reviewRequests' in pr:
-                for req in pr.get('reviewRequests', {}).get('nodes', []):
+                nodes = pr.get('reviewRequests', {}).get('nodes', [])
+                if pr_no == 25008: print(f"DEBUG: PR 25008 reviewRequests nodes count: {len(nodes)}")
+                for req in nodes:
                     rr = req.get('requestedReviewer')
-                    if rr:
-                        if rr['__typename'] == 'User':
-                            login = rr.get('login')
-                            if login and login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
-                        elif rr['__typename'] == 'Team':
-                            slug = rr.get('slug', '').split('/')[-1]
-                            if slug in ONCALLER_TEAMS:
-                                print(f"LOG: Found special team request: {slug} on PR #{pr_no}")
-                                special_teams.add(slug)
+                    if not rr:
+                        if pr_no == 25008: print(f"DEBUG: PR 25008 found empty requestedReviewer node")
+                        continue
+                    
+                    typename = rr.get('__typename')
+                    if pr_no == 25008: print(f"DEBUG: PR 25008 requestedReviewer: {rr}")
+                    
+                    if typename == 'User':
+                        login = rr.get('login')
+                        if login and login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
+                    elif typename == 'Team':
+                        slug = rr.get('slug', '')
+                        # Handle both full slug and short slug
+                        team_name = slug.split('/')[-1]
+                        if team_name in ONCALLER_TEAMS:
+                            print(f"LOG: Found special team request: {team_name} (from slug: {slug}) on PR #{pr_no}")
+                            special_teams.add(team_name)
+                        else:
+                            if pr_no == 25008: print(f"DEBUG: PR 25008 ignoring team: {team_name} (not in {ONCALLER_TEAMS})")
             
             for rev in pr.get('latestReviews', {}).get('nodes', []):
                 if rev.get('author'):
