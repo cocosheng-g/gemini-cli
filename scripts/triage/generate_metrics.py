@@ -97,6 +97,9 @@ def main():
     ttm_by_day_lists = {}
     active_contributors_by_day = {}
     
+    open_issues_snapshot = {}
+    closed_issues_snapshot = {}
+    
     for i in range(30):
         d = thirty_days_ago + datetime.timedelta(days=i)
         d_label = d.strftime('%m-%d')
@@ -112,6 +115,8 @@ def main():
         ttfr_by_day_lists[d_label] = []
         ttm_by_day_lists[d_label] = []
         active_contributors_by_day[d_label] = set()
+        open_issues_snapshot[d_label] = 0
+        closed_issues_snapshot[d_label] = 0
 
     def get_bin_label(date_obj):
         delta = (date_obj - thirty_days_ago).days
@@ -232,7 +237,20 @@ def main():
                     
     avg_ttfr = sum(ttfr_list) / len(ttfr_list) if ttfr_list else 0
     avg_ttm = sum(ttm_list) / len(ttm_list) if ttm_list else 0
-    
+
+    # Calculate point-in-time open/closed issue snapshots
+    for i in range(30):
+        day_end = thirty_days_ago + datetime.timedelta(days=i, hours=23, minutes=59, seconds=59)
+        d_label = days_labels[i]
+        for issue in all_issues:
+            created_at = parse_date(issue['createdAt'])
+            if created_at and created_at <= day_end:
+                closed_at = parse_date(issue.get('closedAt'))
+                if issue['state'] == 'CLOSED' and closed_at and closed_at <= day_end:
+                    closed_issues_snapshot[d_label] += 1
+                else:
+                    open_issues_snapshot[d_label] += 1
+
     ttfr_data = [round(sum(ttfr_by_day_lists[d]) / len(ttfr_by_day_lists[d]), 1) if ttfr_by_day_lists[d] else 0 for d in days_labels]
     ttm_data = [round(sum(ttm_by_day_lists[d]) / len(ttm_by_day_lists[d]), 1) if ttm_by_day_lists[d] else 0 for d in days_labels]
     
@@ -253,12 +271,26 @@ def main():
     merged_data = [merged_by_day[d] for d in days_labels]
     new_issues_data = [new_issues_by_day[d] for d in days_labels]
     closed_unmerged_data = [closed_unmerged_by_day[d] for d in days_labels]
+    open_issues_data = [open_issues_snapshot[d] for d in days_labels]
+    closed_issues_data = [closed_issues_snapshot[d] for d in days_labels]
 
     md += "## 🚀 Velocity & Throughput\n"
     md += "Tracks the sheer volume of contribution activity over the past 30 days.\n\n"
-    
-    md += "### PRs Opened vs Merged vs Closed (Unmerged)\n"
-    md += "> **Legend:** 📊 Bar = PRs Opened | 📈 Line 1 = PRs Merged | 📉 Line 2 = PRs Closed (Unmerged)\n\n"
+
+    md += "### Help Wanted Backlog (Daily Snapshot)\n"
+    md += "> **Legend:** 📊 Bar = Total Open Issues | 📈 Line = Cumulative Closed Issues\n\n"
+    md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
+    md += "xychart-beta\n"
+    md += f'    title "Help Wanted Backlog ({date_range_str})"\n'
+    md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
+    md += '    y-axis "Count"\n'
+    md += f'    bar {open_issues_data}\n'
+    md += f'    line {closed_issues_data}\n'
+    md += "```\n\n"
+
+    md += "### PRs Opened vs Merged\n"
+    md += "> **Legend:** 📊 Bar = PRs Opened | 📈 Line = PRs Merged\n\n"
     md += "```mermaid\n"
     md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
@@ -267,23 +299,10 @@ def main():
     md += '    y-axis "Count"\n'
     md += f'    bar {opened_data}\n'
     md += f'    line {merged_data}\n'
-    md += f'    line {closed_unmerged_data}\n'
-    md += "```\n\n"
-    
-    md += "### Daily New Issues\n"
-    md += "> **Legend:** 📊 Bar = New Help Wanted Issues\n\n"
-    md += "```mermaid\n"
-    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
-    md += "xychart-beta\n"
-    md += f'    title "New Help Wanted Issues"\n'
-    md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
-    md += '    y-axis "Count"\n'
-    md += f'    bar {new_issues_data}\n'
     md += "```\n\n"
     
     md += "| Metric | Last 30 Days | Target / Goal | Calculation |\n"
     md += "| :--- | :--- | :--- | :--- |\n"
-    md += f"| 🆕 New Help Wanted Issues | **{new_issues}** | Steady / Growing | Number of new issues created with the `help wanted` label. |\n"
     md += f"| 🛠️ PRs Opened | **{new_prs}** | - | Number of new PRs opened linked to a `help wanted` issue. |\n"
     md += f"| 🟣 PRs Merged | **{merged_prs}** | Track closely to Opened | Number of those linked PRs that were successfully merged. |\n"
     md += f"| ⚪ PRs Closed (Unmerged) | **{unmerged_closed_prs}** | - | Number of those linked PRs that were closed without merging (e.g. abandoned, stale). |\n"
@@ -319,14 +338,7 @@ def main():
     md += f"| ⚡ Time to First Review (TTFR) | **{avg_ttfr:.1f} hours** | < 168 hours (1 week) | Average time from PR creation until the first comment or review from a maintainer. |\n"
     md += f"| 🚢 Time to Merge (TTM) | **{avg_ttm:.1f} days** | < 14 days (2 weeks) | Average time from PR creation to when it is successfully merged into the codebase. |\n\n"
     
-    md += "## ❤️ Community Health\n"
-    md += "Indicates the general success and retention rate of contributors attempting to resolve issues.\n\n"
-    
-    md += "| Metric | Rate | Target / Goal | Calculation |\n"
-    md += "| :--- | :--- | :--- | :--- |\n"
-    md += f"| 📉 Author Drop-off Rate | **{dropoff_rate:.1f}%** | < 20% | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |\n\n"
-    
-    md += "### 👥 Contributor Engagement\n"
+    md += "## 👥 Contributor Engagement\n"
     active_contributors_count = len(contributors)
     avg_prs_opened = sum(c['opened'] for c in contributors.values()) / active_contributors_count if active_contributors_count > 0 else 0
     avg_prs_merged = sum(c['merged'] for c in contributors.values()) / active_contributors_count if active_contributors_count > 0 else 0
@@ -364,8 +376,8 @@ def main():
     md += "| Metric | Value | Target / Goal | Calculation |\n"
     md += "| :--- | :--- | :--- | :--- |\n"
     md += f"| 🧑‍💻 Total Active Contributors | **{active_contributors_count}** | Steady Growth | Number of unique human contributors who opened, merged, closed, reviewed, commented, or committed to a PR or Issue in the last 30 days. |\n"
-    md += f"| 📈 Avg PRs Opened | **{avg_prs_opened:.1f}** | > 1.5 PRs | Total PRs opened divided by total active contributors over 30 days. |\n"
-    md += f"| 🎯 Avg PRs Merged | **{avg_prs_merged:.1f}** | > 1.5 PRs | Total PRs merged divided by total active contributors over 30 days. |\n\n"
+    md += f"| 📈 Avg PRs Opened | **{avg_prs_opened:.1f}** | 1.0 PR | Total PRs opened divided by total active contributors over 30 days. |\n"
+    md += f"| 🎯 Avg PRs Merged | **{avg_prs_merged:.1f}** | 1.0 PR | Total PRs merged divided by total active contributors over 30 days. |\n\n"
 
     md += "---\n*Metrics maintained by automated daily script.*"
     
