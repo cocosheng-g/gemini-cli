@@ -1,10 +1,40 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 03:11 (UTC)*
+*Last Synchronized: 2026-04-10 03:12 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
 ## 🚨 Needs Oncaller Attention
+
+<details>
+<summary><b>🆕 Awaiting Reviewer Pickup (21)</b> — <i>Pick up one of these new PRs.</i></summary>
+
+**Criteria: New PRs with no reviewers yet, author acted last.**
+
+| Issue | Linked PR | Last Update |
+| :--- | :--- | :--- |
+| [#18654 Enhanced Copy Workflow via External Editor Integration](https://github.com/google-gemini/gemini-cli/issues/18654) | [#19553](https://github.com/google-gemini/gemini-cli/pull/19553) | `2026-03-11` |
+| [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | `2026-04-08` |
+| [#22591 fix(cli): mapToDisplay uses unbounded JSON.stringify for ErroredToolCall description](https://github.com/google-gemini/gemini-cli/issues/22591) | [#22594](https://github.com/google-gemini/gemini-cli/pull/22594) | `2026-04-08` |
+| [#12345 Add AGENTS.md to the context filename list by default](https://github.com/google-gemini/gemini-cli/issues/12345) | [#24913](https://github.com/google-gemini/gemini-cli/pull/24913) | `2026-04-09` |
+| [#16559 Most /slash command args counts are not validated](https://github.com/google-gemini/gemini-cli/issues/16559) | [#25069](https://github.com/google-gemini/gemini-cli/pull/25069) | `2026-04-09` |
+| [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | `2026-04-09` |
+| [#19713 Fix unsafe type assertions in CLI Config (Phase 3.1)](https://github.com/google-gemini/gemini-cli/issues/19713) | [#24905](https://github.com/google-gemini/gemini-cli/pull/24905) | `2026-04-09` |
+| [#19969 Provide a way to control the standard names of hooks and skills folder via gemini-extension.json of an extension](https://github.com/google-gemini/gemini-cli/issues/19969) | [#25008](https://github.com/google-gemini/gemini-cli/pull/25008) | `2026-04-09` |
+| [#20385 Terminal output flooded with repeated '0c/' string](https://github.com/google-gemini/gemini-cli/issues/20385) | [#24596](https://github.com/google-gemini/gemini-cli/pull/24596) | `2026-04-09` |
+| [#20500 feat(cli): add mention view shortcuts](https://github.com/google-gemini/gemini-cli/issues/20500) | [#25060](https://github.com/google-gemini/gemini-cli/pull/25060) | `2026-04-09` |
+| [#21036 UX Improvement for /chat save.](https://github.com/google-gemini/gemini-cli/issues/21036) | [#21439](https://github.com/google-gemini/gemini-cli/pull/21439) | `2026-04-09` |
+| [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-09` |
+| [#21546 web_fetch: pressing Ctrl+C while a URL is loading causes silent retries instead of immediate cancellation](https://github.com/google-gemini/gemini-cli/issues/21546) | [#24320](https://github.com/google-gemini/gemini-cli/pull/24320) | `2026-04-09` |
+| [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#25030](https://github.com/google-gemini/gemini-cli/pull/25030) | `2026-04-09` |
+| [#22417 CLI accepts positional prompt with --prompt-interactive and handles the conflict inconsistently](https://github.com/google-gemini/gemini-cli/issues/22417) | [#22418](https://github.com/google-gemini/gemini-cli/pull/22418) | `2026-04-09` |
+| [#22589 fix(cli): all Executing subagent tool calls dropped from UI state, breaking task-tree hierarchy](https://github.com/google-gemini/gemini-cli/issues/22589) | [#22590](https://github.com/google-gemini/gemini-cli/pull/22590) | `2026-04-09` |
+| [#22610 bug: ui.loadingPhrases: 'off' is ignored by the UI](https://github.com/google-gemini/gemini-cli/issues/22610) | [#22618](https://github.com/google-gemini/gemini-cli/pull/22618) | `2026-04-09` |
+| [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | `2026-04-09` |
+| [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | [#25010](https://github.com/google-gemini/gemini-cli/pull/25010) | `2026-04-09` |
+| [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | `2026-04-09` |
+| [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
+</details>
 
 <details>
 <summary><b>🛡️ Specialized Approval Required (21)</b> — <i>Specialized approval required.</i></summary>
@@ -37,7 +67,7 @@
 </details>
 
 <details>
-<summary><b>🚩 Stale Assignments (0)</b> — <i>Maintainers, please unassign.</i></summary>
+<summary><b>🚩 Stale Assignments (0)</b> — <i>Auto-cleanup.</i></summary>
 
 **Criteria: Assigned issues with no open PR, idle for >14 days.**
 
@@ -54,36 +84,6 @@
 | Issue | PR | Reason | Author | Days Stale |
 | :--- | :--- | :--- | :--- | :--- |
 | - | - | - | - | - |
-</details>
-
-<details>
-<summary><b>🆕 Awaiting Reviewer Pickup (21)</b> — <i>Pick up one of these new PRs.</i></summary>
-
-**Criteria: New PRs with no reviewers yet, author acted last.**
-
-| Issue | Linked PR | Last Update |
-| :--- | :--- | :--- |
-| [#18654 Enhanced Copy Workflow via External Editor Integration](https://github.com/google-gemini/gemini-cli/issues/18654) | [#19553](https://github.com/google-gemini/gemini-cli/pull/19553) | `2026-03-11` |
-| [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | `2026-04-08` |
-| [#22591 fix(cli): mapToDisplay uses unbounded JSON.stringify for ErroredToolCall description](https://github.com/google-gemini/gemini-cli/issues/22591) | [#22594](https://github.com/google-gemini/gemini-cli/pull/22594) | `2026-04-08` |
-| [#12345 Add AGENTS.md to the context filename list by default](https://github.com/google-gemini/gemini-cli/issues/12345) | [#24913](https://github.com/google-gemini/gemini-cli/pull/24913) | `2026-04-09` |
-| [#16559 Most /slash command args counts are not validated](https://github.com/google-gemini/gemini-cli/issues/16559) | [#25069](https://github.com/google-gemini/gemini-cli/pull/25069) | `2026-04-09` |
-| [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | `2026-04-09` |
-| [#19713 Fix unsafe type assertions in CLI Config (Phase 3.1)](https://github.com/google-gemini/gemini-cli/issues/19713) | [#24905](https://github.com/google-gemini/gemini-cli/pull/24905) | `2026-04-09` |
-| [#19969 Provide a way to control the standard names of hooks and skills folder via gemini-extension.json of an extension](https://github.com/google-gemini/gemini-cli/issues/19969) | [#25008](https://github.com/google-gemini/gemini-cli/pull/25008) | `2026-04-09` |
-| [#20385 Terminal output flooded with repeated '0c/' string](https://github.com/google-gemini/gemini-cli/issues/20385) | [#24596](https://github.com/google-gemini/gemini-cli/pull/24596) | `2026-04-09` |
-| [#20500 feat(cli): add mention view shortcuts](https://github.com/google-gemini/gemini-cli/issues/20500) | [#25060](https://github.com/google-gemini/gemini-cli/pull/25060) | `2026-04-09` |
-| [#21036 UX Improvement for /chat save.](https://github.com/google-gemini/gemini-cli/issues/21036) | [#21439](https://github.com/google-gemini/gemini-cli/pull/21439) | `2026-04-09` |
-| [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-09` |
-| [#21546 web_fetch: pressing Ctrl+C while a URL is loading causes silent retries instead of immediate cancellation](https://github.com/google-gemini/gemini-cli/issues/21546) | [#24320](https://github.com/google-gemini/gemini-cli/pull/24320) | `2026-04-09` |
-| [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#25030](https://github.com/google-gemini/gemini-cli/pull/25030) | `2026-04-09` |
-| [#22417 CLI accepts positional prompt with --prompt-interactive and handles the conflict inconsistently](https://github.com/google-gemini/gemini-cli/issues/22417) | [#22418](https://github.com/google-gemini/gemini-cli/pull/22418) | `2026-04-09` |
-| [#22589 fix(cli): all Executing subagent tool calls dropped from UI state, breaking task-tree hierarchy](https://github.com/google-gemini/gemini-cli/issues/22589) | [#22590](https://github.com/google-gemini/gemini-cli/pull/22590) | `2026-04-09` |
-| [#22610 bug: ui.loadingPhrases: 'off' is ignored by the UI](https://github.com/google-gemini/gemini-cli/issues/22610) | [#22618](https://github.com/google-gemini/gemini-cli/pull/22618) | `2026-04-09` |
-| [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | `2026-04-09` |
-| [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | [#25010](https://github.com/google-gemini/gemini-cli/pull/25010) | `2026-04-09` |
-| [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | `2026-04-09` |
-| [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
 </details>
 
 ## 🛠️ Active Development

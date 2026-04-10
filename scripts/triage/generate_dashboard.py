@@ -392,12 +392,17 @@ def main():
     
     md_rev += "## 🚨 Needs Oncaller Attention\n"
 
+    md_rev += f"\n<details>\n<summary><b>🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})</b> — <i>Pick up one of these new PRs.</i></summary>\n\n**Criteria: New PRs with no reviewers yet, author acted last.**\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
+    for i in initial_pickup: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
+    if not initial_pickup: md_rev += "| - | - | - |\n"
+    md_rev += "</details>\n"
+
     md_rev += f"\n<details>\n<summary><b>🛡️ Specialized Approval Required ({len(oncaller_attention)})</b> — <i>Specialized approval required.</i></summary>\n\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
     for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} |\n"
     if not oncaller_attention: md_rev += "| - | - | - | - |\n"
     md_rev += "</details>\n"
 
-    md_rev += f"\n<details>\n<summary><b>🚩 Stale Assignments ({len(stale_assignments)})</b> — <i>Maintainers, please unassign.</i></summary>\n\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n<details>\n<summary><b>🚩 Stale Assignments ({len(stale_assignments)})</b> — <i>Auto-cleanup.</i></summary>\n\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
     for i in stale_assignments: md_rev += f"| {i['issue_md']} | @{', @'.join(i['assignees'])} | {i['days_stale']} |\n"
     if not stale_assignments: md_rev += "| - | - | - |\n"
     md_rev += "</details>\n"
@@ -405,11 +410,6 @@ def main():
     md_rev += f"\n<details>\n<summary><b>🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})</b> — <i>Auto-cleanup.</i></summary>\n\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS} days.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in blocked_stale_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {i['reason']} | @{i['author']} | {i['days_stale']} |\n"
     if not blocked_stale_prs: md_rev += "| - | - | - | - | - |\n"
-    md_rev += "</details>\n"
-
-    md_rev += f"\n<details>\n<summary><b>🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})</b> — <i>Pick up one of these new PRs.</i></summary>\n\n**Criteria: New PRs with no reviewers yet, author acted last.**\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
-    for i in initial_pickup: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
-    if not initial_pickup: md_rev += "| - | - | - |\n"
     md_rev += "</details>\n"
 
     md_rev += "\n## 🛠️ Active Development\n"
