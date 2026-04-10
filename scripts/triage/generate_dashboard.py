@@ -322,8 +322,9 @@ def main():
             else:
                 waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_feedback": latest_rev_act_iso[:10]})
                 has_active_work = True
-        if has_active_work:
+        if has_active_work or issue['state'] != 'OPEN':
             # If it has active work (Author/Reviewer/Blocked/Unowned PR), it is accounted for.
+            # If it is closed, we don't want it in the dashboard at all.
             continue
 
         # If we reach here, no valid linked PR was found for this issue
