@@ -1,11 +1,14 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 02:46 (UTC)*
+*Last Synchronized: 2026-04-10 02:48 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
 ## 🚨 Needs Oncaller Attention (21)
 **Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Linked PR | Required Teams | Human Reviewers |
 | :--- | :--- | :--- | :--- |
@@ -30,24 +33,36 @@
 | [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#25030](https://github.com/google-gemini/gemini-cli/pull/25030) | `gemini-cli-prompt-approvers` | _None_ |
 | [#23018 ACP: Execute tool call title field contains conversational text.](https://github.com/google-gemini/gemini-cli/issues/23018) | [#23092](https://github.com/google-gemini/gemini-cli/pull/23092) | `gemini-cli-prompt-approvers` | _None_ |
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | `gemini-cli-prompt-approvers` | @cocosheng-g |
+</details>
 
 ## 🚩 Stale Assignments (2)
 **Criteria: Assigned issues with no open PR, idle for >14 days.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Assignee | Days Stale |
 | :--- | :--- | :--- |
 | [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | @Atul-Chahar | 20 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | @ame2en | 21 |
+</details>
 
 ## 🚧 Blocked & Stale PRs (0)
 **Criteria: PRs with conflicts or failures untouched for >14 days.**
 
+<details>
+<summary>View Table</summary>
+
 | Issue | PR | Reason | Author | Days Stale |
 | :--- | :--- | :--- | :--- | :--- |
 | - | - | - | - | - |
+</details>
 
 ## 🆕 Awaiting Reviewer Pickup (19)
 **Criteria: New PRs with no reviewers yet, author acted last.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Linked PR | Last Update |
 | :--- | :--- | :--- |
@@ -70,9 +85,13 @@
 | [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | [#25010](https://github.com/google-gemini/gemini-cli/pull/25010) | `2026-04-09` |
 | [#15945 System-wide PTY exhaustion due to file descriptor leak](https://github.com/google-gemini/gemini-cli/issues/15945) | [#25079](https://github.com/google-gemini/gemini-cli/pull/25079) | `2026-04-10` |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
+</details>
 
 ## ⌛ Awaiting Reviewer Follow-up (4)
 **Criteria: Review in progress, author has responded to latest feedback.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Linked PR | Reviewers | Status | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
@@ -80,9 +99,13 @@
 | [#16122 Feature Request: Add gemini update command](https://github.com/google-gemini/gemini-cli/issues/16122) | [#24080](https://github.com/google-gemini/gemini-cli/pull/24080) | @mrpmohiburrahman | Author Updated | `2026-04-06` |
 | [#20755 Shell Tool Trailing Newline Trimming](https://github.com/google-gemini/gemini-cli/issues/20755) | [#23705](https://github.com/google-gemini/gemini-cli/pull/23705) | @mrpmohiburrahman | Author Updated | `2026-04-06` |
 | [#22616 bug: Text sanitization inadvertently swallows valid text due to C1 control characters](https://github.com/google-gemini/gemini-cli/issues/22616) | [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | @cocosheng-g | Author Updated | `2026-04-10` |
+</details>
 
 ## ✍️ Awaiting Author Action (9)
 **Criteria: Reviewer acted last, waiting for contributor to address comments.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Linked PR | Reviewers | Last Feedback |
 | :--- | :--- | :--- | :--- |
@@ -95,9 +118,13 @@
 | [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | _None (Team only)_ | `2026-04-09` |
 | [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | _None (Team only)_ | `2026-04-09` |
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | @cocosheng-g | `2026-04-09` |
+</details>
 
 ## 🛠️ Active Development: Recently Assigned (45)
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Assignee | Last Update |
 | :--- | :--- | :--- |
@@ -146,9 +173,13 @@
 | [#24211 Hardcoded padding in terminal title causes trailing spaces in tmux pane_title](https://github.com/google-gemini/gemini-cli/issues/24211) | @tusaryan | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | @tusaryan | `2026-04-09` |
 | [#7989 Provide an official way to add comments in GEMINI.md](https://github.com/google-gemini/gemini-cli/issues/7989) | @JagjeevanAK | `2026-04-09` |
+</details>
 
 ## 🛠️ Active Development: Blocked PRs (24)
 **Criteria: Active PRs with conflicts or failures updated within 14 days.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Linked PR | Author | Reason | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
@@ -176,9 +207,13 @@
 | [#22929 False command conflicts when launching from home directory (workspace and user commands resolve to same path)](https://github.com/google-gemini/gemini-cli/issues/22929) | [#23069](https://github.com/google-gemini/gemini-cli/pull/23069) | @Br1an67 | Test Failure | `2026-04-09` |
 | [#23018 ACP: Execute tool call title field contains conversational text.](https://github.com/google-gemini/gemini-cli/issues/23018) | [#23092](https://github.com/google-gemini/gemini-cli/pull/23092) | @jasonmatthewsuhari | Merge Conflict | `2026-04-09` |
 | [#20675 [Bug]: Interactive shell does not show properly on Windows 10 when using arrow keys in external subshell prompts (v0.31.0)](https://github.com/google-gemini/gemini-cli/issues/20675) | [#23505](https://github.com/google-gemini/gemini-cli/pull/23505) | @KumarADITHYA123 | Test Failure | `2026-04-10` |
+</details>
 
 ## 🌱 Available for Pickup (72)
 **Criteria: Open issues with no assignee and no active PR.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Days Idle |
 | :--- | :--- |
@@ -254,9 +289,13 @@
 | [#19602 Feature: Manually provide new session UUID via command line arg](https://github.com/google-gemini/gemini-cli/issues/19602) | 2 |
 | [#18990 Feature Request: The CLI input prompt does not support Tab-completion for file paths, which makes working with files inconvenient. Please consider adding this standard shell feature to improve usability.](https://github.com/google-gemini/gemini-cli/issues/18990) | 2 |
 | [#18385 Support Git Submodules in Extensions](https://github.com/google-gemini/gemini-cli/issues/18385) | 2 |
+</details>
 
 ## ⚠️ Unowned PRs (45)
 **Criteria: PRs where author/assignee does not match the linked issue's assignee.**
+
+<details>
+<summary>View Table</summary>
 
 | Issue | Linked PR | PR Author | Issue Assignee | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
@@ -305,6 +344,7 @@
 | [#22934 test(acp): add missing coverage for extensions command error paths](https://github.com/google-gemini/gemini-cli/issues/22934) | [#23060](https://github.com/google-gemini/gemini-cli/pull/23060) | @Br1an67 | _Unassigned_ | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | [#25068](https://github.com/google-gemini/gemini-cli/pull/25068) | @dovahkiin-v | @tusaryan | `2026-04-09` |
 | [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | @achaljhawar | @ChandanKT-git | `2026-04-10` |
+</details>
 
 ---
 *Dashboard maintained by automated triage script.*

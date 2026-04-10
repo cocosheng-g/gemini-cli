@@ -351,48 +351,58 @@ def main():
     md_rev = f"# 🔎 Gemini CLI Help Wanted Triage Dashboard\n\n*Last Synchronized: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
     md_rev += f"**Total Issues Tracked: {open_issues_count} open issues**\n\n"
     
-    md_rev += f"## 🚨 Needs Oncaller Attention ({len(oncaller_attention)})\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
+    md_rev += f"## 🚨 Needs Oncaller Attention ({len(oncaller_attention)})\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
     for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} |\n"
     if not oncaller_attention: md_rev += "| - | - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## 🚩 Stale Assignments ({len(stale_assignments)})\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🚩 Stale Assignments ({len(stale_assignments)})\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
     for i in stale_assignments: md_rev += f"| {i['issue_md']} | @{', @'.join(i['assignees'])} | {i['days_stale']} |\n"
     if not stale_assignments: md_rev += "| - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## 🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS} days.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS} days.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in blocked_stale_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {i['reason']} | @{i['author']} | {i['days_stale']} |\n"
     if not blocked_stale_prs: md_rev += "| - | - | - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Criteria: New PRs with no reviewers yet, author acted last.**\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Criteria: New PRs with no reviewers yet, author acted last.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
     for i in initial_pickup: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_rev += "| - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## ⌛ Awaiting Reviewer Follow-up ({len(followup_needed)})\n**Criteria: Review in progress, author has responded to latest feedback.**\n\n| Issue | Linked PR | Reviewers | Status | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## ⌛ Awaiting Reviewer Follow-up ({len(followup_needed)})\n**Criteria: Review in progress, author has responded to latest feedback.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Linked PR | Reviewers | Status | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in followup_needed: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']])} | {i['status']} | `{i['last_update']}` |\n"
     if not followup_needed: md_rev += "| - | - | - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## ✍️ Awaiting Author Action ({len(waiting_for_author)})\n**Criteria: Reviewer acted last, waiting for contributor to address comments.**\n\n| Issue | Linked PR | Reviewers | Last Feedback |\n| :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## ✍️ Awaiting Author Action ({len(waiting_for_author)})\n**Criteria: Reviewer acted last, waiting for contributor to address comments.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Linked PR | Reviewers | Last Feedback |\n| :--- | :--- | :--- | :--- |\n"
     for i in waiting_for_author: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None (Team only)_'} | `{i['last_feedback']}` |\n"
     if not waiting_for_author: md_rev += "| - | - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## 🛠️ Active Development: Recently Assigned ({len(recently_assigned)})\n**Criteria: Issues assigned < {STALE_ASSIGNMENT_DAYS} days ago, no PR yet.**\n\n| Issue | Assignee | Last Update |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🛠️ Active Development: Recently Assigned ({len(recently_assigned)})\n**Criteria: Issues assigned < {STALE_ASSIGNMENT_DAYS} days ago, no PR yet.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Assignee | Last Update |\n| :--- | :--- | :--- |\n"
     for i in recently_assigned: md_rev += f"| {i['issue_md']} | @{', @'.join(i['assignees'])} | `{i['last_update']}` |\n"
     if not recently_assigned: md_rev += "| - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## 🛠️ Active Development: Blocked PRs ({len(active_blocked_prs)})\n**Criteria: Active PRs with conflicts or failures updated within {STALE_BLOCKED_PR_DAYS} days.**\n\n| Issue | Linked PR | Author | Reason | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🛠️ Active Development: Blocked PRs ({len(active_blocked_prs)})\n**Criteria: Active PRs with conflicts or failures updated within {STALE_BLOCKED_PR_DAYS} days.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Linked PR | Author | Reason | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in active_blocked_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | @{i['author']} | {i['reason']} | `{i['last_update']}` |\n"
     if not active_blocked_prs: md_rev += "| - | - | - | - | - |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## 🌱 Available for Pickup ({len(available_pickup)})\n**Criteria: Open issues with no assignee and no active PR.**\n\n| Issue | Days Idle |\n| :--- | :--- |\n"
+    md_rev += f"\n## 🌱 Available for Pickup ({len(available_pickup)})\n**Criteria: Open issues with no assignee and no active PR.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Days Idle |\n| :--- | :--- |\n"
     for i in available_pickup: md_rev += f"| {i['issue_md']} | {i['days_idle']} |\n"
     if not available_pickup: md_rev += "| - | _None_ |\n"
+    md_rev += "</details>\n"
 
-    md_rev += f"\n## ⚠️ Unowned PRs ({len(unowned_prs)})\n**Criteria: PRs where author/assignee does not match the linked issue's assignee.**\n\n| Issue | Linked PR | PR Author | Issue Assignee | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## ⚠️ Unowned PRs ({len(unowned_prs)})\n**Criteria: PRs where author/assignee does not match the linked issue's assignee.**\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Linked PR | PR Author | Issue Assignee | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in unowned_prs:
         pr_auth = f"@{i['author']}"
         iss_assign = f"@{', @'.join(i['issue_assignees'])}" if i['issue_assignees'] else "_Unassigned_"
         md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {pr_auth} | {iss_assign} | `{i['last_update']}` |\n"
     if not unowned_prs: md_rev += "| - | - | - | - | - |\n"
+    md_rev += "</details>\n"
 
     md_rev += "\n---\n*Dashboard maintained by automated triage script.*"
     with open("HELP_ISSUES_TRIAGE.md", "w") as f: f.write(md_rev)
@@ -403,20 +413,23 @@ def main():
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['weekly_closed'], reverse=True):
         md_stats += f"| **{data['name']}** (@{login}) | **{data['weekly_closed']}** | {len(data['open_queue'])} |\n"
 
-    md_stats += f"\n### 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
+    md_stats += f"\n### 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n<details>\n<summary>View Table</summary>\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
     for i in initial_pickup: md_stats += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_stats += "| - | - | - |\n"
+    md_stats += "</details>\n"
 
     md_stats += "\n---\n## 👤 Individual Review Queues\n"
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['name']):
-        md_stats += f"\n### {data['name']} (@{login})\n#### 🟢 Active Queue\n| PR | Issue | Title | Status & Next Step | Updated |\n| :--- | :--- | :--- | :--- | :--- |\n"
+        md_stats += f"\n### {data['name']} (@{login})\n#### 🟢 Active Queue\n<details>\n<summary>View Active Queue ({len(data['open_queue'])})</summary>\n\n| PR | Issue | Title | Status & Next Step | Updated |\n| :--- | :--- | :--- | :--- | :--- |\n"
         for p in sorted(data['open_queue'], key=lambda x: (x['priority'], datetime.datetime.fromisoformat(x['updated']).timestamp() * -1)):
             md_stats += f"| [#{p['number']}]({p['url']}) | [#{p['issue_no']}](https://github.com/{TARGET_REPO}/issues/{p['issue_no']}) | {p['title']} | {p['status_label']} | `{p['updated']}` |\n"
         if not data['open_queue']: md_stats += "| - | - | _No active reviews._ | - | - |\n"
+        md_stats += "</details>\n"
         if data['history']:
-            md_stats += "\n#### 🔴 Recently Closed (Since Monday)\n| PR | Issue | Title | Status | Closed Date |\n| :--- | :--- | :--- | :--- | :--- |\n"
+            md_stats += f"\n#### 🔴 Recently Closed (Since Monday)\n<details>\n<summary>View Recently Closed ({len(data['history'])})</summary>\n\n| PR | Issue | Title | Status | Closed Date |\n| :--- | :--- | :--- | :--- | :--- |\n"
             for p in sorted(data['history'], key=lambda x: x['updated'], reverse=True):
                 md_stats += f"| [#{p['number']}]({p['url']}) | [#{p['issue_no']}](https://github.com/{TARGET_REPO}/issues/{p['issue_no']}) | {p['title']} | `{p['state']}` | `{p['updated']}` |\n"
+            md_stats += "</details>\n"
 
     md_stats += "\n---\n*Report generated by automated triage script.*"
     with open("TEAM_STATS.md", "w") as f: f.write(md_stats)
