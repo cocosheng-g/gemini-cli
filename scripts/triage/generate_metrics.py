@@ -83,6 +83,17 @@ def main():
     
     seen_prs = set()
     
+    # Initialize daily bins
+    days_labels = []
+    opened_by_day = {}
+    merged_by_day = {}
+    
+    for i in range(30):
+        d = (thirty_days_ago + datetime.timedelta(days=i)).strftime('%m-%d')
+        days_labels.append(d)
+        opened_by_day[d] = 0
+        merged_by_day[d] = 0
+
     BOTS = {"google-gemini-bot", "gemini-cli[bot]", "github-actions[bot]", "gemini-code-assist"}
     
     for issue in all_issues:
@@ -106,6 +117,8 @@ def main():
             
             if pr_created >= thirty_days_ago:
                 new_prs += 1
+                d_label = pr_created.strftime('%m-%d')
+                if d_label in opened_by_day: opened_by_day[d_label] += 1
                 
                 first_review_time = None
                 for rev in pr.get('reviews', {}).get('nodes', []):
@@ -129,6 +142,8 @@ def main():
                 merged_at = parse_date(pr['mergedAt'])
                 if merged_at >= thirty_days_ago:
                     merged_prs += 1
+                    d_label = merged_at.strftime('%m-%d')
+                    if d_label in merged_by_day: merged_by_day[d_label] += 1
                     ttm_list.append((merged_at - pr_created).total_seconds() / 3600.0 / 24.0)
                     
             elif pr['state'] == 'CLOSED' and pr['closedAt']:
@@ -144,6 +159,19 @@ def main():
     
     md = f"# 📈 Gemini CLI Contribution Metrics Dashboard\n\n"
     md += f"*Generated on {now.strftime('%Y-%m-%d')} (UTC). Reflects activity from the last 30 days.*\n\n"
+    
+    opened_data = [opened_by_day[d] for d in days_labels]
+    merged_data = [merged_by_day[d] for d in days_labels]
+
+    md += "## 📊 Daily PR Activity\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "PRs Opened vs Merged (Last 30 Days)"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Count"\n'
+    md += f'    bar {opened_data}\n'
+    md += f'    line {merged_data}\n'
+    md += "```\n\n"
     
     md += "## 🚀 Velocity & Throughput\n"
     md += "| Metric | Last 30 Days |\n"
