@@ -222,34 +222,16 @@ def main():
     md += "## 🚀 Velocity & Throughput\n"
     md += "Tracks the sheer volume of contribution activity over the past 30 days.\n\n"
     
-    md += "### PRs Opened\n"
-    md += "> **Legend:** 📊 Bar = Number of PRs opened\n\n"
+    md += "### PRs Opened vs Merged vs Closed (Unmerged)\n"
+    md += "> **Legend:** 📊 Bar = PRs Opened | 📈 Line 1 = PRs Merged | 📉 Line 2 = PRs Closed (Unmerged)\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
-    md += f'    title "PRs Opened ({date_range_str})"\n'
+    md += f'    title "PR Activity ({date_range_str})"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {opened_data}\n'
-    md += "```\n\n"
-
-    md += "### PRs Merged\n"
-    md += "> **Legend:** 📊 Bar = Number of PRs successfully merged\n\n"
-    md += "```mermaid\n"
-    md += "xychart-beta\n"
-    md += f'    title "PRs Merged ({date_range_str})"\n'
-    md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
-    md += '    y-axis "Count"\n'
-    md += f'    bar {merged_data}\n'
-    md += "```\n\n"
-
-    md += "### PRs Closed (Unmerged)\n"
-    md += "> **Legend:** 📊 Bar = Number of PRs closed without merging (e.g., abandoned, stale)\n\n"
-    md += "```mermaid\n"
-    md += "xychart-beta\n"
-    md += f'    title "PRs Closed Without Merging ({date_range_str})"\n'
-    md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
-    md += '    y-axis "Count"\n'
-    md += f'    bar {closed_unmerged_data}\n'
+    md += f'    line {merged_data}\n'
+    md += f'    line {closed_unmerged_data}\n'
     md += "```\n\n"
     
     md += "### Daily New Issues\n"
@@ -295,8 +277,8 @@ def main():
     
     md += "| Metric | Average | Calculation |\n"
     md += "| :--- | :--- | :--- |\n"
-    md += f"| ⚡ Time to First Review (TTFR) | **{avg_ttfr:.1f} hours** | Average time from PR creation until the first comment or review from a maintainer. (Target: < 24h) |\n"
-    md += f"| 🚢 Time to Merge (TTM) | **{avg_ttm:.1f} days** | Average time from PR creation to when it is successfully merged into the codebase. |\n\n"
+    md += f"| ⚡ Time to First Review (TTFR) | **{avg_ttfr:.1f} hours** | Average time from PR creation until the first comment or review from a maintainer. (Target: < 168h / 1 week) |\n"
+    md += f"| 🚢 Time to Merge (TTM) | **{avg_ttm:.1f} days** | Average time from PR creation to when it is successfully merged into the codebase. (Target: < 14 days) |\n\n"
     
     md += "## ❤️ Community Health\n"
     md += "Indicates the general success and retention rate of contributors attempting to resolve issues.\n\n"
