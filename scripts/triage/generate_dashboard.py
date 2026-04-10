@@ -55,6 +55,7 @@ query($searchQuery: String!, $cursor: String) {
                 ... on PullRequest {
                   number state mergedAt updatedAt url title
                   author { login }
+                  assignees(first: 5) { nodes { login } }
                   repository { nameWithOwner }
                   reviewRequests(first: 10) { nodes { requestedReviewer { __typename ... on User { login } ... on Team { slug } } } }
                   latestReviews(last: 10) { nodes { author { login } state updatedAt } }
@@ -77,6 +78,7 @@ def get_pr_batch_query(pr_numbers):
             pr{i}: pullRequest(number: {num}) {{
                 number url title state createdAt updatedAt mergedAt
                 author {{ login }}
+                assignees(first: 5) {{ nodes {{ login }} }}
                 mergeable
                 statusCheckRollup {{ state }}
                 closingIssuesReferences(first: 10) {{ nodes {{ number }} }}
@@ -238,6 +240,11 @@ def main():
             human_reviewers = set()
             special_teams = set()
             author = pr['author']['login']
+            pr_assignees = [a['login'] for a in pr.get('assignees', {}).get('nodes', [])]
+            
+            # Enforce ownership: PR must be authored or assigned by an issue assignee
+            if author not in assignees and not any(pa in assignees for pa in pr_assignees):
+                continue
             
             # Extract reviewers from whatever source we have
             if 'reviewRequests' in pr:
