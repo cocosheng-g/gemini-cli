@@ -1,8 +1,8 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 02:00 (UTC)*
+*Last Synchronized: 2026-04-10 02:01 (UTC)*
 
-**Total Issues Tracked: 240**
+**Total Issues Tracked: 173 open issues**
 
 ## 🚨 Needs Oncaller Attention (31)
 **Action: Specialized approval required.** These PRs are waiting for specific teams.

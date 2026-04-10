@@ -327,8 +327,9 @@ def main():
     initial_pickup.sort(key=lambda x: x['updated_at'], reverse=True)
 
     # --- Write HELP_ISSUES_TRIAGE.md ---
+    open_issues_count = len([i for i in all_issue_nodes if i['state'] == 'OPEN'])
     md_rev = f"# 🔎 Gemini CLI Help Wanted Triage Dashboard\n\n*Last Synchronized: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
-    md_rev += f"**Total Issues Tracked: {len(all_issue_nodes)}**\n\n"
+    md_rev += f"**Total Issues Tracked: {open_issues_count} open issues**\n\n"
     
     md_rev += f"## 🚨 Needs Oncaller Attention ({len(oncaller_attention)})\n**Action: Specialized approval required.** These PRs are waiting for specific teams.\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
     for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} |\n"
