@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 15:03 (UTC)*
+*Last Updated: 2026-04-10 15:06 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -20,7 +20,7 @@
 | **Ruomeng Zhang** (@ruomengz) | **0** | 0 |
 | **Sri Pasumarthi** (@sripasg) | **0** | 0 |
 
-### 🆕 Awaiting Reviewer Pickup (18)
+### 🆕 Awaiting Reviewer Pickup (15)
 **These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
 | Issue | Linked PR | Last Update |
@@ -30,12 +30,9 @@
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | `2026-04-09` |
 | [#19713 Fix unsafe type assertions in CLI Config (Phase 3.1)](https://github.com/google-gemini/gemini-cli/issues/19713) | [#24905](https://github.com/google-gemini/gemini-cli/pull/24905) | `2026-04-09` |
 | [#20385 Terminal output flooded with repeated '0c/' string](https://github.com/google-gemini/gemini-cli/issues/20385) | [#24596](https://github.com/google-gemini/gemini-cli/pull/24596) | `2026-04-09` |
-| [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-09` |
 | [#21546 web_fetch: pressing Ctrl+C while a URL is loading causes silent retries instead of immediate cancellation](https://github.com/google-gemini/gemini-cli/issues/21546) | [#24320](https://github.com/google-gemini/gemini-cli/pull/24320) | `2026-04-09` |
 | [#22417 CLI accepts positional prompt with --prompt-interactive and handles the conflict inconsistently](https://github.com/google-gemini/gemini-cli/issues/22417) | [#22418](https://github.com/google-gemini/gemini-cli/pull/22418) | `2026-04-09` |
 | [#22589 fix(cli): all Executing subagent tool calls dropped from UI state, breaking task-tree hierarchy](https://github.com/google-gemini/gemini-cli/issues/22589) | [#22590](https://github.com/google-gemini/gemini-cli/pull/22590) | `2026-04-09` |
-| [#22610 bug: ui.loadingPhrases: 'off' is ignored by the UI](https://github.com/google-gemini/gemini-cli/issues/22610) | [#22618](https://github.com/google-gemini/gemini-cli/pull/22618) | `2026-04-09` |
-| [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | `2026-04-09` |
 | [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | [#25010](https://github.com/google-gemini/gemini-cli/pull/25010) | `2026-04-09` |
 | [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | `2026-04-09` |
 | [#16391 Bug: Clickable URLs in inline Markdown include trailing punctuation especially Chinese punctuations, leading to broken navigation](https://github.com/google-gemini/gemini-cli/issues/16391) | [#25098](https://github.com/google-gemini/gemini-cli/pull/25098) | `2026-04-10` |
@@ -58,7 +55,7 @@
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
 | [#23747](https://github.com/google-gemini/gemini-cli/pull/23747) | [#23441](https://github.com/google-gemini/gemini-cli/issues/23441) | fix: add guidance when no skills available (#23441) | 🔴 Blocked: Test Failure | `2026-03-25` |
-| [#15816](https://github.com/google-gemini/gemini-cli/pull/15816) | [#16717](https://github.com/google-gemini/gemini-cli/issues/16717) | docs(cli): updates f12 description to be more precise | 🟢 Active (Needs 🛡️ gemini-cli-docs) | `2026-04-10` |
+| [#15816](https://github.com/google-gemini/gemini-cli/pull/15816) | [#16717](https://github.com/google-gemini/gemini-cli/issues/16717) | docs(cli): updates f12 description to be more precise | 🟢 Active (Needs Author Update) (Needs 🛡️ gemini-cli-docs) | `2026-04-10` |
 | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | [#19717](https://github.com/google-gemini/gemini-cli/issues/19717) | fix(vscode): resolve unsafe assignment lint errors | 🟢 Active (Needs 🛡️ gemini-cli-askmode-approvers, gemini-cli-prompt-approvers) | `2026-04-05` |
 
 </details>
@@ -71,7 +68,7 @@
 | :--- | :--- | :--- | :--- | :--- |
 | [#15504](https://github.com/google-gemini/gemini-cli/pull/15504) | [#15503](https://github.com/google-gemini/gemini-cli/issues/15503) | feat: add github colorblind themes | 🔴 Blocked: Test Failure | `2026-04-09` |
 | [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | [#22616](https://github.com/google-gemini/gemini-cli/issues/22616) | fix(cli): resolve text sanitization data loss due to C1 control characters | 🟢 Active | `2026-04-10` |
-| [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | [#22611](https://github.com/google-gemini/gemini-cli/issues/22611) | fix(cli): clear thought state on response completion to prevent UI ghosting | 🟢 Active | `2026-04-10` |
+| [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | [#22611](https://github.com/google-gemini/gemini-cli/issues/22611) | fix(cli): clear thought state on response completion to prevent UI ghosting | 🟢 Active (Needs Author Update) | `2026-04-10` |
 | [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | [#22321](https://github.com/google-gemini/gemini-cli/issues/22321) | feat(cli): Add 'list' subcommand to '/commands' | 🟢 Active (Needs 🛡️ gemini-cli-docs) | `2026-04-10` |
 | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | [#21635](https://github.com/google-gemini/gemini-cli/issues/21635) | fix: improve audio MIME normalization and validation in file reads | 🟢 Active (Needs Author Update) | `2026-04-10` |
 | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | [#24838](https://github.com/google-gemini/gemini-cli/issues/24838) | fix(mcp): treat GET 404 as 405 in StreamableHTTPClientTransport | 🟢 Active (Needs Author Update) (Needs 🛡️ gemini-cli-prompt-approvers) | `2026-04-10` |

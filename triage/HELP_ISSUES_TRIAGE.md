@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 15:03 (UTC)*
+*Last Synchronized: 2026-04-10 15:06 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -9,7 +9,7 @@
 ## 🚨 Needs Oncaller Attention
 
 <details>
-<summary><b>🆕 Awaiting Reviewer Pickup (18)</b> — <i>Help contributors get their code merged!</i></summary>
+<summary><b>🆕 Awaiting Reviewer Pickup (15)</b> — <i>Help contributors get their code merged!</i></summary>
 
 **These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
@@ -20,12 +20,9 @@
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | `2026-04-09` |
 | [#19713 Fix unsafe type assertions in CLI Config (Phase 3.1)](https://github.com/google-gemini/gemini-cli/issues/19713) | [#24905](https://github.com/google-gemini/gemini-cli/pull/24905) | `2026-04-09` |
 | [#20385 Terminal output flooded with repeated '0c/' string](https://github.com/google-gemini/gemini-cli/issues/20385) | [#24596](https://github.com/google-gemini/gemini-cli/pull/24596) | `2026-04-09` |
-| [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-09` |
 | [#21546 web_fetch: pressing Ctrl+C while a URL is loading causes silent retries instead of immediate cancellation](https://github.com/google-gemini/gemini-cli/issues/21546) | [#24320](https://github.com/google-gemini/gemini-cli/pull/24320) | `2026-04-09` |
 | [#22417 CLI accepts positional prompt with --prompt-interactive and handles the conflict inconsistently](https://github.com/google-gemini/gemini-cli/issues/22417) | [#22418](https://github.com/google-gemini/gemini-cli/pull/22418) | `2026-04-09` |
 | [#22589 fix(cli): all Executing subagent tool calls dropped from UI state, breaking task-tree hierarchy](https://github.com/google-gemini/gemini-cli/issues/22589) | [#22590](https://github.com/google-gemini/gemini-cli/pull/22590) | `2026-04-09` |
-| [#22610 bug: ui.loadingPhrases: 'off' is ignored by the UI](https://github.com/google-gemini/gemini-cli/issues/22610) | [#22618](https://github.com/google-gemini/gemini-cli/pull/22618) | `2026-04-09` |
-| [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | `2026-04-09` |
 | [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | [#25010](https://github.com/google-gemini/gemini-cli/pull/25010) | `2026-04-09` |
 | [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | `2026-04-09` |
 | [#16391 Bug: Clickable URLs in inline Markdown include trailing punctuation especially Chinese punctuations, leading to broken navigation](https://github.com/google-gemini/gemini-cli/issues/16391) | [#25098](https://github.com/google-gemini/gemini-cli/pull/25098) | `2026-04-10` |
@@ -87,31 +84,34 @@
 ## 🛠️ Active Development
 
 <details>
-<summary><b>⌛ Awaiting Reviewer Follow-up (4)</b> — <i>Reviewers, please follow up.</i></summary>
+<summary><b>⌛ Awaiting Reviewer Follow-up (3)</b> — <i>Reviewers, please follow up.</i></summary>
 
 **Criteria: Review in progress, author has responded to latest feedback.**
 
 | Issue | Linked PR | Reviewers | Status | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
 | [#20948 Suggestion: Feature Request: Add "Last Edited Buffer" to command history to prevent data loss on accidental deletion.](https://github.com/google-gemini/gemini-cli/issues/20948) | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | @devr0306 | Author Updated | `2026-04-10` |
-| [#22611 bug: Stale 'Thinking...' state persists after response completion](https://github.com/google-gemini/gemini-cli/issues/22611) | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | @cocosheng-g | Author Updated | `2026-04-10` |
 | [#22616 bug: Text sanitization inadvertently swallows valid text due to C1 control characters](https://github.com/google-gemini/gemini-cli/issues/22616) | [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | @cocosheng-g | Author Updated | `2026-04-10` |
 | [#24337 fix(cli): make slash-command IDE status subscription cleanup-safe](https://github.com/google-gemini/gemini-cli/issues/24337) | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | @scidomino | Author Updated | `2026-04-10` |
 </details>
 
 <details>
-<summary><b>✍️ Awaiting Author Action (2)</b> — <i>Waiting for contributor.</i></summary>
+<summary><b>✍️ Awaiting Author Action (6)</b> — <i>Waiting for contributor.</i></summary>
 
 **Criteria: Reviewer acted last, waiting for contributor to address comments.**
 
 | Issue | Linked PR | Reviewers | Last Feedback |
 | :--- | :--- | :--- | :--- |
 | [#20655 Token estimation falls through to generic fallback for audio/video parts](https://github.com/google-gemini/gemini-cli/issues/20655) | [#20658](https://github.com/google-gemini/gemini-cli/pull/20658) | @mrpmohiburrahman | `2026-04-05` |
+| [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | _None (Team only)_ | `2026-04-09` |
+| [#22610 bug: ui.loadingPhrases: 'off' is ignored by the UI](https://github.com/google-gemini/gemini-cli/issues/22610) | [#22618](https://github.com/google-gemini/gemini-cli/pull/22618) | _None (Team only)_ | `2026-04-09` |
+| [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | _None (Team only)_ | `2026-04-09` |
 | [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | @cocosheng-g | `2026-04-10` |
+| [#22611 bug: Stale 'Thinking...' state persists after response completion](https://github.com/google-gemini/gemini-cli/issues/22611) | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | @cocosheng-g | `2026-04-10` |
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (62)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (59)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -141,14 +141,11 @@
 | [#21277 [FEATURE PROPOSAL]: Persistent Session Scratchpad via /memo command](https://github.com/google-gemini/gemini-cli/issues/21277) | @ProthamD | `2026-04-08` |
 | [#21297 bug(command/skills): Interactive Consent Dialog Persists After Successful Workspace Skill Installation](https://github.com/google-gemini/gemini-cli/issues/21297) | @manavmax | `2026-04-08` |
 | [#21366 When searchung in /resume and using search /: cannot select filtered result, since "enter" is put in search term and thereforce no mean of selecting desired resume point](https://github.com/google-gemini/gemini-cli/issues/21366) | @f-pieri | `2026-04-08` |
-| [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | @Aarchi-07 | `2026-04-08` |
 | [#21389 Make Jetbrains IDEs as editor options](https://github.com/google-gemini/gemini-cli/issues/21389) | @SoLoHiC | `2026-04-08` |
 | [#22417 CLI accepts positional prompt with --prompt-interactive and handles the conflict inconsistently](https://github.com/google-gemini/gemini-cli/issues/22417) | @AshwinSaklecha | `2026-04-08` |
 | [#22490 Feature: Configurable window title length and padding options](https://github.com/google-gemini/gemini-cli/issues/22490) | @daehyeok | `2026-04-08` |
 | [#22589 fix(cli): all Executing subagent tool calls dropped from UI state, breaking task-tree hierarchy](https://github.com/google-gemini/gemini-cli/issues/22589) | @TravisHaa | `2026-04-08` |
 | [#22591 fix(cli): mapToDisplay uses unbounded JSON.stringify for ErroredToolCall description](https://github.com/google-gemini/gemini-cli/issues/22591) | @TravisHaa | `2026-04-08` |
-| [#22610 bug: ui.loadingPhrases: 'off' is ignored by the UI](https://github.com/google-gemini/gemini-cli/issues/22610) | @euxaristia | `2026-04-08` |
-| [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | @euxaristia | `2026-04-08` |
 | [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | @student-ankitpandit | `2026-04-08` |
 | [#15840 Alternate Buffer SettingsDialog](https://github.com/google-gemini/gemini-cli/issues/15840) | @psinha40898 | `2026-04-09` |
 | [#16530 Robust WSL Support](https://github.com/google-gemini/gemini-cli/issues/16530) | @ChandanKT-git | `2026-04-09` |
