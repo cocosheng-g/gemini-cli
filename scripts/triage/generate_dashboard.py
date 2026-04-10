@@ -309,17 +309,17 @@ def main():
                     active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": status_label.split(': ')[1], "last_update": latest_author_act_iso[:10]})
                 has_active_work = True
             elif author_acted_last:
-                item = {"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "updated_at": latest_author_act_iso[:10], "reviewers": sorted(list(human_reviewers))}
+                item = {"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "last_update": latest_author_act_iso[:10], "reviewers": sorted(list(human_reviewers))}
                 if not human_reviewers:
                     initial_pickup.append(item)
                 else:
+                    item["reviewers"] = sorted(list(human_reviewers))
                     item["status"] = "Review Requested" if not latest_rev_act_iso else "Author Updated"
                     followup_needed.append(item)
                 has_active_work = True
             else:
-                waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_action": latest_rev_act_iso[:10]})
+                waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_feedback": latest_rev_act_iso[:10]})
                 has_active_work = True
-
         if has_active_work or issue['state'] != 'OPEN': continue
         if not found_open_pr:
             days_idle = (now - issue_updated_at).days
@@ -333,7 +333,9 @@ def main():
 
     # Sorting
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
-    initial_pickup.sort(key=lambda x: (x['updated_at'], x['issue_md']))
+    initial_pickup.sort(key=lambda x: (x['last_update'], x['issue_md']))
+    followup_needed.sort(key=lambda x: (x['last_update'], x['issue_md']))
+    waiting_for_author.sort(key=lambda x: (x['last_feedback'], x['issue_md']))
     recently_assigned.sort(key=lambda x: (x['last_update'], x['issue_md']))
     active_blocked_prs.sort(key=lambda x: (x['last_update'], x['issue_md']))
 
@@ -355,15 +357,15 @@ def main():
     if not blocked_stale_prs: md_rev += "| - | - | - | - | - |\n"
 
     md_rev += f"\n## 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
-    for i in initial_pickup: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['updated_at']}` |\n"
+    for i in initial_pickup: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_rev += "| - | - | - |\n"
 
-    md_rev += f"\n## ⌛ Awaiting Reviewer Follow-up ({len(followup_needed)})\n**Action: Reviewers, please follow up.** Author has responded.\n\n| Issue | Linked PR | Reviewers | Status |\n| :--- | :--- | :--- | :--- |\n"
-    for i in followup_needed: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']])} | {i['status']} |\n"
-    if not followup_needed: md_rev += "| - | - | - | - |\n"
+    md_rev += f"\n## ⌛ Awaiting Reviewer Follow-up ({len(followup_needed)})\n**Action: Reviewers, please follow up.** Author has responded.\n\n| Issue | Linked PR | Reviewers | Status | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    for i in followup_needed: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']])} | {i['status']} | `{i['last_update']}` |\n"
+    if not followup_needed: md_rev += "| - | - | - | - | - |\n"
 
     md_rev += f"\n## ✍️ Awaiting Author Action ({len(waiting_for_author)})\n**Status: Waiting for contributor.**\n\n| Issue | Linked PR | Reviewers | Last Feedback |\n| :--- | :--- | :--- | :--- |\n"
-    for i in waiting_for_author: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None (Team only)_'} | `{i['last_action'][:10]}` |\n"
+    for i in waiting_for_author: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None (Team only)_'} | `{i['last_feedback']}` |\n"
     if not waiting_for_author: md_rev += "| - | - | - | - |\n"
 
     md_rev += f"\n## 🛠️ Active Development: Recently Assigned ({len(recently_assigned)})\n**Status: Assigned < 14 days ago.**\n\n| Issue | Assignee | Last Update |\n| :--- | :--- | :--- |\n"
@@ -388,7 +390,7 @@ def main():
         md_stats += f"| **{data['name']}** (@{login}) | **{data['weekly_closed']}** | {len(data['open_queue'])} |\n"
 
     md_stats += f"\n### 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
-    for i in initial_pickup: md_stats += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['updated_at']}` |\n"
+    for i in initial_pickup: md_stats += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_stats += "| - | - | - |\n"
 
     md_stats += "\n---\n## 👤 Individual Review Queues\n"
