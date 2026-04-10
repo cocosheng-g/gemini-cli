@@ -184,8 +184,8 @@ def get_status_label(pr):
     return "🟢 Active"
 
 def get_status_priority(label):
-    if "Blocked" in label: return 3
-    if "Needs Author Update" in label: return 2
+    if "Test Failure" in label or "Merge Conflict" in label or "Draft" in label or "Blocked" in label: return 3
+    if "Author Update" in label: return 2
     if "Needs" in label: return 1
     if "Active" in label: return 0
     return 4
@@ -374,14 +374,18 @@ def main():
             needs_list = []
             if special_teams:
                 needs_list.append(f"{', '.join(sorted(list(special_teams)))}")
-            if "Active" in status_label and not author_acted_last:
-                needs_list.append("Author Update")
+
+            if "Test Failure" in status_label:
+                needs_list.append("Author Update (Test Failure)")
+            elif "Merge Conflict" in status_label:
+                needs_list.append("Author Update (Merge Conflict)")
+            elif "Draft" in status_label:
+                needs_list.append("Author Update (Draft)")
+            elif "Active" in status_label and not author_acted_last:
+                needs_list.append("Author Update (Resolve Comments)")
             
             if needs_list:
-                if "Active" in status_label:
-                    status_label = f"Needs {', '.join(needs_list)}"
-                else:
-                    status_label += f" (Needs {', '.join(needs_list)})"
+                status_label = f"Needs {', '.join(needs_list)}"
 
             for r_login in human_reviewers:
                 if r_login in member_stats:
