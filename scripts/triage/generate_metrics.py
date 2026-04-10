@@ -84,8 +84,9 @@ def main():
     seen_prs = set()
     contributors = {}
     
-    # Initialize 5-day bins to avoid overlapping x-axis labels
+    # Initialize daily bins (30 days) to capture precise daily metrics
     days_labels = []
+    display_labels = []
     opened_by_day = {}
     merged_by_day = {}
     new_issues_by_day = {}
@@ -94,11 +95,13 @@ def main():
     ttm_by_day_lists = {}
     active_contributors_by_day = {}
     
-    for i in range(6):
-        start_d = thirty_days_ago + datetime.timedelta(days=i*5)
-        end_d = start_d + datetime.timedelta(days=4)
-        d_label = f"{start_d.strftime('%b%d')}-{end_d.strftime('%d')}"
+    for i in range(30):
+        d = thirty_days_ago + datetime.timedelta(days=i)
+        d_label = d.strftime('%m-%d')
         days_labels.append(d_label)
+        # To prevent x-axis overlapping, only show every 3rd label (e.g., index 0, 3, 6...)
+        display_labels.append(d_label if i % 3 == 0 else "")
+        
         opened_by_day[d_label] = 0
         merged_by_day[d_label] = 0
         new_issues_by_day[d_label] = 0
@@ -110,7 +113,7 @@ def main():
     def get_bin_label(date_obj):
         delta = (date_obj - thirty_days_ago).days
         if 0 <= delta < 30:
-            return days_labels[delta // 5]
+            return days_labels[delta]
         return None
 
     BOTS = {"google-gemini-bot", "gemini-cli[bot]", "github-actions[bot]", "gemini-code-assist"}
@@ -220,7 +223,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "PRs Opened (Last 30 Days)"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {opened_data}\n'
     md += "```\n\n"
@@ -230,7 +233,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "PRs Merged (Last 30 Days)"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {merged_data}\n'
     md += "```\n\n"
@@ -240,7 +243,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "PRs Closed Without Merging (Last 30 Days)"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {closed_unmerged_data}\n'
     md += "```\n\n"
@@ -250,7 +253,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "New Help Wanted Issues"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {new_issues_data}\n'
     md += "```\n\n"
@@ -271,7 +274,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Average TTFR per Day (Hours)"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "Hours"\n'
     md += f'    line {ttfr_data}\n'
     md += "```\n\n"
@@ -281,7 +284,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Average TTM per Day (Days)"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "Days"\n'
     md += f'    line {ttm_data}\n'
     md += "```\n\n"
@@ -307,7 +310,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Active Contributors"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {active_contributors_data}\n'
     md += "```\n\n"
@@ -316,7 +319,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Avg PRs Opened per Contributor"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "PRs"\n'
     md += f'    line {avg_opened_data}\n'
     md += "```\n\n"
@@ -325,7 +328,7 @@ def main():
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Avg PRs Merged per Contributor"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += f'    x-axis {json.dumps(display_labels)}\n'
     md += '    y-axis "PRs"\n'
     md += f'    line {avg_merged_data}\n'
     md += "```\n\n"
