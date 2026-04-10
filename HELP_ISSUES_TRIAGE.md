@@ -1,11 +1,11 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 02:44 (UTC)*
+*Last Synchronized: 2026-04-10 02:46 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
 ## 🚨 Needs Oncaller Attention (21)
-**Action: Specialized approval required.** These PRs are waiting for specific teams.
+**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**
 
 | Issue | Linked PR | Required Teams | Human Reviewers |
 | :--- | :--- | :--- | :--- |
@@ -32,7 +32,7 @@
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | `gemini-cli-prompt-approvers` | @cocosheng-g |
 
 ## 🚩 Stale Assignments (2)
-**Action: Maintainers, please unassign.** Assigned for >14 days with no open PR.
+**Criteria: Assigned issues with no open PR, idle for >14 days.**
 
 | Issue | Assignee | Days Stale |
 | :--- | :--- | :--- |
@@ -40,14 +40,14 @@
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | @ame2en | 21 |
 
 ## 🚧 Blocked & Stale PRs (0)
-**Action: Auto-cleanup.**
+**Criteria: PRs with conflicts or failures untouched for >14 days.**
 
 | Issue | PR | Reason | Author | Days Stale |
 | :--- | :--- | :--- | :--- | :--- |
 | - | - | - | - | - |
 
 ## 🆕 Awaiting Reviewer Pickup (19)
-**Action: Pick up one of these new PRs.** All tests passing, no conflicts.
+**Criteria: New PRs with no reviewers yet, author acted last.**
 
 | Issue | Linked PR | Last Update |
 | :--- | :--- | :--- |
@@ -72,7 +72,7 @@
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
 
 ## ⌛ Awaiting Reviewer Follow-up (4)
-**Action: Reviewers, please follow up.** Author has responded.
+**Criteria: Review in progress, author has responded to latest feedback.**
 
 | Issue | Linked PR | Reviewers | Status | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
@@ -82,7 +82,7 @@
 | [#22616 bug: Text sanitization inadvertently swallows valid text due to C1 control characters](https://github.com/google-gemini/gemini-cli/issues/22616) | [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | @cocosheng-g | Author Updated | `2026-04-10` |
 
 ## ✍️ Awaiting Author Action (9)
-**Status: Waiting for contributor.**
+**Criteria: Reviewer acted last, waiting for contributor to address comments.**
 
 | Issue | Linked PR | Reviewers | Last Feedback |
 | :--- | :--- | :--- | :--- |
@@ -97,7 +97,7 @@
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | @cocosheng-g | `2026-04-09` |
 
 ## 🛠️ Active Development: Recently Assigned (45)
-**Status: Assigned < 14 days ago.**
+**Criteria: Issues assigned < 14 days ago, no PR yet.**
 
 | Issue | Assignee | Last Update |
 | :--- | :--- | :--- |
@@ -148,7 +148,7 @@
 | [#7989 Provide an official way to add comments in GEMINI.md](https://github.com/google-gemini/gemini-cli/issues/7989) | @JagjeevanAK | `2026-04-09` |
 
 ## 🛠️ Active Development: Blocked PRs (24)
-**Status: Active work with blockers.**
+**Criteria: Active PRs with conflicts or failures updated within 14 days.**
 
 | Issue | Linked PR | Author | Reason | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
@@ -178,7 +178,7 @@
 | [#20675 [Bug]: Interactive shell does not show properly on Windows 10 when using arrow keys in external subshell prompts (v0.31.0)](https://github.com/google-gemini/gemini-cli/issues/20675) | [#23505](https://github.com/google-gemini/gemini-cli/pull/23505) | @KumarADITHYA123 | Test Failure | `2026-04-10` |
 
 ## 🌱 Available for Pickup (72)
-**Action: Open for contributors.**
+**Criteria: Open issues with no assignee and no active PR.**
 
 | Issue | Days Idle |
 | :--- | :--- |
@@ -256,7 +256,7 @@
 | [#18385 Support Git Submodules in Extensions](https://github.com/google-gemini/gemini-cli/issues/18385) | 2 |
 
 ## ⚠️ Unowned PRs (45)
-**Status: PR author/assignee does not match issue assignee.**
+**Criteria: PRs where author/assignee does not match the linked issue's assignee.**
 
 | Issue | Linked PR | PR Author | Issue Assignee | Last Update |
 | :--- | :--- | :--- | :--- | :--- |

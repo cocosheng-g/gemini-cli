@@ -351,43 +351,43 @@ def main():
     md_rev = f"# 🔎 Gemini CLI Help Wanted Triage Dashboard\n\n*Last Synchronized: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
     md_rev += f"**Total Issues Tracked: {open_issues_count} open issues**\n\n"
     
-    md_rev += f"## 🚨 Needs Oncaller Attention ({len(oncaller_attention)})\n**Action: Specialized approval required.** These PRs are waiting for specific teams.\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
+    md_rev += f"## 🚨 Needs Oncaller Attention ({len(oncaller_attention)})\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
     for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} |\n"
     if not oncaller_attention: md_rev += "| - | - | - | - |\n"
 
-    md_rev += f"\n## 🚩 Stale Assignments ({len(stale_assignments)})\n**Action: Maintainers, please unassign.** Assigned for >14 days with no open PR.\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🚩 Stale Assignments ({len(stale_assignments)})\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
     for i in stale_assignments: md_rev += f"| {i['issue_md']} | @{', @'.join(i['assignees'])} | {i['days_stale']} |\n"
     if not stale_assignments: md_rev += "| - | - | - |\n"
 
-    md_rev += f"\n## 🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})\n**Action: Auto-cleanup.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS} days.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in blocked_stale_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {i['reason']} | @{i['author']} | {i['days_stale']} |\n"
     if not blocked_stale_prs: md_rev += "| - | - | - | - | - |\n"
 
-    md_rev += f"\n## 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Criteria: New PRs with no reviewers yet, author acted last.**\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
     for i in initial_pickup: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_rev += "| - | - | - |\n"
 
-    md_rev += f"\n## ⌛ Awaiting Reviewer Follow-up ({len(followup_needed)})\n**Action: Reviewers, please follow up.** Author has responded.\n\n| Issue | Linked PR | Reviewers | Status | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## ⌛ Awaiting Reviewer Follow-up ({len(followup_needed)})\n**Criteria: Review in progress, author has responded to latest feedback.**\n\n| Issue | Linked PR | Reviewers | Status | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in followup_needed: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']])} | {i['status']} | `{i['last_update']}` |\n"
     if not followup_needed: md_rev += "| - | - | - | - | - |\n"
 
-    md_rev += f"\n## ✍️ Awaiting Author Action ({len(waiting_for_author)})\n**Status: Waiting for contributor.**\n\n| Issue | Linked PR | Reviewers | Last Feedback |\n| :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## ✍️ Awaiting Author Action ({len(waiting_for_author)})\n**Criteria: Reviewer acted last, waiting for contributor to address comments.**\n\n| Issue | Linked PR | Reviewers | Last Feedback |\n| :--- | :--- | :--- | :--- |\n"
     for i in waiting_for_author: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None (Team only)_'} | `{i['last_feedback']}` |\n"
     if not waiting_for_author: md_rev += "| - | - | - | - |\n"
 
-    md_rev += f"\n## 🛠️ Active Development: Recently Assigned ({len(recently_assigned)})\n**Status: Assigned < 14 days ago.**\n\n| Issue | Assignee | Last Update |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🛠️ Active Development: Recently Assigned ({len(recently_assigned)})\n**Criteria: Issues assigned < {STALE_ASSIGNMENT_DAYS} days ago, no PR yet.**\n\n| Issue | Assignee | Last Update |\n| :--- | :--- | :--- |\n"
     for i in recently_assigned: md_rev += f"| {i['issue_md']} | @{', @'.join(i['assignees'])} | `{i['last_update']}` |\n"
     if not recently_assigned: md_rev += "| - | - | - |\n"
 
-    md_rev += f"\n## 🛠️ Active Development: Blocked PRs ({len(active_blocked_prs)})\n**Status: Active work with blockers.**\n\n| Issue | Linked PR | Author | Reason | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## 🛠️ Active Development: Blocked PRs ({len(active_blocked_prs)})\n**Criteria: Active PRs with conflicts or failures updated within {STALE_BLOCKED_PR_DAYS} days.**\n\n| Issue | Linked PR | Author | Reason | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in active_blocked_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | @{i['author']} | {i['reason']} | `{i['last_update']}` |\n"
     if not active_blocked_prs: md_rev += "| - | - | - | - | - |\n"
 
-    md_rev += f"\n## 🌱 Available for Pickup ({len(available_pickup)})\n**Action: Open for contributors.**\n\n| Issue | Days Idle |\n| :--- | :--- |\n"
+    md_rev += f"\n## 🌱 Available for Pickup ({len(available_pickup)})\n**Criteria: Open issues with no assignee and no active PR.**\n\n| Issue | Days Idle |\n| :--- | :--- |\n"
     for i in available_pickup: md_rev += f"| {i['issue_md']} | {i['days_idle']} |\n"
     if not available_pickup: md_rev += "| - | _None_ |\n"
 
-    md_rev += f"\n## ⚠️ Unowned PRs ({len(unowned_prs)})\n**Status: PR author/assignee does not match issue assignee.**\n\n| Issue | Linked PR | PR Author | Issue Assignee | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n## ⚠️ Unowned PRs ({len(unowned_prs)})\n**Criteria: PRs where author/assignee does not match the linked issue's assignee.**\n\n| Issue | Linked PR | PR Author | Issue Assignee | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in unowned_prs:
         pr_auth = f"@{i['author']}"
         iss_assign = f"@{', @'.join(i['issue_assignees'])}" if i['issue_assignees'] else "_Unassigned_"
