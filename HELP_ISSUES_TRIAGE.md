@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 14:29 (UTC)*
+*Last Synchronized: 2026-04-10 14:34 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -9,13 +9,12 @@
 ## 🚨 Needs Oncaller Attention
 
 <details>
-<summary><b>🆕 Awaiting Reviewer Pickup (19)</b> — <i>Pick up one of these new PRs.</i></summary>
+<summary><b>🆕 Awaiting Reviewer Pickup (18)</b> — <i>Help contributors get their code merged!</i></summary>
 
-**Criteria: New PRs with no reviewers yet, author acted last.**
+**These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
 | Issue | Linked PR | Last Update |
 | :--- | :--- | :--- |
-| [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | `2026-04-08` |
 | [#22591 fix(cli): mapToDisplay uses unbounded JSON.stringify for ErroredToolCall description](https://github.com/google-gemini/gemini-cli/issues/22591) | [#22594](https://github.com/google-gemini/gemini-cli/pull/22594) | `2026-04-08` |
 | [#16559 Most /slash command args counts are not validated](https://github.com/google-gemini/gemini-cli/issues/16559) | [#25069](https://github.com/google-gemini/gemini-cli/pull/25069) | `2026-04-09` |
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | `2026-04-09` |
@@ -100,17 +99,18 @@
 </details>
 
 <details>
-<summary><b>✍️ Awaiting Author Action (1)</b> — <i>Waiting for contributor.</i></summary>
+<summary><b>✍️ Awaiting Author Action (2)</b> — <i>Waiting for contributor.</i></summary>
 
 **Criteria: Reviewer acted last, waiting for contributor to address comments.**
 
 | Issue | Linked PR | Reviewers | Last Feedback |
 | :--- | :--- | :--- | :--- |
 | [#20655 Token estimation falls through to generic fallback for audio/video parts](https://github.com/google-gemini/gemini-cli/issues/20655) | [#20658](https://github.com/google-gemini/gemini-cli/pull/20658) | @mrpmohiburrahman | `2026-04-05` |
+| [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | @cocosheng-g | `2026-04-10` |
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (63)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (62)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -142,7 +142,6 @@
 | [#21366 When searchung in /resume and using search /: cannot select filtered result, since "enter" is put in search term and thereforce no mean of selecting desired resume point](https://github.com/google-gemini/gemini-cli/issues/21366) | @f-pieri | `2026-04-08` |
 | [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | @Aarchi-07 | `2026-04-08` |
 | [#21389 Make Jetbrains IDEs as editor options](https://github.com/google-gemini/gemini-cli/issues/21389) | @SoLoHiC | `2026-04-08` |
-| [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | @junaiddshaukat | `2026-04-08` |
 | [#22417 CLI accepts positional prompt with --prompt-interactive and handles the conflict inconsistently](https://github.com/google-gemini/gemini-cli/issues/22417) | @AshwinSaklecha | `2026-04-08` |
 | [#22490 Feature: Configurable window title length and padding options](https://github.com/google-gemini/gemini-cli/issues/22490) | @daehyeok | `2026-04-08` |
 | [#22589 fix(cli): all Executing subagent tool calls dropped from UI state, breaking task-tree hierarchy](https://github.com/google-gemini/gemini-cli/issues/22589) | @TravisHaa | `2026-04-08` |
