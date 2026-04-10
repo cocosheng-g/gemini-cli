@@ -35,22 +35,22 @@ def main():
     
     ISSUES_QUERY = """
     query($searchQuery: String!, $cursor: String) {
-      search(query: $searchQuery, type: ISSUE, first: 50, after: $cursor) {
+      search(query: $searchQuery, type: ISSUE, first: 30, after: $cursor) {
         pageInfo { hasNextPage endCursor }
         nodes {
           ... on Issue {
             number state createdAt closedAt
-            comments(last: 50) { nodes { author { login } publishedAt } }
-            timelineItems(itemTypes: CROSS_REFERENCED_EVENT, first: 50) {
+            comments(last: 30) { nodes { author { login } publishedAt } }
+            timelineItems(itemTypes: CROSS_REFERENCED_EVENT, first: 30) {
               nodes {
                 ... on CrossReferencedEvent {
                   source {
                     ... on PullRequest {
                       number state createdAt mergedAt closedAt
                       author { login }
-                      reviews(last: 50) { nodes { author { login } createdAt state } }
-                      comments(last: 50) { nodes { author { login } publishedAt } }
-                      commits(last: 50) { nodes { commit { committedDate author { user { login } } } } }
+                      reviews(last: 20) { nodes { author { login } createdAt state } }
+                      comments(last: 30) { nodes { author { login } publishedAt } }
+                      commits(last: 10) { nodes { commit { committedDate author { user { login } } } } }
                     }
                   }
                 }
