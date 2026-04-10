@@ -492,7 +492,16 @@ def main():
                 recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": item['updatedAt'][:10]})
 
     print("LOG: Sorting results...")
-    oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
+    def get_oncaller_priority(status):
+        if "Maintainer Approved" in status: return 0
+        if "Ready to Review" in status: return 1
+        if "Needs Maintainer" in status: return 2
+        if "Author Update" in status: return 3
+        if "Merge Conflict" in status or "Test Failure" in status: return 4
+        if "Draft" in status: return 5
+        return 6
+
+    oncaller_attention.sort(key=lambda x: (get_oncaller_priority(x['status']), ", ".join(x['teams']), x['issue_no']))
     initial_pickup.sort(key=lambda x: (x['last_update'], x['issue_md']))
     followup_needed.sort(key=lambda x: (x['last_update'], x['issue_md']))
     waiting_for_author.sort(key=lambda x: (x['last_feedback'], x['issue_md']))
