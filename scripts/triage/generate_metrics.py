@@ -296,7 +296,7 @@ def main():
     md += "Tracks the sheer volume of contribution activity over the past 30 days.\n\n"
 
     md += "### Help Wanted Backlog (Daily Snapshot)\n"
-    md += "> **Legend:** 📊 Bar = Total Open Issues | 📈 Line = Cumulative Closed Issues\n\n"
+    md += "> **Legend:** 📊 Bar = Total Open Issues | 📈 Line = New Issues Labeled\n\n"
     md += "```mermaid\n"
     md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
@@ -304,7 +304,7 @@ def main():
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {open_issues_data}\n'
-    md += f'    line {closed_issues_data}\n'
+    md += f'    line {new_issues_data}\n'
     md += "```\n\n"
 
     md += "### PRs Opened vs Merged\n"
