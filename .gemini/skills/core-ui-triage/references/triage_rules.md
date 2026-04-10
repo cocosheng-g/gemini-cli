@@ -12,6 +12,7 @@ When categorizing an issue, determine if it is a good candidate for community co
     *   Issues that DO NOT require deep architectural knowledge, significant maintainer review time, modifications to core sensitive business logic (telemetry, security, billing), or sweeping UI/UX changes.
 
 Conversely, do **NOT** use the `help wanted` label for issues such as:
+    *   **Straightforward or low-effort fixes**: If the fix is trivial for a maintainer to implement immediately (e.g., a one-line documentation typo, a simple dependency version bump, or a highly obvious bug with a known trivial fix), it should NOT be marked as `help wanted`. These are faster for maintainers to fix than to triage and review as external contributions.
     *   Easily reproducible bugs with a simple identified fix.
     *   Epics or roadmap initiatives.
     *   Changes to core architecture, sensitive security fixes, or internal tasks.
