@@ -214,8 +214,6 @@ def automate_cleanup(stale_assignments, stale_blocked_prs):
 
 def main():
     print(f"LOG: Starting dashboard generation for {TARGET_REPO}...")
-    gh_loc = shutil.which('gh')
-    print(f"LOG: Found gh at: {gh_loc}")
     
     all_issue_nodes = []
     cursor = None
@@ -268,7 +266,6 @@ def main():
 
     now = datetime.datetime.now(datetime.timezone.utc)
     report_start = (now - datetime.timedelta(days=now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
-    print(f"LOG: Reporting period starts from {report_start.strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Lists for HELP_ISSUES_TRIAGE.md
     oncaller_attention = []
@@ -295,14 +292,15 @@ def main():
         issue_updated_at = parse_date(issue['updatedAt'])
         assignees = [a['login'] for a in issue['assignees']['nodes']]
         
-        # --- RULE: No assignee = Available for Pickup ---
+        # Section priority logic
+        placed_in_dashboard = False
+        
+        # 1. Available for Pickup (No assignee)
         if not assignees and issue['state'] == 'OPEN':
             days_idle = (now - issue_updated_at).days
             available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
-            has_dashboard_spot = True
-        else:
-            has_dashboard_spot = False
-        
+            placed_in_dashboard = True
+
         for s in pr_infos:
             pr_no = s['number']
             pr = pr_details.get(pr_no, s)
@@ -325,6 +323,7 @@ def main():
                             result = call_gh(['pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO])
                             if result.returncode == 0:
                                 pr_json = json.loads(result.stdout)
+                                print(f"LOG: Fallback for PR #{pr_no} returned: requests={len(pr_json.get('reviewRequests', []))}, links={[n['number'] for n in pr_json.get('closingIssuesReferences', [])]}")
                                 pr_cache[pr_no] = pr_json
                             else:
                                 pr_json = {}
@@ -356,7 +355,7 @@ def main():
                     login = rev['author']['login']
                     if login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
 
-            # 1. Maintainer Stats logic
+            # --- TEAM_STATS Logic ---
             if pr['state'] != 'OPEN':
                 if pr_no not in processed_prs_for_history:
                     updated_at = parse_date(pr.get('mergedAt') or pr.get('updatedAt'))
@@ -372,14 +371,14 @@ def main():
             latest_rev_act_iso = get_reviewer_activity(pr)
             status_label = get_status_label(pr)
 
-            # TEAM_STATS Active Queue
             for r_login in human_reviewers:
                 if r_login in member_stats:
                     member_stats[r_login]["open_queue"].append({"number": pr['number'], "title": pr_title, "url": pr['url'], "state": pr['state'], "updated": latest_author_act_iso[:10], "issue_no": issue_no, "status_label": status_label, "priority": get_status_priority(status_label)})
 
-            # 2. Dashboard Logic
-            if issue['state'] != 'OPEN' or has_dashboard_spot: continue
+            # --- Dashboard Logic ---
+            if placed_in_dashboard or issue['state'] != 'OPEN': continue
             
+            # Critical link filter
             is_officially_linked = False
             linked_nums = []
             if 'closingIssuesReferences' in pr and pr['closingIssuesReferences'].get('nodes'):
@@ -400,18 +399,21 @@ def main():
             if issue_no in linked_nums: is_officially_linked = True
             if not is_officially_linked: continue
 
-            # Enforce ownership
+            # Ownership check
             is_owned = (author in assignees) or any(pa in assignees for pa in pr_assignees)
             if not is_owned:
                 unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
-                has_dashboard_spot = True
+                placed_in_dashboard = True
                 continue
             
+            # Specialized Approval Required
             if special_teams:
                 print(f"LOG: Issue #{issue_no} / PR #{pr_no} categorized as Specialized Approval. Teams: {special_teams}")
                 oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no})
-                has_dashboard_spot = True
+                placed_in_dashboard = True
+                continue
 
+            # Active Development categories
             is_blocked = "Blocked" in status_label
             author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
             
@@ -420,7 +422,7 @@ def main():
                     blocked_stale_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days})
                 else:
                     active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": status_label.split(': ')[1], "last_update": latest_author_act_iso[:10]})
-                has_dashboard_spot = True
+                placed_in_dashboard = True
             elif author_acted_last:
                 item = {"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "last_update": latest_author_act_iso[:10], "reviewers": sorted(list(human_reviewers))}
                 if not human_reviewers:
@@ -429,30 +431,22 @@ def main():
                     item["reviewers"] = sorted(list(human_reviewers))
                     item["status"] = "Review Requested" if not latest_rev_act_iso else "Author Updated"
                     followup_needed.append(item)
-                has_dashboard_spot = True
+                placed_in_dashboard = True
             else:
                 waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_feedback": latest_rev_act_iso[:10]})
-                has_dashboard_spot = True
+                placed_in_dashboard = True
 
-    for issue_no, item in issue_to_info.items():
-        if any(x['issue_md'].startswith(f"[#{issue_no} ") for x in oncaller_attention + followup_needed + waiting_for_author + active_blocked_prs + unowned_prs + available_pickup):
-            continue
-        
-        if item['state'] != 'OPEN': continue
-        
-        issue_title = sanitize(item['title'])
-        issue_url = item['url']
-        issue_updated_at = parse_date(item['updatedAt'])
-        assignees = [a['login'] for a in item['assignees']['nodes']]
-        
-        days_idle = (now - issue_updated_at).days
-        if not assignees:
-            available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
-        else:
-            if days_idle >= STALE_ASSIGNMENT_DAYS:
-                stale_assignments.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "days_stale": days_idle})
+        # Fallback categories for issues without active PRs
+        if not placed_in_dashboard and issue['state'] == 'OPEN':
+            days_idle = (now - issue_updated_at).days
+            if not assignees:
+                # Already handled at start of loop, but safe guard
+                available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
             else:
-                recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": item['updatedAt'][:10]})
+                if days_idle >= STALE_ASSIGNMENT_DAYS:
+                    stale_assignments.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "days_stale": days_idle})
+                else:
+                    recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": issue['updatedAt'][:10]})
 
     print("LOG: Sorting results...")
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
@@ -538,9 +532,10 @@ def main():
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['weekly_closed'], reverse=True):
         md_stats += f"| **{data['name']}** (@{login}) | **{data['weekly_closed']}** | {len(data['open_queue'])} |\n"
 
-    md_stats += f"\n### 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
+    md_stats += f"\n<details>\n<summary><b>🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})</b></summary>\n\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
     for i in initial_pickup: md_stats += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_stats += "| - | - | - |\n"
+    md_stats += "</details>\n"
 
     md_stats += "\n---\n## 👤 Individual Review Queues\n"
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['name']):
