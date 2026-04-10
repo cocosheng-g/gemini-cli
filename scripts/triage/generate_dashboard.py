@@ -242,10 +242,6 @@ def main():
             author = pr['author']['login']
             pr_assignees = [a['login'] for a in pr.get('assignees', {}).get('nodes', [])]
             
-            # Enforce ownership: PR must be authored or assigned by an issue assignee
-            if author not in assignees and not any(pa in assignees for pa in pr_assignees):
-                continue
-            
             # Extract reviewers from whatever source we have
             if 'reviewRequests' in pr:
                 for req in pr.get('reviewRequests', {}).get('nodes', []):
@@ -286,6 +282,10 @@ def main():
                     member_stats[r_login]["open_queue"].append({"number": pr['number'], "title": pr_title, "url": pr['url'], "state": pr['state'], "updated": latest_author_act_iso[:10], "issue_no": issue_no, "status_label": status_label, "priority": get_status_priority(status_label)})
 
             # --- OPEN PR logic for Dashboard ---
+            # Enforce ownership: PR must be authored or assigned by an issue assignee
+            if author not in assignees and not any(pa in assignees for pa in pr_assignees):
+                continue
+            
             if issue['state'] != 'OPEN': continue # Skip PRs for closed issues in HELP_ISSUES_TRIAGE.md
             
             # Since we only fetch details for OPEN PRs, we'll have full info here
