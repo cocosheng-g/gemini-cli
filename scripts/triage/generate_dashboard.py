@@ -35,7 +35,6 @@ STALE_BLOCKED_PR_DAYS = 14
 
 # Specific oncaller teams
 ONCALLER_TEAMS = {
-    'gemini-cli-maintainers',
     'gemini-cli-prompt-approvers',
     'gemini-cli-askmode-approvers',
     'gemini-cli-docs'
