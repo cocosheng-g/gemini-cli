@@ -112,21 +112,15 @@ def get_pr_batch_query(pr_numbers):
         """)
     return f"query {{ repository(owner: \"{owner}\", name: \"{repo}\") {{ {' '.join(fragments)} }} }}"
 
-def call_gh(args):
-    gh_bin = shutil.which('gh') or 'gh'
-    cmd = [gh_bin] + args
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    return result
-
 def gh_api_graphql(query, variables=None, retries=3):
-    args = ['api', 'graphql']
+    cmd = ['gh', 'api', 'graphql']
     if variables:
         for k, v in variables.items():
-            if v is not None: args.extend(['-F', f'{k}={v}'])
-    args.extend(['-f', f'query={query}'])
+            if v is not None: cmd.extend(['-F', f'{k}={v}'])
+    cmd.extend(['-f', f'query={query}'])
     
     for i in range(retries):
-        result = call_gh(args)
+        result = subprocess.run(cmd, capture_output=True, text=True)
         if result.returncode == 0:
             return json.loads(result.stdout)
         print(f"LOG: gh api graphql failed (attempt {i+1}/{retries}): {result.stderr.strip()}")
@@ -195,8 +189,8 @@ def automate_cleanup(stale_assignments, stale_blocked_prs):
             for user in item['assignees']:
                 print(f"LOG: Unassigning @{user} from #{issue_no}...")
                 comment = UNASSIGN_COMMENT.format(author=user)
-                call_gh(['issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO])
-                call_gh(['issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO])
+                subprocess.run(['gh', 'issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
+                subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO], capture_output=True)
 
     # 2. Handle Stale Blocked PRs (Close PR + Unassign Issue)
     if stale_blocked_prs:
@@ -208,9 +202,9 @@ def automate_cleanup(stale_assignments, stale_blocked_prs):
             
             print(f"LOG: Closing stale PR #{pr_no} and unassigning #{issue_no} from @{author}...")
             comment = CLOSE_PR_COMMENT.format(author=author)
-            call_gh(['pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO])
-            call_gh(['pr', 'close', str(pr_no), '-R', TARGET_REPO])
-            call_gh(['issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO])
+            subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
+            subprocess.run(['gh', 'pr', 'close', str(pr_no), '-R', TARGET_REPO], capture_output=True)
+            subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO], capture_output=True)
 
 def main():
     print(f"LOG: Starting dashboard generation for {TARGET_REPO}...")
@@ -222,7 +216,7 @@ def main():
         print(f"LOG: Fetching issue page {page}...")
         res = gh_api_graphql(ISSUES_QUERY.replace('first: 100', 'first: 50'), {"searchQuery": SEARCH_QUERY, "cursor": cursor})
         if not res:
-            print("LOG: Critical fetch failure. Exiting to prevent incomplete dashboard.")
+            print("LOG: Critical fetch failure. Exiting.")
             sys.exit(1)
         
         search_data = res['data']['search']
@@ -236,7 +230,7 @@ def main():
 
     # Map issue info and collect PRs for detailed fetching
     issue_to_info = {i['number']: i for i in all_issue_nodes}
-    issue_to_pr_info = {} # Maps issue_no to list of PR info from ISSUES_QUERY
+    issue_to_pr_info = {}
     pr_to_fetch = set()
     
     for i in all_issue_nodes:
@@ -282,7 +276,6 @@ def main():
     # Member stats for TEAM_STATS.md
     member_stats = {login: {"name": name, "weekly_closed": 0, "open_queue": [], "history": []} for login, name in MAINTAINERS.items()}
     processed_prs_for_history = set()
-    pr_cache = {} # Cache for gh pr view fallback
 
     print("LOG: Categorizing issues and PRs...")
     for issue_no, pr_infos in issue_to_pr_info.items():
@@ -292,10 +285,8 @@ def main():
         issue_updated_at = parse_date(issue['updatedAt'])
         assignees = [a['login'] for a in issue['assignees']['nodes']]
         
-        # Section priority logic
         placed_in_dashboard = False
         
-        # 1. Available for Pickup (No assignee)
         if not assignees and issue['state'] == 'OPEN':
             days_idle = (now - issue_updated_at).days
             available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
@@ -310,45 +301,19 @@ def main():
             author = pr['author']['login']
             pr_assignees = [a['login'] for a in pr.get('assignees', {}).get('nodes', [])]
             
-            # Reviewer collection
+            # Reviewer collection (Should work directly with PAT)
             if 'reviewRequests' in pr:
-                nodes = pr.get('reviewRequests', {}).get('nodes', [])
-                for req in nodes:
+                for req in pr.get('reviewRequests', {}).get('nodes', []):
                     rr = req.get('requestedReviewer')
-                    if not rr:
-                        if pr_no in pr_cache:
-                            pr_json = pr_cache[pr_no]
-                        else:
-                            print(f"LOG: GraphQL requestedReviewer empty for PR #{pr_no}, using fallback...")
-                            result = call_gh(['pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO])
-                            if result.returncode == 0:
-                                pr_json = json.loads(result.stdout)
-                                print(f"LOG: Fallback for PR #{pr_no} returned: requests={len(pr_json.get('reviewRequests', []))}, links={[n['number'] for n in pr_json.get('closingIssuesReferences', [])]}")
-                                pr_cache[pr_no] = pr_json
-                            else:
-                                pr_json = {}
-                        
-                        fallback_nodes = pr_json.get('reviewRequests', [])
-                        for f_rr in fallback_nodes:
-                            if 'login' in f_rr: # User
-                                if f_rr['login'] != author and f_rr['login'] not in BOT_BLACKLIST: human_reviewers.add(f_rr['login'])
-                            elif 'slug' in f_rr: # Team
-                                team_name = f_rr['slug'].split('/')[-1]
-                                if team_name in ONCALLER_TEAMS:
-                                    print(f"LOG: Found special team request (via fallback): {team_name} on PR #{pr_no}")
-                                    special_teams.add(team_name)
-                        break
-                    
-                    typename = rr.get('__typename')
-                    if typename == 'User':
-                        login = rr.get('login')
-                        if login and login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
-                    elif typename == 'Team':
-                        slug = rr.get('slug', '')
-                        team_name = slug.split('/')[-1]
-                        if team_name in ONCALLER_TEAMS:
-                            print(f"LOG: Found special team request: {team_name} on PR #{pr_no}")
-                            special_teams.add(team_name)
+                    if rr:
+                        if rr['__typename'] == 'User':
+                            login = rr.get('login')
+                            if login and login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
+                        elif rr['__typename'] == 'Team':
+                            slug = rr.get('slug', '').split('/')[-1]
+                            if slug in ONCALLER_TEAMS:
+                                print(f"LOG: Found special team request: {slug} on PR #{pr_no}")
+                                special_teams.add(slug)
             
             for rev in pr.get('latestReviews', {}).get('nodes', []):
                 if rev.get('author'):
@@ -378,42 +343,28 @@ def main():
             # --- Dashboard Logic ---
             if placed_in_dashboard or issue['state'] != 'OPEN': continue
             
-            # Critical link filter
+            # Official link filter
             is_officially_linked = False
-            linked_nums = []
-            if 'closingIssuesReferences' in pr and pr['closingIssuesReferences'].get('nodes'):
+            if 'closingIssuesReferences' in pr:
                 linked_nums = [n['number'] for n in pr['closingIssuesReferences']['nodes']]
-            else:
-                if pr_no in pr_cache:
-                    pr_json = pr_cache[pr_no]
-                else:
-                    print(f"LOG: GraphQL closingIssuesReferences empty for PR #{pr_no}, using fallback...")
-                    result = call_gh(['pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO])
-                    if result.returncode == 0:
-                        pr_json = json.loads(result.stdout)
-                        pr_cache[pr_no] = pr_json
-                    else:
-                        pr_json = {}
-                linked_nums = [n['number'] for n in pr_json.get('closingIssuesReferences', [])]
+                if issue_no in linked_nums: is_officially_linked = True
             
-            if issue_no in linked_nums: is_officially_linked = True
             if not is_officially_linked: continue
 
-            # Ownership check
+            # Enforce ownership
             is_owned = (author in assignees) or any(pa in assignees for pa in pr_assignees)
             if not is_owned:
                 unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
                 placed_in_dashboard = True
                 continue
             
-            # Specialized Approval Required
             if special_teams:
                 print(f"LOG: Issue #{issue_no} / PR #{pr_no} categorized as Specialized Approval. Teams: {special_teams}")
                 oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no})
                 placed_in_dashboard = True
                 continue
 
-            # Active Development categories
+            # Active categories
             is_blocked = "Blocked" in status_label
             author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
             
@@ -436,17 +387,25 @@ def main():
                 waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_feedback": latest_rev_act_iso[:10]})
                 placed_in_dashboard = True
 
-        # Fallback categories for issues without active PRs
-        if not placed_in_dashboard and issue['state'] == 'OPEN':
-            days_idle = (now - issue_updated_at).days
-            if not assignees:
-                # Already handled at start of loop, but safe guard
-                available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
+    for issue_no, item in issue_to_info.items():
+        if any(x['issue_md'].startswith(f"[#{issue_no} ") for x in oncaller_attention + followup_needed + waiting_for_author + active_blocked_prs + unowned_prs + available_pickup):
+            continue
+        
+        if item['state'] != 'OPEN': continue
+        
+        issue_title = sanitize(item['title'])
+        issue_url = item['url']
+        issue_updated_at = parse_date(item['updatedAt'])
+        assignees = [a['login'] for a in item['assignees']['nodes']]
+        
+        days_idle = (now - issue_updated_at).days
+        if not assignees:
+            available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
+        else:
+            if days_idle >= STALE_ASSIGNMENT_DAYS:
+                stale_assignments.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "days_stale": days_idle})
             else:
-                if days_idle >= STALE_ASSIGNMENT_DAYS:
-                    stale_assignments.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "days_stale": days_idle})
-                else:
-                    recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": issue['updatedAt'][:10]})
+                recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": item['updatedAt'][:10]})
 
     print("LOG: Sorting results...")
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
@@ -532,10 +491,9 @@ def main():
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['weekly_closed'], reverse=True):
         md_stats += f"| **{data['name']}** (@{login}) | **{data['weekly_closed']}** | {len(data['open_queue'])} |\n"
 
-    md_stats += f"\n<details>\n<summary><b>🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})</b></summary>\n\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
+    md_stats += f"\n### 🆕 Awaiting Reviewer Pickup ({len(initial_pickup)})\n**Action: Pick up one of these new PRs.** All tests passing, no conflicts.\n\n| Issue | Linked PR | Last Update |\n| :--- | :--- | :--- |\n"
     for i in initial_pickup: md_stats += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_stats += "| - | - | - |\n"
-    md_stats += "</details>\n"
 
     md_stats += "\n---\n## 👤 Individual Review Queues\n"
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['name']):
