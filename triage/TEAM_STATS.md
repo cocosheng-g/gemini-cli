@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 18:08 (UTC)*
+*Last Updated: 2026-04-10 18:22 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -20,33 +20,25 @@
 | **Ruomeng Zhang** (@ruomengz) | **0** | 0 |
 | **Sri Pasumarthi** (@sripasg) | **0** | 0 |
 
-### 🆕 Awaiting Reviewer Pickup (22)
+### 🆕 Awaiting Reviewer Pickup (14)
 **These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
 | Issue | Linked PR | Last Update |
 | :--- | :--- | :--- |
-| [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | [#20668](https://github.com/google-gemini/gemini-cli/pull/20668) | `2026-03-29` |
-| [#12137 Login url is truncated](https://github.com/google-gemini/gemini-cli/issues/12137) | [#24853](https://github.com/google-gemini/gemini-cli/pull/24853) | `2026-04-07` |
-| [#20888 AskUser format code without borders](https://github.com/google-gemini/gemini-cli/issues/20888) | [#21254](https://github.com/google-gemini/gemini-cli/pull/21254) | `2026-04-08` |
-| [#22565 CLI fails to ignore large binary files (.pak, .rpa), causing 192MB+ context bloat and silent timeouts](https://github.com/google-gemini/gemini-cli/issues/22565) | [#22793](https://github.com/google-gemini/gemini-cli/pull/22793) | `2026-04-08` |
 | [#22591 fix(cli): mapToDisplay uses unbounded JSON.stringify for ErroredToolCall description](https://github.com/google-gemini/gemini-cli/issues/22591) | [#22594](https://github.com/google-gemini/gemini-cli/pull/22594) | `2026-04-08` |
-| [#16559 Most /slash command args counts are not validated](https://github.com/google-gemini/gemini-cli/issues/16559) | [#25069](https://github.com/google-gemini/gemini-cli/pull/25069) | `2026-04-09` |
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | `2026-04-09` |
-| [#18727 Already selected allow for this session, but still prompted for each operation](https://github.com/google-gemini/gemini-cli/issues/18727) | [#19074](https://github.com/google-gemini/gemini-cli/pull/19074) | `2026-04-09` |
 | [#19713 Fix unsafe type assertions in CLI Config (Phase 3.1)](https://github.com/google-gemini/gemini-cli/issues/19713) | [#24905](https://github.com/google-gemini/gemini-cli/pull/24905) | `2026-04-09` |
 | [#20385 Terminal output flooded with repeated '0c/' string](https://github.com/google-gemini/gemini-cli/issues/20385) | [#24596](https://github.com/google-gemini/gemini-cli/pull/24596) | `2026-04-09` |
 | [#21546 web_fetch: pressing Ctrl+C while a URL is loading causes silent retries instead of immediate cancellation](https://github.com/google-gemini/gemini-cli/issues/21546) | [#24320](https://github.com/google-gemini/gemini-cli/pull/24320) | `2026-04-09` |
 | [#22417 CLI accepts positional prompt with --prompt-interactive and handles the conflict inconsistently](https://github.com/google-gemini/gemini-cli/issues/22417) | [#22418](https://github.com/google-gemini/gemini-cli/pull/22418) | `2026-04-09` |
 | [#22589 fix(cli): all Executing subagent tool calls dropped from UI state, breaking task-tree hierarchy](https://github.com/google-gemini/gemini-cli/issues/22589) | [#22590](https://github.com/google-gemini/gemini-cli/pull/22590) | `2026-04-09` |
 | [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | [#25010](https://github.com/google-gemini/gemini-cli/pull/25010) | `2026-04-09` |
-| [#22929 False command conflicts when launching from home directory (workspace and user commands resolve to same path)](https://github.com/google-gemini/gemini-cli/issues/22929) | [#23069](https://github.com/google-gemini/gemini-cli/pull/23069) | `2026-04-09` |
 | [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | `2026-04-09` |
 | [#16391 Bug: Clickable URLs in inline Markdown include trailing punctuation especially Chinese punctuations, leading to broken navigation](https://github.com/google-gemini/gemini-cli/issues/16391) | [#25098](https://github.com/google-gemini/gemini-cli/pull/25098) | `2026-04-10` |
 | [#19919 "Failed to persist policy" error despite correct permissions](https://github.com/google-gemini/gemini-cli/issues/19919) | [#21541](https://github.com/google-gemini/gemini-cli/pull/21541) | `2026-04-10` |
-| [#20675 [Bug]: Interactive shell does not show properly on Windows 10 when using arrow keys in external subshell prompts (v0.31.0)](https://github.com/google-gemini/gemini-cli/issues/20675) | [#23505](https://github.com/google-gemini/gemini-cli/pull/23505) | `2026-04-10` |
 | [#20968 Windows PowerShell Output Encoding Bug](https://github.com/google-gemini/gemini-cli/issues/20968) | [#25102](https://github.com/google-gemini/gemini-cli/pull/25102) | `2026-04-10` |
-| [#21264 docs(core): Add missing JSDoc comments to core utility functions](https://github.com/google-gemini/gemini-cli/issues/21264) | [#21270](https://github.com/google-gemini/gemini-cli/pull/21270) | `2026-04-10` |
 | [#22421 fix(cli): /chat subcommand usage strings incorrectly reference /resume](https://github.com/google-gemini/gemini-cli/issues/22421) | [#25091](https://github.com/google-gemini/gemini-cli/pull/25091) | `2026-04-10` |
+| [#24211 Hardcoded padding in terminal title causes trailing spaces in tmux pane_title](https://github.com/google-gemini/gemini-cli/issues/24211) | [#25109](https://github.com/google-gemini/gemini-cli/pull/25109) | `2026-04-10` |
 
 ---
 ## 👤 Individual Review Queues
@@ -77,10 +69,10 @@
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
-| [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | [#22616](https://github.com/google-gemini/gemini-cli/issues/22616) | fix(cli): resolve text sanitization data loss due to C1 control characters | 🟢 Active | `2026-04-10` |
-| [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | [#22321](https://github.com/google-gemini/gemini-cli/issues/22321) | feat(cli): Add 'list' subcommand to '/commands' | 🟢 Active | `2026-04-10` |
-| [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | [#21635](https://github.com/google-gemini/gemini-cli/issues/21635) | fix: improve audio MIME normalization and validation in file reads | 🟢 Active | `2026-04-10` |
+| [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | [#22616](https://github.com/google-gemini/gemini-cli/issues/22616) | fix(cli): resolve text sanitization data loss due to C1 control characters | Needs Author Update (Resolve Comments) | `2026-04-10` |
 | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | [#22611](https://github.com/google-gemini/gemini-cli/issues/22611) | fix(cli): clear thought state on response completion to prevent UI ghosting | Needs Author Update (Resolve Comments) | `2026-04-10` |
+| [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | [#22321](https://github.com/google-gemini/gemini-cli/issues/22321) | feat(cli): Add 'list' subcommand to '/commands' | Needs Author Update (Resolve Comments) | `2026-04-10` |
+| [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | [#21635](https://github.com/google-gemini/gemini-cli/issues/21635) | fix: improve audio MIME normalization and validation in file reads | Needs Author Update (Resolve Comments) | `2026-04-10` |
 | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | [#24838](https://github.com/google-gemini/gemini-cli/issues/24838) | fix(mcp): treat GET 404 as 405 in StreamableHTTPClientTransport | Needs gemini-cli-prompt-approvers, Author Update (Resolve Comments) | `2026-04-10` |
 | [#15504](https://github.com/google-gemini/gemini-cli/pull/15504) | [#15503](https://github.com/google-gemini/gemini-cli/issues/15503) | feat: add github colorblind themes | Needs Author Update (Test Failure) | `2026-04-09` |
 
