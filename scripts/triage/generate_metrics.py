@@ -35,20 +35,22 @@ def main():
     
     ISSUES_QUERY = """
     query($searchQuery: String!, $cursor: String) {
-      search(query: $searchQuery, type: ISSUE, first: 100, after: $cursor) {
+      search(query: $searchQuery, type: ISSUE, first: 50, after: $cursor) {
         pageInfo { hasNextPage endCursor }
         nodes {
           ... on Issue {
             number state createdAt closedAt
-            timelineItems(itemTypes: CROSS_REFERENCED_EVENT, first: 100) {
+            comments(last: 50) { nodes { author { login } publishedAt } }
+            timelineItems(itemTypes: CROSS_REFERENCED_EVENT, first: 50) {
               nodes {
                 ... on CrossReferencedEvent {
                   source {
                     ... on PullRequest {
                       number state createdAt mergedAt closedAt
                       author { login }
-                      reviews(first: 100) { nodes { author { login } createdAt state } }
-                      comments(first: 100) { nodes { author { login } publishedAt } }
+                      reviews(last: 50) { nodes { author { login } createdAt state } }
+                      comments(last: 50) { nodes { author { login } publishedAt } }
+                      commits(last: 50) { nodes { commit { committedDate author { user { login } } } } }
                     }
                   }
                 }
@@ -131,6 +133,16 @@ def main():
             if closed_at >= thirty_days_ago:
                 closed_issues += 1
                 
+        for c in issue.get('comments', {}).get('nodes', []):
+            c_author = c.get('author', {}).get('login') if c.get('author') else None
+            if c_author and c_author not in BOTS:
+                c_time = parse_date(c['publishedAt'])
+                if c_time >= thirty_days_ago:
+                    d_label = get_bin_label(c_time)
+                    if d_label:
+                        if c_author not in contributors: contributors[c_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+                        active_contributors_by_day[d_label].add(c_author)
+                
         for event in issue.get('timelineItems', {}).get('nodes', []):
             if not event or not event.get('source') or 'number' not in event['source']: continue
             pr = event['source']
@@ -155,17 +167,39 @@ def main():
                 first_review_time = None
                 for rev in pr.get('reviews', {}).get('nodes', []):
                     r_author = rev.get('author', {}).get('login') if rev.get('author') else None
-                    if r_author and r_author != pr_author and r_author not in BOTS:
+                    if r_author and r_author not in BOTS:
                         r_time = parse_date(rev['createdAt'])
-                        if not first_review_time or r_time < first_review_time:
-                            first_review_time = r_time
+                        if r_time >= thirty_days_ago:
+                            r_label = get_bin_label(r_time)
+                            if r_label:
+                                if r_author not in contributors: contributors[r_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+                                active_contributors_by_day[r_label].add(r_author)
+                        if r_author != pr_author:
+                            if not first_review_time or r_time < first_review_time:
+                                first_review_time = r_time
                 
                 for c in pr.get('comments', {}).get('nodes', []):
                     c_author = c.get('author', {}).get('login') if c.get('author') else None
-                    if c_author and c_author != pr_author and c_author not in BOTS:
+                    if c_author and c_author not in BOTS:
                         c_time = parse_date(c['publishedAt'])
-                        if not first_review_time or c_time < first_review_time:
-                            first_review_time = c_time
+                        if c_time >= thirty_days_ago:
+                            c_label = get_bin_label(c_time)
+                            if c_label:
+                                if c_author not in contributors: contributors[c_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+                                active_contributors_by_day[c_label].add(c_author)
+                        if c_author != pr_author:
+                            if not first_review_time or c_time < first_review_time:
+                                first_review_time = c_time
+                
+                for commit_node in pr.get('commits', {}).get('nodes', []):
+                    commit_author = commit_node.get('commit', {}).get('author', {}).get('user', {}).get('login') if commit_node.get('commit', {}).get('author', {}).get('user') else None
+                    if commit_author and commit_author not in BOTS:
+                        commit_time = parse_date(commit_node['commit']['committedDate'])
+                        if commit_time >= thirty_days_ago:
+                            commit_label = get_bin_label(commit_time)
+                            if commit_label:
+                                if commit_author not in contributors: contributors[commit_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+                                active_contributors_by_day[commit_label].add(commit_author)
                             
                 if first_review_time:
                     ttfr_val = (first_review_time - pr_created).total_seconds() / 3600.0
@@ -292,11 +326,11 @@ def main():
     md += f"| 📉 Author Drop-off Rate | **{dropoff_rate:.1f}%** | < 20% | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |\n\n"
     
     md += "### 👥 Contributor Engagement\n"
-    active_contributors_count = len([c for c in contributors.values() if c['opened'] > 0 or c['merged'] > 0 or c['closed'] > 0])
+    active_contributors_count = len(contributors)
     avg_prs_opened = sum(c['opened'] for c in contributors.values()) / active_contributors_count if active_contributors_count > 0 else 0
     avg_prs_merged = sum(c['merged'] for c in contributors.values()) / active_contributors_count if active_contributors_count > 0 else 0
 
-    md += "> **Legend:** 📊 Bar = Number of unique active contributors (opened, merged, or closed a PR)\n\n"
+    md += "> **Legend:** 📊 Bar = Number of unique active contributors (opened, merged, closed, reviewed, commented, or committed)\n\n"
     md += "```mermaid\n"
     md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
@@ -328,7 +362,7 @@ def main():
 
     md += "| Metric | Value | Target / Goal | Calculation |\n"
     md += "| :--- | :--- | :--- | :--- |\n"
-    md += f"| 🧑‍💻 Total Active Contributors | **{active_contributors_count}** | Steady Growth | Number of unique human contributors who opened, merged, or closed a PR in the last 30 days. |\n"
+    md += f"| 🧑‍💻 Total Active Contributors | **{active_contributors_count}** | Steady Growth | Number of unique human contributors who opened, merged, closed, reviewed, commented, or committed to a PR or Issue in the last 30 days. |\n"
     md += f"| 📈 Avg PRs Opened | **{avg_prs_opened:.1f}** | > 1.5 PRs | Total PRs opened divided by total active contributors over 30 days. |\n"
     md += f"| 🎯 Avg PRs Merged | **{avg_prs_merged:.1f}** | > 1.5 PRs | Total PRs merged divided by total active contributors over 30 days. |\n\n"
 
