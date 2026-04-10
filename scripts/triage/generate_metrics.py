@@ -284,7 +284,7 @@ def main():
     md += "```\n\n"
     
     md += "### Time to Merge (TTM) Trend\n"
-    md += "> **Legend:** 📈 Line = Average Time to Merge (in days) for PRs opened on that day\n\n"
+    md += "> **Legend:** 📈 Line = Average Time to Merge (in days) for PRs successfully merged on that day\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Average TTM per Day (Days)"\n'
