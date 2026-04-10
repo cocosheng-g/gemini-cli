@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 15:38 (UTC)*
+*Last Synchronized: 2026-04-10 15:42 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -48,25 +48,25 @@
 
 | Issue | Linked PR | Required Teams | Human Reviewers | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| [#11462 Consider adding visual regression testing for terminal UI components](https://github.com/google-gemini/gemini-cli/issues/11462) | [#20695](https://github.com/google-gemini/gemini-cli/pull/20695) | `gemini-cli-askmode-approvers` | @hoteye | 🔴 Test Failure |
 | [#16122 Feature Request: Add gemini update command](https://github.com/google-gemini/gemini-cli/issues/16122) | [#24080](https://github.com/google-gemini/gemini-cli/pull/24080) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
 | [#18708 feat: Add /undo command to revert last conversation turn](https://github.com/google-gemini/gemini-cli/issues/18708) | [#20027](https://github.com/google-gemini/gemini-cli/pull/20027) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
-| [#19649 extend /copy to capture output also from slash commands](https://github.com/google-gemini/gemini-cli/issues/19649) | [#19825](https://github.com/google-gemini/gemini-cli/pull/19825) | `gemini-cli-askmode-approvers` | @lesteral, @mrpmohiburrahman | 🔴 Merge Conflict |
 | [#19717 Fix unsafe type assertions in VS Code Companion (Phase 4.2)](https://github.com/google-gemini/gemini-cli/issues/19717) | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | `gemini-cli-askmode-approvers`, `gemini-cli-prompt-approvers` | @Adib234, @mrpmohiburrahman | 👀 Needs Maintainer Approval |
-| [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | `gemini-cli-docs` | @jacob314, @mrpmohiburrahman, @scidomino | 🔴 Merge Conflict |
-| [#18751 feat(ui): support custom preferred themes for automatic light/dark switching](https://github.com/google-gemini/gemini-cli/issues/18751) | [#18753](https://github.com/google-gemini/gemini-cli/pull/18753) | `gemini-cli-docs` | _None_ | 🔴 Merge Conflict |
 | [#19969 Provide a way to control the standard names of hooks and skills folder via gemini-extension.json of an extension](https://github.com/google-gemini/gemini-cli/issues/19969) | [#25008](https://github.com/google-gemini/gemini-cli/pull/25008) | `gemini-cli-docs` | _None_ | 👀 Needs Maintainer Review |
 | [#20500 feat(cli): add mention view shortcuts](https://github.com/google-gemini/gemini-cli/issues/20500) | [#25060](https://github.com/google-gemini/gemini-cli/pull/25060) | `gemini-cli-docs` | _None_ | 👀 Needs Maintainer Review |
-| [#20847 Feature request: --session-id flag to set session UUID at launch](https://github.com/google-gemini/gemini-cli/issues/20847) | [#24976](https://github.com/google-gemini/gemini-cli/pull/24976) | `gemini-cli-docs` | _None_ | 🔴 Merge Conflict |
 | [#21036 UX Improvement for /chat save.](https://github.com/google-gemini/gemini-cli/issues/21036) | [#21439](https://github.com/google-gemini/gemini-cli/pull/21439) | `gemini-cli-docs` | _None_ | 👀 Needs Maintainer Review |
+| [#12345 Add AGENTS.md to the context filename list by default](https://github.com/google-gemini/gemini-cli/issues/12345) | [#24913](https://github.com/google-gemini/gemini-cli/pull/24913) | `gemini-cli-docs`, `gemini-cli-prompt-approvers` | _None_ | 👀 Needs Maintainer Review |
+| [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `gemini-cli-prompt-approvers` | _None_ | 👀 Needs Maintainer Review |
+| [#20755 Shell Tool Trailing Newline Trimming](https://github.com/google-gemini/gemini-cli/issues/20755) | [#23705](https://github.com/google-gemini/gemini-cli/pull/23705) | `gemini-cli-prompt-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
+| [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | `gemini-cli-prompt-approvers` | @cocosheng-g | ✍️ Needs Author Update (Comments) |
+| [#11462 Consider adding visual regression testing for terminal UI components](https://github.com/google-gemini/gemini-cli/issues/11462) | [#20695](https://github.com/google-gemini/gemini-cli/pull/20695) | `gemini-cli-askmode-approvers` | @hoteye | 🔴 Test Failure |
+| [#19649 extend /copy to capture output also from slash commands](https://github.com/google-gemini/gemini-cli/issues/19649) | [#19825](https://github.com/google-gemini/gemini-cli/pull/19825) | `gemini-cli-askmode-approvers` | @lesteral, @mrpmohiburrahman | 🔴 Merge Conflict |
+| [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | `gemini-cli-docs` | @jacob314, @mrpmohiburrahman, @scidomino | 🔴 Merge Conflict |
+| [#18751 feat(ui): support custom preferred themes for automatic light/dark switching](https://github.com/google-gemini/gemini-cli/issues/18751) | [#18753](https://github.com/google-gemini/gemini-cli/pull/18753) | `gemini-cli-docs` | _None_ | 🔴 Merge Conflict |
+| [#20847 Feature request: --session-id flag to set session UUID at launch](https://github.com/google-gemini/gemini-cli/issues/20847) | [#24976](https://github.com/google-gemini/gemini-cli/pull/24976) | `gemini-cli-docs` | _None_ | 🔴 Merge Conflict |
 | [#21084 External editor support: unclear error messages, missing editors, incomplete documentation](https://github.com/google-gemini/gemini-cli/issues/21084) | [#21090](https://github.com/google-gemini/gemini-cli/pull/21090) | `gemini-cli-docs` | @jacob314 | 🔴 Merge Conflict |
 | [#21221 Proposal: Interruptible responses for experimental voice mode](https://github.com/google-gemini/gemini-cli/issues/21221) | [#21226](https://github.com/google-gemini/gemini-cli/pull/21226) | `gemini-cli-docs` | _None_ | 🔴 Merge Conflict |
 | [#22035 Allow wrapping tool descriptions to prevent truncation in the UI](https://github.com/google-gemini/gemini-cli/issues/22035) | [#21964](https://github.com/google-gemini/gemini-cli/pull/21964) | `gemini-cli-docs` | _None_ | 🔴 Merge Conflict |
-| [#12345 Add AGENTS.md to the context filename list by default](https://github.com/google-gemini/gemini-cli/issues/12345) | [#24913](https://github.com/google-gemini/gemini-cli/pull/24913) | `gemini-cli-docs`, `gemini-cli-prompt-approvers` | _None_ | 👀 Needs Maintainer Review |
-| [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `gemini-cli-prompt-approvers` | _None_ | 👀 Needs Maintainer Review |
 | [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | `gemini-cli-prompt-approvers` | @devr0306 | 🔴 Merge Conflict |
-| [#20755 Shell Tool Trailing Newline Trimming](https://github.com/google-gemini/gemini-cli/issues/20755) | [#23705](https://github.com/google-gemini/gemini-cli/pull/23705) | `gemini-cli-prompt-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
-| [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | `gemini-cli-prompt-approvers` | @cocosheng-g | ✍️ Needs Author Update (Comments) |
 </details>
 
 <details>
@@ -256,7 +256,7 @@
 | [#21390 Support priority paygo on gemini-cli via vertex](https://github.com/google-gemini/gemini-cli/issues/21390) | 0 |
 | [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | 0 |
 | [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 0 |
-| [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 0 |
+| [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 1 |
 | [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | 1 |
 | [#22691 Ability to specify the exact workspace directory without walking up file tree](https://github.com/google-gemini/gemini-cli/issues/22691) | 1 |
 | [#19868 "context.fileFiltering.customIgnoreFilePaths" setting breaks file completion when using @](https://github.com/google-gemini/gemini-cli/issues/19868) | 1 |
