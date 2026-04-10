@@ -536,7 +536,7 @@ def main():
 
     # --- Write TEAM_STATS.md ---
     print("LOG: Generating TEAM_STATS.md...")
-    md_stats = f"# 📊 Gemini CLI Weekly Team Review Stats\n\n*Reporting Period: **Monday {report_start.strftime('%Y-%m-%d')}** to Today*\n*Last Updated: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
+    md_stats = f"# 📊 Gemini CLI Weekly Team Review Stats (help-wanted)\n\n*Reporting Period: **Monday {report_start.strftime('%Y-%m-%d')}** to Today*\n*Last Updated: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
     md_stats += "> This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.\n"
     md_stats += "> Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀\n\n"
     md_stats += "## 📈 Weekly Summary\n| Maintainer | Closed/Merged (Week) | Current Open Queue |\n| :--- | :--- | :--- |\n"
