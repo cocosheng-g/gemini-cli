@@ -1,13 +1,13 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 03:57 (UTC)*
+*Last Synchronized: 2026-04-10 04:01 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
 ## 🚨 Needs Oncaller Attention
 
 <details>
-<summary><b>🆕 Awaiting Reviewer Pickup (26)</b> — <i>Pick up one of these new PRs.</i></summary>
+<summary><b>🆕 Awaiting Reviewer Pickup (27)</b> — <i>Pick up one of these new PRs.</i></summary>
 
 **Criteria: New PRs with no reviewers yet, author acted last.**
 
@@ -39,6 +39,7 @@
 | [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | `2026-04-10` |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
 | [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | [#19332](https://github.com/google-gemini/gemini-cli/pull/19332) | `2026-04-10` |
+| [#22421 fix(cli): /chat subcommand usage strings incorrectly reference /resume](https://github.com/google-gemini/gemini-cli/issues/22421) | [#25091](https://github.com/google-gemini/gemini-cli/pull/25091) | `2026-04-10` |
 </details>
 
 <details>
@@ -139,7 +140,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (44)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (43)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -183,7 +184,6 @@
 | [#21993 Dev tools: filtering and searching](https://github.com/google-gemini/gemini-cli/issues/21993) | @M-DEV-1 | `2026-04-09` |
 | [#22185 Copy + pasta](https://github.com/google-gemini/gemini-cli/issues/22185) | @manavmax | `2026-04-09` |
 | [#22193 Gemini CLI doesn't maintain keyboard focus when VS Code extension closes a diff](https://github.com/google-gemini/gemini-cli/issues/22193) | @gjuggler | `2026-04-09` |
-| [#22421 fix(cli): /chat subcommand usage strings incorrectly reference /resume](https://github.com/google-gemini/gemini-cli/issues/22421) | @skainguyen1412 | `2026-04-09` |
 | [#22784 Bug Description: The grep_search tool fails with a spawn EFTYPE error on Windows (win32). It appears the underlying ripgrep binary is either incompatible with the current OS/architecture or corrupted.](https://github.com/google-gemini/gemini-cli/issues/22784) | @manas-raj999 | `2026-04-09` |
 | [#24211 Hardcoded padding in terminal title causes trailing spaces in tmux pane_title](https://github.com/google-gemini/gemini-cli/issues/24211) | @tusaryan | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | @tusaryan | `2026-04-09` |

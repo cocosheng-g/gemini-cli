@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 03:57 (UTC)*
+*Last Updated: 2026-04-10 04:01 (UTC)*
 
 ## 📈 Weekly Summary
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
@@ -17,7 +17,7 @@
 | **Spencer Tang** (@spencer426) | **0** | 1 |
 | **Sri Pasumarthi** (@sripasg) | **0** | 0 |
 
-### 🆕 Awaiting Reviewer Pickup (26)
+### 🆕 Awaiting Reviewer Pickup (27)
 **Action: Pick up one of these new PRs.** All tests passing, no conflicts.
 
 | Issue | Linked PR | Last Update |
@@ -48,6 +48,7 @@
 | [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | `2026-04-10` |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
 | [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | [#19332](https://github.com/google-gemini/gemini-cli/pull/19332) | `2026-04-10` |
+| [#22421 fix(cli): /chat subcommand usage strings incorrectly reference /resume](https://github.com/google-gemini/gemini-cli/issues/22421) | [#25091](https://github.com/google-gemini/gemini-cli/pull/25091) | `2026-04-10` |
 
 ---
 ## 👤 Individual Review Queues
