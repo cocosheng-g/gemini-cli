@@ -1,10 +1,10 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 02:01 (UTC)*
+*Last Synchronized: 2026-04-10 02:02 (UTC)*
 
-**Total Issues Tracked: 173 open issues**
+**Total Issues Tracked: 175 open issues**
 
-## 🚨 Needs Oncaller Attention (31)
+## 🚨 Needs Oncaller Attention (33)
 **Action: Specialized approval required.** These PRs are waiting for specific teams.
 
 | Issue | Linked PR | Required Teams | Human Reviewers |
@@ -34,6 +34,8 @@
 | [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | `gemini-cli-prompt-approvers` | _None_ |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `gemini-cli-prompt-approvers` | _None_ |
 | [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | `gemini-cli-prompt-approvers` | _None_ |
+| [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | `gemini-cli-prompt-approvers` | @devr0306 |
+| [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#24126](https://github.com/google-gemini/gemini-cli/pull/24126) | `gemini-cli-prompt-approvers` | _None_ |
 | [#20755 Shell Tool Trailing Newline Trimming](https://github.com/google-gemini/gemini-cli/issues/20755) | [#23705](https://github.com/google-gemini/gemini-cli/pull/23705) | `gemini-cli-prompt-approvers` | @mrpmohiburrahman |
 | [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#21840](https://github.com/google-gemini/gemini-cli/pull/21840) | `gemini-cli-prompt-approvers` | _None_ |
 | [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#25030](https://github.com/google-gemini/gemini-cli/pull/25030) | `gemini-cli-prompt-approvers` | _None_ |
@@ -101,7 +103,7 @@
 | [#19717 Fix unsafe type assertions in VS Code Companion (Phase 4.2)](https://github.com/google-gemini/gemini-cli/issues/19717) | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | @Adib234, @mrpmohiburrahman | Review Requested |
 | [#20755 Shell Tool Trailing Newline Trimming](https://github.com/google-gemini/gemini-cli/issues/20755) | [#23705](https://github.com/google-gemini/gemini-cli/pull/23705) | @mrpmohiburrahman | Author Updated |
 
-## ✍️ Awaiting Author Action (14)
+## ✍️ Awaiting Author Action (15)
 **Status: Waiting for contributor.**
 
 | Issue | Linked PR | Reviewers | Last Feedback |
@@ -120,6 +122,7 @@
 | [#19675 Make the CLI more friendly with tmux](https://github.com/google-gemini/gemini-cli/issues/19675) | [#19705](https://github.com/google-gemini/gemini-cli/pull/19705) | _None (Team only)_ | `2026-04-05` |
 | [#19675 Make the CLI more friendly with tmux](https://github.com/google-gemini/gemini-cli/issues/19675) | [#22067](https://github.com/google-gemini/gemini-cli/pull/22067) | @anowardear062-svg, @mrpmohiburrahman, @spencer426 | `2026-04-05` |
 | [#18708 feat: Add /undo command to revert last conversation turn](https://github.com/google-gemini/gemini-cli/issues/18708) | [#20027](https://github.com/google-gemini/gemini-cli/pull/20027) | @mrpmohiburrahman | `2026-04-04` |
+| [#20948 Suggestion: Feature Request: Add "Last Edited Buffer" to command history to prevent data loss on accidental deletion.](https://github.com/google-gemini/gemini-cli/issues/20948) | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | @devr0306 | `2026-04-09` |
 
 ## 🛠️ Active Development: Recently Assigned (39)
 **Status: Assigned < 14 days ago.**
@@ -166,7 +169,7 @@
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | @jonathanh1 | `2026-03-28` |
 | [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | @GoBeromsu | `2026-03-27` |
 
-## 🛠️ Active Development: Blocked PRs (34)
+## 🛠️ Active Development: Blocked PRs (36)
 **Status: Active work with blockers.**
 
 | Issue | Linked PR | Author | Reason | Last Update |
@@ -205,6 +208,8 @@
 | [#15691 LLM outputs tables which are broken and truncated](https://github.com/google-gemini/gemini-cli/issues/15691) | [#24113](https://github.com/google-gemini/gemini-cli/pull/24113) | @Debadri-das | Merge Conflict | `2026-03-28` |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | [#19901](https://github.com/google-gemini/gemini-cli/pull/19901) | @Ayushhgit | Merge Conflict | `2026-03-27` |
 | [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | @fayerman-source | Merge Conflict | `2026-04-04` |
+| [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | @aniketsaurav18 | Merge Conflict | `2026-03-29` |
+| [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#24126](https://github.com/google-gemini/gemini-cli/pull/24126) | @Vadim3377 | Merge Conflict | `2026-03-28` |
 
 ## 🌱 Available for Pickup (55)
 **Action: Open for contributors.**
