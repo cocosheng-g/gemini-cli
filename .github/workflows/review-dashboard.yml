@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: dashboard-automation
       - name: Generate Dashboard
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -17,6 +19,6 @@ jobs:
         run: |
           git config user.name "Review Dashboard Bot"
           git config user.email "bot@google.com"
-          git add REVIEWS.md
+          git add HELP_ISSUES_TRIAGE.md TEAM_STATS.md
           git commit -m "chore: update review dashboard [skip ci]" || exit 0
           git push
