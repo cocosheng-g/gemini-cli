@@ -41,7 +41,7 @@ ONCALLER_TEAMS = {
     'gemini-cli-docs'
 }
 
-SEARCH_QUERY = f'repo:{TARGET_REPO} is:issue state:open label:area/core,area/extensions,area/site label:"help wanted" sort:updated-desc'
+SEARCH_QUERY = f'repo:{TARGET_REPO} is:issue label:area/core,area/extensions,area/site label:"help wanted" sort:updated-desc'
 
 ISSUES_QUERY = """
 query($searchQuery: String!, $cursor: String) {
