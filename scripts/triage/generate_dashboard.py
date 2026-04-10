@@ -34,7 +34,8 @@ BOT_BLACKLIST = {
 
 # Thresholds
 STALE_ASSIGNMENT_DAYS = 14
-STALE_BLOCKED_PR_DAYS = 14
+STALE_BLOCKED_PR_DAYS_WARNING = 14
+STALE_BLOCKED_PR_DAYS_CLOSE = 21
 
 UNASSIGN_COMMENT = (
     "Hi @{author}, this issue is being unassigned due to 2 weeks of inactivity "
@@ -44,11 +45,20 @@ UNASSIGN_COMMENT = (
 )
 
 CLOSE_PR_COMMENT = (
-    "Hi @{author}, this pull request is being closed because it has been stale for >14 days "
+    "Hi @{author}, this pull request is being closed because it has been stale for >21 days "
     "with unresolved conflicts or test failures. The linked issue is also being unassigned "
     "to allow other contributors to pick it up. "
     "Feel free to re-open this PR or comment on the issue if you resume work!"
 )
+
+WARNING_PR_COMMENT = (
+    "Hi @{author}, it looks like this pull request has unresolved conflicts or test failures "
+    "and has been inactive for over 14 days. Please address them when you get a chance! "
+    "If there is no further activity in the next 7 days, this PR will be automatically closed "
+    "and the issue unassigned."
+)
+
+WARNING_PR_COMMENT_SUBSTRING = "automatically closed and the issue unassigned."
 
 # Specific oncaller teams
 ONCALLER_TEAMS = {
@@ -103,7 +113,7 @@ def get_pr_batch_query(pr_numbers):
                 closingIssuesReferences(first: 10) {{ nodes {{ number }} }}
                 reviewRequests(first: 10) {{ nodes {{ requestedReviewer {{ __typename ... on User {{ login }} ... on Team {{ slug }} }} }} }}
                 latestReviews(last: 10) {{ nodes {{ author {{ login }} state updatedAt }} }}
-                comments(last: 20) {{ nodes {{ author {{ login }} publishedAt }} }}
+                comments(last: 20) {{ nodes {{ author {{ login }} publishedAt body }} }}
                 commits(last: 10) {{ nodes {{ commit {{ committedDate author {{ user {{ login }} }} }} }} }}
                 timelineItems(last: 10, itemTypes: [REOPENED_EVENT, READY_FOR_REVIEW_EVENT]) {{
                     nodes {{ __typename ... on ReopenedEvent {{ createdAt }} ... on ReadyForReviewEvent {{ createdAt }} }}
@@ -176,8 +186,8 @@ def get_status_priority(label):
     if "Active" in label: return 1
     return 2
 
-def automate_cleanup(stale_assignments, stale_blocked_prs):
-    if not stale_assignments and not stale_blocked_prs:
+def automate_cleanup(stale_assignments, stale_blocked_prs, warn_blocked_prs):
+    if not stale_assignments and not stale_blocked_prs and not warn_blocked_prs:
         print("LOG: No stale items to clean up.")
         return
     
@@ -205,6 +215,17 @@ def automate_cleanup(stale_assignments, stale_blocked_prs):
             subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
             subprocess.run(['gh', 'pr', 'close', str(pr_no), '-R', TARGET_REPO], capture_output=True)
             subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO], capture_output=True)
+
+    # 3. Handle Warning for Blocked PRs
+    if warn_blocked_prs:
+        print(f"LOG: Sending warnings for {len(warn_blocked_prs)} blocked PRs...")
+        for item in warn_blocked_prs:
+            pr_no = item['pr_no']
+            author = item['author']
+            
+            print(f"LOG: Warning stale PR #{pr_no} for @{author}...")
+            comment = WARNING_PR_COMMENT.format(author=author)
+            subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
 
 def main():
     print(f"LOG: Starting dashboard generation for {TARGET_REPO}...")
@@ -265,6 +286,7 @@ def main():
     oncaller_attention = []
     stale_assignments = []
     blocked_stale_prs = []
+    warn_blocked_prs = []
     initial_pickup = []
     followup_needed = []
     waiting_for_author = []
@@ -369,8 +391,18 @@ def main():
             author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
             
             if is_blocked:
-                if (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days >= STALE_BLOCKED_PR_DAYS:
-                    blocked_stale_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days})
+                days_stale = (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days
+                if days_stale >= STALE_BLOCKED_PR_DAYS_CLOSE:
+                    blocked_stale_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": days_stale})
+                elif days_stale >= STALE_BLOCKED_PR_DAYS_WARNING:
+                    warned = False
+                    for c in pr.get('comments', {}).get('nodes', []):
+                        if c.get('author', {}).get('login') in BOT_BLACKLIST and WARNING_PR_COMMENT_SUBSTRING in c.get('body', '') and c.get('publishedAt') > latest_author_act_iso:
+                            warned = True
+                            break
+                    if not warned:
+                        warn_blocked_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": days_stale})
+                    active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": status_label.split(': ')[1], "last_update": latest_author_act_iso[:10]})
                 else:
                     active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": status_label.split(': ')[1], "last_update": latest_author_act_iso[:10]})
                 placed_in_dashboard = True
@@ -440,7 +472,7 @@ def main():
     if not stale_assignments: md_rev += "| - | - | - |\n"
     md_rev += "</details>\n"
 
-    md_rev += f"\n<details>\n<summary><b>🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})</b> — <i>Auto-cleanup.</i></summary>\n\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS} days.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n<details>\n<summary><b>🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})</b> — <i>Auto-cleanup.</i></summary>\n\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS_WARNING} days will receive a warning comment tagging the author. If there is no response for 1 week, it will be considered blocked & stale and auto-cleaned up.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in blocked_stale_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {i['reason']} | @{i['author']} | {i['days_stale']} |\n"
     if not blocked_stale_prs: md_rev += "| - | - | - | - | - |\n"
     md_rev += "</details>\n"
@@ -462,7 +494,7 @@ def main():
     if not recently_assigned: md_rev += "| - | - | - |\n"
     md_rev += "</details>\n"
 
-    md_rev += f"\n<details>\n<summary><b>🛠️ Active Development: Blocked PRs ({len(active_blocked_prs)})</b> — <i>Active work with blockers.</i></summary>\n\n**Criteria: Active PRs with conflicts or failures updated within {STALE_BLOCKED_PR_DAYS} days.**\n\n| Issue | Linked PR | Author | Reason | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n<details>\n<summary><b>🛠️ Active Development: Blocked PRs ({len(active_blocked_prs)})</b> — <i>Active work with blockers.</i></summary>\n\n**Criteria: Active PRs with conflicts or failures updated within {STALE_BLOCKED_PR_DAYS_WARNING} days.**\n\n| Issue | Linked PR | Author | Reason | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in active_blocked_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | @{i['author']} | {i['reason']} | `{i['last_update']}` |\n"
     if not active_blocked_prs: md_rev += "| - | - | - | - | - |\n"
     md_rev += "</details>\n"
@@ -523,7 +555,7 @@ def main():
     with open("triage/TEAM_STATS.md", "w") as f: f.write(md_stats)
     print("LOG: Dashboard generation complete.")
 
-    automate_cleanup(stale_assignments, blocked_stale_prs)
+    automate_cleanup(stale_assignments, blocked_stale_prs, warn_blocked_prs)
 
 if __name__ == "__main__":
     main()
