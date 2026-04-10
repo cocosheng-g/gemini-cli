@@ -212,7 +212,6 @@ def main():
     page = 1
     while True:
         print(f"LOG: Fetching issue page {page}...")
-        # Use smaller page size (50) for better reliability
         res = gh_api_graphql(ISSUES_QUERY.replace('first: 100', 'first: 50'), {"searchQuery": SEARCH_QUERY, "cursor": cursor})
         if not res:
             print("LOG: Critical fetch failure. Exiting to prevent incomplete dashboard.")
@@ -248,7 +247,6 @@ def main():
     pr_list = sorted(list(pr_to_fetch))
     for i in range(0, len(pr_list), 20):
         batch = pr_list[i:i+20]
-        print(f"LOG: Fetching PR batch {i//20 + 1} ({len(batch)} PRs)...")
         res = gh_api_graphql(get_pr_batch_query(batch))
         if res and 'data' in res:
             repo_data = res['data']['repository']
@@ -260,7 +258,6 @@ def main():
 
     now = datetime.datetime.now(datetime.timezone.utc)
     report_start = (now - datetime.timedelta(days=now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
-    print(f"LOG: Reporting period starts from {report_start.strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Lists for HELP_ISSUES_TRIAGE.md
     oncaller_attention = []
@@ -304,14 +301,11 @@ def main():
                 for req in nodes:
                     rr = req.get('requestedReviewer')
                     if not rr:
-                        # Fallback: if GraphQL fails to populate the node (common in Actions), 
-                        # use the CLI to fetch JSON for this specific PR.
-                        print(f"LOG: GraphQL requestedReviewer empty for PR #{pr_no}, using gh pr view fallback...")
+                        # Fallback: if GraphQL fails to populate the node (common in Actions)
                         try:
-                            pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests', '-R', TARGET_REPO]))
+                            pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests', '-R', TARGET_REPO], stderr=subprocess.STDOUT))
                             fallback_nodes = pr_json.get('reviewRequests', [])
                             for f_rr in fallback_nodes:
-                                # gh pr view returns different format than GraphQL API
                                 if 'login' in f_rr: # User
                                     if f_rr['login'] != author and f_rr['login'] not in BOT_BLACKLIST: human_reviewers.add(f_rr['login'])
                                 elif 'slug' in f_rr: # Team
@@ -319,9 +313,9 @@ def main():
                                     if team_name in ONCALLER_TEAMS:
                                         print(f"LOG: Found special team request (via fallback): {team_name} on PR #{pr_no}")
                                         special_teams.add(team_name)
-                        except Exception as e:
-                            print(f"LOG: Fallback failed for PR #{pr_no}: {e}")
-                        break # Processed all via fallback, no need to continue this loop
+                        except Exception:
+                            pass
+                        break
                     
                     typename = rr.get('__typename')
                     if typename == 'User':
@@ -362,25 +356,27 @@ def main():
 
             # 2. Dashboard Logic
             if issue['state'] != 'OPEN': continue
+            
+            # --- CRITICAL FILTER: Only consider PRs officially linked to close this issue ---
+            is_officially_linked = False
+            if 'closingIssuesReferences' in pr:
+                linked_nums = [n['number'] for n in pr['closingIssuesReferences']['nodes']]
+                if issue_no in linked_nums: is_officially_linked = True
+            
+            if not is_officially_linked: continue
 
-            # Specialized Approval Required check (ALWAYS capture if teams are requested)
+            # Enforce ownership
+            is_owned = (author in assignees) or any(pa in assignees for pa in pr_assignees)
+            
+            if not is_owned:
+                unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
+                continue
+            
+            found_open_pr = True
             if special_teams:
                 print(f"LOG: Issue #{issue_no} / PR #{pr_no} categorized as Specialized Approval. Teams: {special_teams}")
                 oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no})
 
-            # Enforce ownership for other high-priority triage lists
-            if author not in assignees and not any(pa in assignees for pa in pr_assignees):
-                unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
-                continue
-            
-            # Since we only fetch details for OPEN PRs, we'll have full info here
-            if 'closingIssuesReferences' in pr:
-                linked_nums = [n['number'] for n in pr['closingIssuesReferences']['nodes']]
-                if issue_no not in linked_nums: continue
-            
-            found_open_pr = True
-            # Item is already added to oncaller_attention if special_teams were present
-            
             is_blocked = "Blocked" in status_label
             author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
             
