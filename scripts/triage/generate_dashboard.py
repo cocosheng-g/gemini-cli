@@ -366,6 +366,10 @@ def main():
             latest_rev_act_iso = get_reviewer_activity(pr)
             status_label = get_status_label(pr)
 
+            author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
+            if "Active" in status_label and not author_acted_last:
+                status_label += " (Needs Author Update)"
+
             if special_teams:
                 status_label += f" (Needs 🛡️ {', '.join(sorted(list(special_teams)))})"
 
@@ -399,8 +403,7 @@ def main():
 
             # Active categories
             is_blocked = "Blocked" in status_label
-            author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
-            
+
             if is_blocked:
                 days_stale = (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days
                 if days_stale >= STALE_BLOCKED_PR_DAYS_CLOSE:
