@@ -298,9 +298,13 @@ def main():
     # Member stats for TEAM_STATS.md
     member_stats = {login: {"name": name, "weekly_closed": 0, "open_queue": [], "history": []} for login, name in MAINTAINERS.items()}
     processed_prs_for_history = set()
+    processed_prs_for_open_queue = set()
 
     print("LOG: Categorizing issues and PRs...")
-    for issue_no, pr_infos in issue_to_pr_info.items():
+    # Process OPEN issues first so that PRs linked to both open and closed issues are associated with the open one
+    sorted_issues = sorted(issue_to_pr_info.items(), key=lambda x: 0 if issue_to_info[x[0]]['state'] == 'OPEN' else 1)
+
+    for issue_no, pr_infos in sorted_issues:
         issue = issue_to_info[issue_no]
         issue_title = sanitize(issue['title'])
         issue_url = issue['url']
@@ -352,6 +356,10 @@ def main():
                             member_stats[r_login]["history"].append({"number": pr['number'], "title": sanitize(pr.get('title', 'PR')), "url": pr.get('url', f"https://github.com/{TARGET_REPO}/pull/{pr['number']}"), "state": pr['state'], "issue_no": issue_no, "updated": pr.get('updatedAt', '')[:10]})
                     processed_prs_for_history.add(pr_no)
                 continue
+
+            if pr_no in processed_prs_for_open_queue:
+                continue
+            processed_prs_for_open_queue.add(pr_no)
 
             pr_title = sanitize(pr['title'])
             latest_author_act_iso = get_author_activity(pr)
