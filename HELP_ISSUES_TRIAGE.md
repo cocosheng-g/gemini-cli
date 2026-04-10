@@ -1,13 +1,13 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 03:08 (UTC)*
+*Last Synchronized: 2026-04-10 03:11 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
 ## 🚨 Needs Oncaller Attention
 
 <details>
-<summary><b>🛡️ Specialized Approval Required (21)</b></summary>
+<summary><b>🛡️ Specialized Approval Required (21)</b> — <i>Specialized approval required.</i></summary>
 
 **Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**
 

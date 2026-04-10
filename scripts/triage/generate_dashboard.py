@@ -40,6 +40,13 @@ UNASSIGN_COMMENT = (
     "Feel free to comment if you are still working on this and would like to be re-assigned!"
 )
 
+CLOSE_PR_COMMENT = (
+    "Hi @{author}, this pull request is being closed because it has been stale for >14 days "
+    "with unresolved conflicts or test failures. The linked issue is also being unassigned "
+    "to allow other contributors to pick it up. "
+    "Feel free to re-open this PR or comment on the issue if you resume work!"
+)
+
 # Specific oncaller teams
 ONCALLER_TEAMS = {
     'gemini-cli-prompt-approvers',
@@ -161,19 +168,37 @@ def get_status_priority(label):
     if "Active" in label: return 1
     return 2
 
-def unassign_stale_issues(stale_list):
-    if not stale_list:
-        print("No stale assignments to clean up.")
+def automate_cleanup(stale_assignments, stale_blocked_prs):
+    if not stale_assignments and not stale_blocked_prs:
+        print("No stale items to clean up.")
         return
     
-    print(f"Automating cleanup for {len(stale_list)} stale assignments...")
-    for item in stale_list:
-        issue_no = item['issue_no']
-        for user in item['assignees']:
-            print(f"  - Unassigning @{user} from #{issue_no}...")
-            comment = UNASSIGN_COMMENT.format(author=user)
-            subprocess.run(['gh', 'issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
-            subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO], capture_output=True)
+    # 1. Handle Stale Assignments (Issues with no PR)
+    if stale_assignments:
+        print(f"Automating cleanup for {len(stale_assignments)} stale assignments...")
+        for item in stale_assignments:
+            issue_no = item['issue_no']
+            for user in item['assignees']:
+                print(f"  - Unassigning @{user} from #{issue_no}...")
+                comment = UNASSIGN_COMMENT.format(author=user)
+                subprocess.run(['gh', 'issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
+                subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO], capture_output=True)
+
+    # 2. Handle Stale Blocked PRs (Close PR + Unassign Issue)
+    if stale_blocked_prs:
+        print(f"Automating cleanup for {len(stale_blocked_prs)} stale blocked PRs...")
+        for item in stale_blocked_prs:
+            pr_no = item['pr_no']
+            issue_no = item['issue_no']
+            author = item['author']
+            
+            print(f"  - Closing stale PR #{pr_no} and unassigning #{issue_no} from @{author}...")
+            comment = CLOSE_PR_COMMENT.format(author=author)
+            # Comment and close PR
+            subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
+            subprocess.run(['gh', 'pr', 'close', str(pr_no), '-R', TARGET_REPO], capture_output=True)
+            # Unassign issue
+            subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO], capture_output=True)
 
 def main():
     print("Fetching issue list...")
@@ -309,6 +334,7 @@ def main():
                 continue
             
             # Since we only fetch details for OPEN PRs, we'll have full info here
+            # Ensure it's officially linked to THIS issue (if we have details)
             if 'closingIssuesReferences' in pr:
                 linked_nums = [n['number'] for n in pr['closingIssuesReferences']['nodes']]
                 if issue_no not in linked_nums: continue
@@ -322,7 +348,7 @@ def main():
             
             if is_blocked:
                 if (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days >= STALE_BLOCKED_PR_DAYS:
-                    blocked_stale_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days})
+                    blocked_stale_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days})
                 else:
                     active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": status_label.split(': ')[1], "last_update": latest_author_act_iso[:10]})
                 has_active_work = True
@@ -366,7 +392,7 @@ def main():
     
     md_rev += "## 🚨 Needs Oncaller Attention\n"
 
-    md_rev += f"\n<details>\n<summary><b>🛡️ Specialized Approval Required ({len(oncaller_attention)})</b></summary>\n\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n<details>\n<summary><b>🛡️ Specialized Approval Required ({len(oncaller_attention)})</b> — <i>Specialized approval required.</i></summary>\n\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
     for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} |\n"
     if not oncaller_attention: md_rev += "| - | - | - | - |\n"
     md_rev += "</details>\n"
@@ -460,7 +486,7 @@ def main():
     with open("TEAM_STATS.md", "w") as f: f.write(md_stats)
     print("Done. Generated HELP_ISSUES_TRIAGE.md and TEAM_STATS.md with perfect parity.")
 
-    unassign_stale_issues(stale_assignments)
+    automate_cleanup(stale_assignments, blocked_stale_prs)
 
 if __name__ == "__main__":
     main()
