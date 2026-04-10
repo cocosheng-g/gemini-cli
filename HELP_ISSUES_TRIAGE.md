@@ -1,21 +1,19 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 04:08 (UTC)*
+*Last Synchronized: 2026-04-10 04:14 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
 ## 🚨 Needs Oncaller Attention
 
 <details>
-<summary><b>🆕 Awaiting Reviewer Pickup (27)</b> — <i>Pick up one of these new PRs.</i></summary>
+<summary><b>🆕 Awaiting Reviewer Pickup (22)</b> — <i>Pick up one of these new PRs.</i></summary>
 
 **Criteria: New PRs with no reviewers yet, author acted last.**
 
 | Issue | Linked PR | Last Update |
 | :--- | :--- | :--- |
 | [#18654 Enhanced Copy Workflow via External Editor Integration](https://github.com/google-gemini/gemini-cli/issues/18654) | [#19553](https://github.com/google-gemini/gemini-cli/pull/19553) | `2026-03-11` |
-| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | `2026-03-23` |
-| [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#21840](https://github.com/google-gemini/gemini-cli/pull/21840) | `2026-03-23` |
 | [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | `2026-04-08` |
 | [#22591 fix(cli): mapToDisplay uses unbounded JSON.stringify for ErroredToolCall description](https://github.com/google-gemini/gemini-cli/issues/22591) | [#22594](https://github.com/google-gemini/gemini-cli/pull/22594) | `2026-04-08` |
 | [#12345 Add AGENTS.md to the context filename list by default](https://github.com/google-gemini/gemini-cli/issues/12345) | [#24913](https://github.com/google-gemini/gemini-cli/pull/24913) | `2026-04-09` |
@@ -23,7 +21,6 @@
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | `2026-04-09` |
 | [#19713 Fix unsafe type assertions in CLI Config (Phase 3.1)](https://github.com/google-gemini/gemini-cli/issues/19713) | [#24905](https://github.com/google-gemini/gemini-cli/pull/24905) | `2026-04-09` |
 | [#19969 Provide a way to control the standard names of hooks and skills folder via gemini-extension.json of an extension](https://github.com/google-gemini/gemini-cli/issues/19969) | [#25008](https://github.com/google-gemini/gemini-cli/pull/25008) | `2026-04-09` |
-| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | [#25072](https://github.com/google-gemini/gemini-cli/pull/25072) | `2026-04-09` |
 | [#20385 Terminal output flooded with repeated '0c/' string](https://github.com/google-gemini/gemini-cli/issues/20385) | [#24596](https://github.com/google-gemini/gemini-cli/pull/24596) | `2026-04-09` |
 | [#20500 feat(cli): add mention view shortcuts](https://github.com/google-gemini/gemini-cli/issues/20500) | [#25060](https://github.com/google-gemini/gemini-cli/pull/25060) | `2026-04-09` |
 | [#21036 UX Improvement for /chat save.](https://github.com/google-gemini/gemini-cli/issues/21036) | [#21439](https://github.com/google-gemini/gemini-cli/pull/21439) | `2026-04-09` |
@@ -36,14 +33,12 @@
 | [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | `2026-04-09` |
 | [#22757 A GEMINI.md file already exists but empty and never commited](https://github.com/google-gemini/gemini-cli/issues/22757) | [#25010](https://github.com/google-gemini/gemini-cli/pull/25010) | `2026-04-09` |
 | [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | `2026-04-09` |
-| [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | `2026-04-10` |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
-| [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | [#19332](https://github.com/google-gemini/gemini-cli/pull/19332) | `2026-04-10` |
 | [#22421 fix(cli): /chat subcommand usage strings incorrectly reference /resume](https://github.com/google-gemini/gemini-cli/issues/22421) | [#25091](https://github.com/google-gemini/gemini-cli/pull/25091) | `2026-04-10` |
 </details>
 
 <details>
-<summary><b>🛡️ Specialized Approval Required (33)</b> — <i>Specialized approval required.</i></summary>
+<summary><b>🛡️ Specialized Approval Required (21)</b> — <i>Specialized approval required.</i></summary>
 
 **Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**
 
@@ -53,33 +48,21 @@
 | [#16122 Feature Request: Add gemini update command](https://github.com/google-gemini/gemini-cli/issues/16122) | [#24080](https://github.com/google-gemini/gemini-cli/pull/24080) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman |
 | [#18708 feat: Add /undo command to revert last conversation turn](https://github.com/google-gemini/gemini-cli/issues/18708) | [#20027](https://github.com/google-gemini/gemini-cli/pull/20027) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman |
 | [#19649 extend /copy to capture output also from slash commands](https://github.com/google-gemini/gemini-cli/issues/19649) | [#19825](https://github.com/google-gemini/gemini-cli/pull/19825) | `gemini-cli-askmode-approvers` | @lesteral, @mrpmohiburrahman |
-| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21141](https://github.com/google-gemini/gemini-cli/pull/21141) | `gemini-cli-askmode-approvers`, `gemini-cli-docs` | @M-DEV-1 |
 | [#19717 Fix unsafe type assertions in VS Code Companion (Phase 4.2)](https://github.com/google-gemini/gemini-cli/issues/19717) | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | `gemini-cli-askmode-approvers`, `gemini-cli-prompt-approvers` | @Adib234, @mrpmohiburrahman |
 | [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | `gemini-cli-docs` | @jacob314, @mrpmohiburrahman, @scidomino |
-| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | [#19837](https://github.com/google-gemini/gemini-cli/pull/19837) | `gemini-cli-docs` | @mrpmohiburrahman, @skeshive |
 | [#18751 feat(ui): support custom preferred themes for automatic light/dark switching](https://github.com/google-gemini/gemini-cli/issues/18751) | [#18753](https://github.com/google-gemini/gemini-cli/pull/18753) | `gemini-cli-docs` | _None_ |
-| [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | [#19332](https://github.com/google-gemini/gemini-cli/pull/19332) | `gemini-cli-docs` | _None_ |
 | [#19969 Provide a way to control the standard names of hooks and skills folder via gemini-extension.json of an extension](https://github.com/google-gemini/gemini-cli/issues/19969) | [#25008](https://github.com/google-gemini/gemini-cli/pull/25008) | `gemini-cli-docs` | _None_ |
-| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | [#25072](https://github.com/google-gemini/gemini-cli/pull/25072) | `gemini-cli-docs` | _None_ |
 | [#20500 feat(cli): add mention view shortcuts](https://github.com/google-gemini/gemini-cli/issues/20500) | [#25060](https://github.com/google-gemini/gemini-cli/pull/25060) | `gemini-cli-docs` | _None_ |
-| [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | [#20738](https://github.com/google-gemini/gemini-cli/pull/20738) | `gemini-cli-docs` | @jacob314 |
 | [#20847 Feature request: --session-id flag to set session UUID at launch](https://github.com/google-gemini/gemini-cli/issues/20847) | [#24976](https://github.com/google-gemini/gemini-cli/pull/24976) | `gemini-cli-docs` | _None_ |
 | [#21036 UX Improvement for /chat save.](https://github.com/google-gemini/gemini-cli/issues/21036) | [#21439](https://github.com/google-gemini/gemini-cli/pull/21439) | `gemini-cli-docs` | _None_ |
 | [#21084 External editor support: unclear error messages, missing editors, incomplete documentation](https://github.com/google-gemini/gemini-cli/issues/21084) | [#21090](https://github.com/google-gemini/gemini-cli/pull/21090) | `gemini-cli-docs` | @jacob314 |
 | [#21221 Proposal: Interruptible responses for experimental voice mode](https://github.com/google-gemini/gemini-cli/issues/21221) | [#21226](https://github.com/google-gemini/gemini-cli/pull/21226) | `gemini-cli-docs` | _None_ |
 | [#22321 Feature Request: Add 'list' subcommand to '/commands' to show loaded command files](https://github.com/google-gemini/gemini-cli/issues/22321) | [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | `gemini-cli-docs` | @cocosheng-g, @marsam2489-lang |
-| [#22691 Ability to specify the exact workspace directory without walking up file tree](https://github.com/google-gemini/gemini-cli/issues/22691) | [#22861](https://github.com/google-gemini/gemini-cli/pull/22861) | `gemini-cli-docs` | _None_ |
 | [#12345 Add AGENTS.md to the context filename list by default](https://github.com/google-gemini/gemini-cli/issues/12345) | [#24913](https://github.com/google-gemini/gemini-cli/pull/24913) | `gemini-cli-docs`, `gemini-cli-prompt-approvers` | _None_ |
-| [#21230 feat: visualize tool and /visualize command](https://github.com/google-gemini/gemini-cli/issues/21230) | [#24192](https://github.com/google-gemini/gemini-cli/pull/24192) | `gemini-cli-docs`, `gemini-cli-prompt-approvers` | _None_ |
-| [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | `gemini-cli-prompt-approvers` | _None_ |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `gemini-cli-prompt-approvers` | _None_ |
-| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | `gemini-cli-prompt-approvers` | _None_ |
 | [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | `gemini-cli-prompt-approvers` | @devr0306 |
-| [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#24126](https://github.com/google-gemini/gemini-cli/pull/24126) | `gemini-cli-prompt-approvers` | _None_ |
 | [#20755 Shell Tool Trailing Newline Trimming](https://github.com/google-gemini/gemini-cli/issues/20755) | [#23705](https://github.com/google-gemini/gemini-cli/pull/23705) | `gemini-cli-prompt-approvers` | @mrpmohiburrahman |
-| [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#21840](https://github.com/google-gemini/gemini-cli/pull/21840) | `gemini-cli-prompt-approvers` | _None_ |
 | [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#25030](https://github.com/google-gemini/gemini-cli/pull/25030) | `gemini-cli-prompt-approvers` | _None_ |
-| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | [#22055](https://github.com/google-gemini/gemini-cli/pull/22055) | `gemini-cli-prompt-approvers` | _None_ |
 | [#23018 ACP: Execute tool call title field contains conversational text.](https://github.com/google-gemini/gemini-cli/issues/23018) | [#23092](https://github.com/google-gemini/gemini-cli/pull/23092) | `gemini-cli-prompt-approvers` | _None_ |
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | `gemini-cli-prompt-approvers` | @cocosheng-g |
 </details>
@@ -107,14 +90,12 @@
 ## 🛠️ Active Development
 
 <details>
-<summary><b>⌛ Awaiting Reviewer Follow-up (13)</b> — <i>Reviewers, please follow up.</i></summary>
+<summary><b>⌛ Awaiting Reviewer Follow-up (11)</b> — <i>Reviewers, please follow up.</i></summary>
 
 **Criteria: Review in progress, author has responded to latest feedback.**
 
 | Issue | Linked PR | Reviewers | Status | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
-| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21141](https://github.com/google-gemini/gemini-cli/pull/21141) | @M-DEV-1 | Author Updated | `2026-03-11` |
-| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | [#19837](https://github.com/google-gemini/gemini-cli/pull/19837) | @mrpmohiburrahman, @skeshive | Author Updated | `2026-04-04` |
 | [#18708 feat: Add /undo command to revert last conversation turn](https://github.com/google-gemini/gemini-cli/issues/18708) | [#20027](https://github.com/google-gemini/gemini-cli/pull/20027) | @mrpmohiburrahman | Author Updated | `2026-04-04` |
 | [#19717 Fix unsafe type assertions in VS Code Companion (Phase 4.2)](https://github.com/google-gemini/gemini-cli/issues/19717) | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | @Adib234, @mrpmohiburrahman | Review Requested | `2026-04-05` |
 | [#16122 Feature Request: Add gemini update command](https://github.com/google-gemini/gemini-cli/issues/16122) | [#24080](https://github.com/google-gemini/gemini-cli/pull/24080) | @mrpmohiburrahman | Author Updated | `2026-04-06` |
@@ -140,7 +121,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (44)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (47)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -172,10 +153,12 @@
 | [#21389 Make Jetbrains IDEs as editor options](https://github.com/google-gemini/gemini-cli/issues/21389) | @SoLoHiC | `2026-04-08` |
 | [#22490 Feature: Configurable window title length and padding options](https://github.com/google-gemini/gemini-cli/issues/22490) | @daehyeok | `2026-04-08` |
 | [#15840 Alternate Buffer SettingsDialog](https://github.com/google-gemini/gemini-cli/issues/15840) | @psinha40898 | `2026-04-09` |
+| [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | @ChandanKT-git | `2026-04-09` |
 | [#16530 Robust WSL Support](https://github.com/google-gemini/gemini-cli/issues/16530) | @ChandanKT-git | `2026-04-09` |
 | [#17834 Website landing and extensions page flash when theme is set to light](https://github.com/google-gemini/gemini-cli/issues/17834) | @PrafulVRaj | `2026-04-09` |
 | [#20364 feat(cli): Add /mds command to view memory and agent files](https://github.com/google-gemini/gemini-cli/issues/20364) | @Oerum | `2026-04-09` |
 | [#20908 Gemini CLI should have a repo provided 'recommended extensions' configuration](https://github.com/google-gemini/gemini-cli/issues/20908) | @manas-raj999 | `2026-04-09` |
+| [#21230 feat: visualize tool and /visualize command](https://github.com/google-gemini/gemini-cli/issues/21230) | @lucumango | `2026-04-09` |
 | [#21527 Failed to check if file is binary: /home/sumeet/korl-webapp-next/skills/typescript-expert EISDIR: illegal operation on a directory, read │ │ ⚠ Failed to check if file is binary: /home/sumeet/korl-webapp-next/skills/web-performance-optimization EISDIR: ille](https://github.com/google-gemini/gemini-cli/issues/21527) | @ProthamD | `2026-04-09` |
 | [#21548 Disabling of extensions doesn't work](https://github.com/google-gemini/gemini-cli/issues/21548) | @ProthamD | `2026-04-09` |
 | [#21686 Typing unmapped keys in Vim Normal mode inserts characters into input field](https://github.com/google-gemini/gemini-cli/issues/21686) | @Rajeshpatel07 | `2026-04-09` |
@@ -189,11 +172,12 @@
 | [#24211 Hardcoded padding in terminal title causes trailing spaces in tmux pane_title](https://github.com/google-gemini/gemini-cli/issues/24211) | @tusaryan | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | @tusaryan | `2026-04-09` |
 | [#7989 Provide an official way to add comments in GEMINI.md](https://github.com/google-gemini/gemini-cli/issues/7989) | @JagjeevanAK | `2026-04-09` |
+| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | @sahilkirad | `2026-04-10` |
 | [#20968 Windows PowerShell Output Encoding Bug](https://github.com/google-gemini/gemini-cli/issues/20968) | @ishaanxgupta | `2026-04-10` |
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Blocked PRs (27)</b> — <i>Active work with blockers.</i></summary>
+<summary><b>🛠️ Active Development: Blocked PRs (22)</b> — <i>Active work with blockers.</i></summary>
 
 **Criteria: Active PRs with conflicts or failures updated within 14 days.**
 
@@ -201,19 +185,14 @@
 | :--- | :--- | :--- | :--- | :--- |
 | [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | [#20668](https://github.com/google-gemini/gemini-cli/pull/20668) | @M-DEV-1 | Merge Conflict | `2026-03-29` |
 | [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | @aniketsaurav18 | Merge Conflict | `2026-03-30` |
-| [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#24126](https://github.com/google-gemini/gemini-cli/pull/24126) | @Vadim3377 | Merge Conflict | `2026-03-30` |
-| [#21230 feat: visualize tool and /visualize command](https://github.com/google-gemini/gemini-cli/issues/21230) | [#24192](https://github.com/google-gemini/gemini-cli/pull/24192) | @student-ankitpandit | Merge Conflict | `2026-03-30` |
 | [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | @fayerman-source | Merge Conflict | `2026-04-04` |
 | [#21084 External editor support: unclear error messages, missing editors, incomplete documentation](https://github.com/google-gemini/gemini-cli/issues/21084) | [#21090](https://github.com/google-gemini/gemini-cli/pull/21090) | @alberti42 | Merge Conflict | `2026-04-04` |
 | [#15691 LLM outputs tables which are broken and truncated](https://github.com/google-gemini/gemini-cli/issues/15691) | [#24113](https://github.com/google-gemini/gemini-cli/pull/24113) | @Debadri-das | Merge Conflict | `2026-04-05` |
 | [#12137 Login url is truncated](https://github.com/google-gemini/gemini-cli/issues/12137) | [#24853](https://github.com/google-gemini/gemini-cli/pull/24853) | @Aaxhirrr | Merge Conflict | `2026-04-07` |
-| [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | [#20738](https://github.com/google-gemini/gemini-cli/pull/20738) | @Aaxhirrr | Merge Conflict | `2026-04-07` |
 | [#20888 AskUser format code without borders](https://github.com/google-gemini/gemini-cli/issues/20888) | [#21254](https://github.com/google-gemini/gemini-cli/pull/21254) | @Hamdanbinhashim | Merge Conflict | `2026-04-08` |
 | [#21221 Proposal: Interruptible responses for experimental voice mode](https://github.com/google-gemini/gemini-cli/issues/21221) | [#21226](https://github.com/google-gemini/gemini-cli/pull/21226) | @Sangini-spec | Merge Conflict | `2026-04-08` |
 | [#21264 docs(core): Add missing JSDoc comments to core utility functions](https://github.com/google-gemini/gemini-cli/issues/21264) | [#21270](https://github.com/google-gemini/gemini-cli/pull/21270) | @poyrazK | Test Failure | `2026-04-08` |
-| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | [#22055](https://github.com/google-gemini/gemini-cli/pull/22055) | @UnsettledAverage73 | Merge Conflict | `2026-04-08` |
 | [#22565 CLI fails to ignore large binary files (.pak, .rpa), causing 192MB+ context bloat and silent timeouts](https://github.com/google-gemini/gemini-cli/issues/22565) | [#22793](https://github.com/google-gemini/gemini-cli/pull/22793) | @elliotllliu | Test Failure | `2026-04-08` |
-| [#22691 Ability to specify the exact workspace directory without walking up file tree](https://github.com/google-gemini/gemini-cli/issues/22691) | [#22861](https://github.com/google-gemini/gemini-cli/pull/22861) | @sea212 | Merge Conflict | `2026-04-08` |
 | [#15503 feat: github colorblind themes](https://github.com/google-gemini/gemini-cli/issues/15503) | [#15504](https://github.com/google-gemini/gemini-cli/pull/15504) | @Z1xus | Test Failure | `2026-04-09` |
 | [#18727 Already selected allow for this session, but still prompted for each operation](https://github.com/google-gemini/gemini-cli/issues/18727) | [#19074](https://github.com/google-gemini/gemini-cli/pull/19074) | @ahsanfarooq210 | Merge Conflict | `2026-04-09` |
 | [#18751 feat(ui): support custom preferred themes for automatic light/dark switching](https://github.com/google-gemini/gemini-cli/issues/18751) | [#18753](https://github.com/google-gemini/gemini-cli/pull/18753) | @thoreinstein | Merge Conflict | `2026-04-09` |
@@ -231,7 +210,7 @@
 ## 🌱 Community & Backlog
 
 <details>
-<summary><b>🌱 Available for Pickup (65)</b> — <i>Open for contributors.</i></summary>
+<summary><b>🌱 Available for Pickup (71)</b> — <i>Open for contributors.</i></summary>
 
 **Criteria: Open issues with no assignee and no active PR.**
 
@@ -264,7 +243,9 @@
 | [#16550 Command line recall doesn't remember in-flight edits if you accidentally scroll up too far](https://github.com/google-gemini/gemini-cli/issues/16550) | 0 |
 | [#11438 The ripgrep tool should prefer the system ripgrep, when possible.](https://github.com/google-gemini/gemini-cli/issues/11438) | 0 |
 | [#21340 feat: Add configurable shell executable for run_shell_command on Windows](https://github.com/google-gemini/gemini-cli/issues/21340) | 0 |
+| [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | 0 |
 | [#20661 [Bug] run_shell_command returns garbled Chinese text for the Agent, while referenced files (@filename) work correctly](https://github.com/google-gemini/gemini-cli/issues/20661) | 0 |
+| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | 0 |
 | [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | 0 |
 | [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 0 |
 | [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 0 |
@@ -276,9 +257,12 @@
 | [#21328 Add delete as an alias for /extensions uninstall](https://github.com/google-gemini/gemini-cli/issues/21328) | 0 |
 | [#21400 Add an update command](https://github.com/google-gemini/gemini-cli/issues/21400) | 0 |
 | [#21390 Support priority paygo on gemini-cli via vertex](https://github.com/google-gemini/gemini-cli/issues/21390) | 0 |
+| [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | 0 |
 | [#21560 Detected terminal name: iTerm2 3.6.8 │ │ │ │ ℹ Loading extension: nanobanana │ │ ⚠ [STARTUP] Cannot start phase 'load_builtin_commands': phase is already active. Call end() before starting again. (x2) ▄│ │ ⚠ [STARTUP] Phase 'load_builtin_commands' was star](https://github.com/google-gemini/gemini-cli/issues/21560) | 0 |
+| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 0 |
 | [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 0 |
 | [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | 0 |
+| [#22691 Ability to specify the exact workspace directory without walking up file tree](https://github.com/google-gemini/gemini-cli/issues/22691) | 0 |
 | [#19868 "context.fileFiltering.customIgnoreFilePaths" setting breaks file completion when using @](https://github.com/google-gemini/gemini-cli/issues/19868) | 1 |
 | [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | 1 |
 | [#20838 CTRL-z removes unfinished open questions in AskUser tool](https://github.com/google-gemini/gemini-cli/issues/20838) | 1 |
@@ -294,6 +278,7 @@
 | [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 1 |
 | [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 1 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 1 |
+| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 1 |
 | [#21602 Request: Wrap long prompts in Tool Confirmation Screen instead of truncating](https://github.com/google-gemini/gemini-cli/issues/21602) | 1 |
 | [#21477 bug: TUI hangs indefinitely on "Initializing..." — IdeClient.getInstance() blocks BuiltinCommandLoader in bare terminal](https://github.com/google-gemini/gemini-cli/issues/21477) | 1 |
 | [#19249 feat: emit token usage metadata via ACP extNotification in zed-integration](https://github.com/google-gemini/gemini-cli/issues/19249) | 1 |
@@ -305,28 +290,40 @@
 </details>
 
 <details>
-<summary><b>⚠️ Unowned PRs (16)</b> — <i>Ownership mismatch.</i></summary>
+<summary><b>⚠️ Unowned PRs (28)</b> — <i>Ownership mismatch.</i></summary>
 
 **Criteria: PRs where author/assignee does not match the linked issue's assignee.**
 
 | Issue | Linked PR | PR Author | Issue Assignee | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
+| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21141](https://github.com/google-gemini/gemini-cli/pull/21141) | @neeraj-par | @ved015 | `2026-03-11` |
+| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | @nivbrook | @sahilkirad | `2026-03-23` |
+| [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#21840](https://github.com/google-gemini/gemini-cli/pull/21840) | @imadraude | @student-ankitpandit | `2026-03-23` |
 | [#19710 Fix unsafe type assertions in Core Utilities (Phase 1.2: JSON & Config)](https://github.com/google-gemini/gemini-cli/issues/19710) | [#23628](https://github.com/google-gemini/gemini-cli/pull/23628) | @KumarADITHYA123 | @Yuvraj-cyborg | `2026-03-24` |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | [#19901](https://github.com/google-gemini/gemini-cli/pull/19901) | @Ayushhgit | _Unassigned_ | `2026-03-27` |
 | [#20838 CTRL-z removes unfinished open questions in AskUser tool](https://github.com/google-gemini/gemini-cli/issues/20838) | [#20873](https://github.com/google-gemini/gemini-cli/pull/20873) | @Aarchi-07 | _Unassigned_ | `2026-03-27` |
 | [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | [#23872](https://github.com/google-gemini/gemini-cli/pull/23872) | @dhakshin-raghav | _Unassigned_ | `2026-03-28` |
+| [#19711 Fix unsafe type assertions in Core Tool Execution (Phase 2.1)](https://github.com/google-gemini/gemini-cli/issues/19711) | [#24126](https://github.com/google-gemini/gemini-cli/pull/24126) | @Vadim3377 | @aniketsaurav18 | `2026-03-30` |
+| [#21230 feat: visualize tool and /visualize command](https://github.com/google-gemini/gemini-cli/issues/21230) | [#24192](https://github.com/google-gemini/gemini-cli/pull/24192) | @student-ankitpandit | @lucumango | `2026-03-30` |
+| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | [#19837](https://github.com/google-gemini/gemini-cli/pull/19837) | @SH20RAJ | _Unassigned_ | `2026-04-04` |
 | [#19675 Make the CLI more friendly with tmux](https://github.com/google-gemini/gemini-cli/issues/19675) | [#19705](https://github.com/google-gemini/gemini-cli/pull/19705) | @Nixxx19 | @apfine | `2026-04-05` |
+| [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | [#20738](https://github.com/google-gemini/gemini-cli/pull/20738) | @Aaxhirrr | _Unassigned_ | `2026-04-07` |
 | [#21505 docs(sdk): add JSDoc to exported interfaces in packages/sdk/src/types.ts](https://github.com/google-gemini/gemini-cli/issues/21505) | [#21584](https://github.com/google-gemini/gemini-cli/pull/21584) | @Gyanranjan-Priyam | _Unassigned_ | `2026-04-08` |
 | [#21729 Bug: A2A server GET /tasks/metadata missing return after 501 response — causes ERR_HTTP_HEADERS_SENT crash with GCS task store](https://github.com/google-gemini/gemini-cli/issues/21729) | [#24293](https://github.com/google-gemini/gemini-cli/pull/24293) | @garagon | @yashodipmore | `2026-04-08` |
+| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | [#22055](https://github.com/google-gemini/gemini-cli/pull/22055) | @UnsettledAverage73 | _Unassigned_ | `2026-04-08` |
+| [#22691 Ability to specify the exact workspace directory without walking up file tree](https://github.com/google-gemini/gemini-cli/issues/22691) | [#22861](https://github.com/google-gemini/gemini-cli/pull/22861) | @sea212 | _Unassigned_ | `2026-04-08` |
 | [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | [#19013](https://github.com/google-gemini/gemini-cli/pull/19013) | @vivganes | _Unassigned_ | `2026-04-09` |
 | [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | [#18969](https://github.com/google-gemini/gemini-cli/pull/18969) | @imadraude | _Unassigned_ | `2026-04-09` |
 | [#19868 "context.fileFiltering.customIgnoreFilePaths" setting breaks file completion when using @](https://github.com/google-gemini/gemini-cli/issues/19868) | [#19898](https://github.com/google-gemini/gemini-cli/pull/19898) | @suhaan-24 | _Unassigned_ | `2026-04-09` |
+| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | [#25072](https://github.com/google-gemini/gemini-cli/pull/25072) | @Oerum | _Unassigned_ | `2026-04-09` |
 | [#21400 Add an update command](https://github.com/google-gemini/gemini-cli/issues/21400) | [#21426](https://github.com/google-gemini/gemini-cli/pull/21426) | @roy-abir05 | _Unassigned_ | `2026-04-09` |
 | [#21568 deleteSession() does not clean tool output directories (UUID / filename mismatch)](https://github.com/google-gemini/gemini-cli/issues/21568) | [#25067](https://github.com/google-gemini/gemini-cli/pull/25067) | @krishdef7 | _Unassigned_ | `2026-04-09` |
 | [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | [#22134](https://github.com/google-gemini/gemini-cli/pull/22134) | @Suyog241005 | _Unassigned_ | `2026-04-09` |
 | [#22193 Gemini CLI doesn't maintain keyboard focus when VS Code extension closes a diff](https://github.com/google-gemini/gemini-cli/issues/22193) | [#23215](https://github.com/google-gemini/gemini-cli/pull/23215) | @iiitutu | @gjuggler | `2026-04-09` |
 | [#22934 test(acp): add missing coverage for extensions command error paths](https://github.com/google-gemini/gemini-cli/issues/22934) | [#23060](https://github.com/google-gemini/gemini-cli/pull/23060) | @Br1an67 | _Unassigned_ | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | [#25068](https://github.com/google-gemini/gemini-cli/pull/25068) | @dovahkiin-v | @tusaryan | `2026-04-09` |
+| [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | @achaljhawar | @ChandanKT-git | `2026-04-10` |
+| [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | [#19332](https://github.com/google-gemini/gemini-cli/pull/19332) | @AbdulTawabJuly | _Unassigned_ | `2026-04-10` |
 </details>
 
 ---
