@@ -38,7 +38,7 @@ ONCALLER_TEAMS = {
     'gemini-cli-docs'
 }
 
-SEARCH_QUERY = f'repo:{TARGET_REPO} is:issue state:open label:area/core,area/extensions,area/site label:"help wanted" sort:updated-desc'
+SEARCH_QUERY = f'repo:{TARGET_REPO} is:issue label:area/core,area/extensions,area/site label:"help wanted" sort:updated-desc'
 
 ISSUES_QUERY = """
 query($searchQuery: String!, $cursor: String) {
@@ -56,7 +56,8 @@ query($searchQuery: String!, $cursor: String) {
                   number state mergedAt updatedAt url title
                   author { login }
                   repository { nameWithOwner }
-                  latestReviews(last: 10) { nodes { author { login } state } }
+                  reviewRequests(first: 10) { nodes { requestedReviewer { __typename ... on User { login } ... on Team { slug } } } }
+                  latestReviews(last: 10) { nodes { author { login } state updatedAt } }
                 }
               }
             }
@@ -180,8 +181,8 @@ def main():
             s = e['source']
             if 'number' in s and s.get('repository', {}).get('nameWithOwner') == TARGET_REPO:
                 pr_infos.append(s)
-                # Only fetch full details for OPEN PRs on OPEN issues
-                if i['state'] == 'OPEN' and s['state'] == 'OPEN':
+                # Only fetch full details for OPEN PRs
+                if s['state'] == 'OPEN':
                     pr_to_fetch.add(s['number'])
         issue_to_pr_info[i['number']] = pr_infos
 
@@ -267,7 +268,17 @@ def main():
                     processed_prs_for_history.add(pr_no)
                 continue
 
-            # --- OPEN PR logic ---
+            pr_title = sanitize(pr['title'])
+            latest_author_act_iso = get_author_activity(pr)
+            latest_rev_act_iso = get_reviewer_activity(pr)
+            status_label = get_status_label(pr)
+
+            # --- Individual Queues for TEAM_STATS ---
+            for r_login in human_reviewers:
+                if r_login in member_stats:
+                    member_stats[r_login]["open_queue"].append({"number": pr['number'], "title": pr_title, "url": pr['url'], "state": pr['state'], "updated": latest_author_act_iso[:10], "issue_no": issue_no, "status_label": status_label, "priority": get_status_priority(status_label)})
+
+            # --- OPEN PR logic for Dashboard ---
             if issue['state'] != 'OPEN': continue # Skip PRs for closed issues in HELP_ISSUES_TRIAGE.md
             
             # Since we only fetch details for OPEN PRs, we'll have full info here
@@ -277,10 +288,6 @@ def main():
                 if issue_no not in linked_nums: continue
             
             found_open_pr = True
-            pr_title = sanitize(pr['title'])
-            latest_author_act_iso = get_author_activity(pr)
-            latest_rev_act_iso = get_reviewer_activity(pr)
-            status_label = get_status_label(pr)
             
             if special_teams:
                 oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no})
@@ -305,11 +312,6 @@ def main():
             else:
                 waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_action": latest_rev_act_iso[:10]})
                 has_active_work = True
-
-            # --- Individual Queues for TEAM_STATS ---
-            for r_login in human_reviewers:
-                if r_login in member_stats:
-                    member_stats[r_login]["open_queue"].append({"number": pr['number'], "title": pr_title, "url": pr['url'], "state": pr['state'], "updated": latest_author_act_iso[:10], "issue_no": issue_no, "status_label": status_label, "priority": get_status_priority(status_label)})
 
         if has_active_work or issue['state'] != 'OPEN': continue
         if not found_open_pr:
