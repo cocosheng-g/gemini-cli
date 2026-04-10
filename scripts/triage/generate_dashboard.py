@@ -184,11 +184,10 @@ def get_status_label(pr):
     return "🟢 Active"
 
 def get_status_priority(label):
-    if "Active" in label:
-        if "Needs Author Update" in label: return 2
-        if "Needs 🛡️" in label: return 1
-        return 0
     if "Blocked" in label: return 3
+    if "Needs Author Update" in label: return 2
+    if "Needs" in label: return 1
+    if "Active" in label: return 0
     return 4
 
 def automate_cleanup(stale_assignments, stale_blocked_prs, warn_blocked_prs):
@@ -374,12 +373,15 @@ def main():
             author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
             needs_list = []
             if special_teams:
-                needs_list.append(f"🛡️ {', '.join(sorted(list(special_teams)))}")
+                needs_list.append(f"{', '.join(sorted(list(special_teams)))}")
             if "Active" in status_label and not author_acted_last:
                 needs_list.append("Author Update")
             
             if needs_list:
-                status_label += f" (Needs {', '.join(needs_list)})"
+                if "Active" in status_label:
+                    status_label = f"Needs {', '.join(needs_list)}"
+                else:
+                    status_label += f" (Needs {', '.join(needs_list)})"
 
             for r_login in human_reviewers:
                 if r_login in member_stats:
