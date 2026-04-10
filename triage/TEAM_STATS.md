@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 15:21 (UTC)*
+*Last Updated: 2026-04-10 15:22 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -54,7 +54,7 @@
 ## 👤 Individual Review Queues
 > **How to manage your queue:**
 > 1. **Prioritize 🟢 Active PRs**: Ensure PRs without `(Needs Author Update)` receive your review feedback.
-> 2. **Follow up on 🛡️ Specialized Approvals**: If your PR needs specialized approval, proactively ping the respective team.
+> 2. **Follow up on 🛡️ Specialized Approvals**: If your PR needs specialized approval, post in Gemini CLI PR Review Requests chat mentioning the special review team needed.
 > 3. **Monitor 🔴 Blocked PRs**: The triage script will automatically warn the author and eventually close stale/blocked PRs, but you can also provide guidance.
 
 <details>
