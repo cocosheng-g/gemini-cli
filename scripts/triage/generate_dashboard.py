@@ -274,6 +274,7 @@ def main():
     # Member stats for TEAM_STATS.md
     member_stats = {login: {"name": name, "weekly_closed": 0, "open_queue": [], "history": []} for login, name in MAINTAINERS.items()}
     processed_prs_for_history = set()
+    pr_cache = {} # Cache for gh pr view fallback
 
     print("LOG: Categorizing issues and PRs...")
     for issue_no, pr_infos in issue_to_pr_info.items():
@@ -302,19 +303,27 @@ def main():
                     rr = req.get('requestedReviewer')
                     if not rr:
                         # Fallback: if GraphQL fails to populate the node (common in Actions)
-                        try:
-                            pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests', '-R', TARGET_REPO], stderr=subprocess.STDOUT))
-                            fallback_nodes = pr_json.get('reviewRequests', [])
-                            for f_rr in fallback_nodes:
-                                if 'login' in f_rr: # User
-                                    if f_rr['login'] != author and f_rr['login'] not in BOT_BLACKLIST: human_reviewers.add(f_rr['login'])
-                                elif 'slug' in f_rr: # Team
-                                    team_name = f_rr['slug'].split('/')[-1]
-                                    if team_name in ONCALLER_TEAMS:
-                                        print(f"LOG: Found special team request (via fallback): {team_name} on PR #{pr_no}")
-                                        special_teams.add(team_name)
-                        except Exception:
-                            pass
+                        if pr_no in pr_cache:
+                            pr_json = pr_cache[pr_no]
+                        else:
+                            print(f"LOG: GraphQL requestedReviewer empty for PR #{pr_no}, using fallback...")
+                            try:
+                                pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO], stderr=subprocess.STDOUT))
+                                print(f"LOG: Fallback for PR #{pr_no} returned: requests={len(pr_json.get('reviewRequests', []))}, links={[n['number'] for n in pr_json.get('closingIssuesReferences', [])]}")
+                                pr_cache[pr_no] = pr_json
+                            except Exception as e:
+                                print(f"LOG: Fallback failed for PR #{pr_no}: {e}")
+                                pr_json = {}
+                        
+                        fallback_nodes = pr_json.get('reviewRequests', [])
+                        for f_rr in fallback_nodes:
+                            if 'login' in f_rr: # User
+                                if f_rr['login'] != author and f_rr['login'] not in BOT_BLACKLIST: human_reviewers.add(f_rr['login'])
+                            elif 'slug' in f_rr: # Team
+                                team_name = f_rr['slug'].split('/')[-1]
+                                if team_name in ONCALLER_TEAMS:
+                                    print(f"LOG: Found special team request (via fallback): {team_name} on PR #{pr_no}")
+                                    special_teams.add(team_name)
                         break
                     
                     typename = rr.get('__typename')
@@ -359,9 +368,25 @@ def main():
             
             # --- CRITICAL FILTER: Only consider PRs officially linked to close this issue ---
             is_officially_linked = False
-            if 'closingIssuesReferences' in pr:
+            linked_nums = []
+            if 'closingIssuesReferences' in pr and pr['closingIssuesReferences'].get('nodes'):
                 linked_nums = [n['number'] for n in pr['closingIssuesReferences']['nodes']]
-                if issue_no in linked_nums: is_officially_linked = True
+            else:
+                # Fallback: GraphQL closingIssuesReferences is often empty in CI
+                if pr_no in pr_cache:
+                    pr_json = pr_cache[pr_no]
+                else:
+                    print(f"LOG: GraphQL closingIssuesReferences empty for PR #{pr_no}, using fallback...")
+                    try:
+                        pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO], stderr=subprocess.STDOUT))
+                        pr_cache[pr_no] = pr_json
+                    except Exception as e:
+                        print(f"LOG: Link fallback failed for PR #{pr_no}: {e}")
+                        pr_json = {}
+                
+                linked_nums = [n['number'] for n in pr_json.get('closingIssuesReferences', [])]
+            
+            if issue_no in linked_nums: is_officially_linked = True
             
             if not is_officially_linked: continue
 

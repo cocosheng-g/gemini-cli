@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 04:01 (UTC)*
+*Last Synchronized: 2026-04-10 04:08 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
@@ -140,7 +140,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (43)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (44)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -185,6 +185,7 @@
 | [#22185 Copy + pasta](https://github.com/google-gemini/gemini-cli/issues/22185) | @manavmax | `2026-04-09` |
 | [#22193 Gemini CLI doesn't maintain keyboard focus when VS Code extension closes a diff](https://github.com/google-gemini/gemini-cli/issues/22193) | @gjuggler | `2026-04-09` |
 | [#22784 Bug Description: The grep_search tool fails with a spawn EFTYPE error on Windows (win32). It appears the underlying ripgrep binary is either incompatible with the current OS/architecture or corrupted.](https://github.com/google-gemini/gemini-cli/issues/22784) | @manas-raj999 | `2026-04-09` |
+| [#22920 AgentLoopContext is incompatible with Config type](https://github.com/google-gemini/gemini-cli/issues/22920) | @SupunGeethanjana | `2026-04-09` |
 | [#24211 Hardcoded padding in terminal title causes trailing spaces in tmux pane_title](https://github.com/google-gemini/gemini-cli/issues/24211) | @tusaryan | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | @tusaryan | `2026-04-09` |
 | [#7989 Provide an official way to add comments in GEMINI.md](https://github.com/google-gemini/gemini-cli/issues/7989) | @JagjeevanAK | `2026-04-09` |
@@ -192,7 +193,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Blocked PRs (28)</b> — <i>Active work with blockers.</i></summary>
+<summary><b>🛠️ Active Development: Blocked PRs (27)</b> — <i>Active work with blockers.</i></summary>
 
 **Criteria: Active PRs with conflicts or failures updated within 14 days.**
 
@@ -220,7 +221,6 @@
 | [#19919 "Failed to persist policy" error despite correct permissions](https://github.com/google-gemini/gemini-cli/issues/19919) | [#21541](https://github.com/google-gemini/gemini-cli/pull/21541) | @krishdef7 | Merge Conflict | `2026-04-09` |
 | [#20847 Feature request: --session-id flag to set session UUID at launch](https://github.com/google-gemini/gemini-cli/issues/20847) | [#24976](https://github.com/google-gemini/gemini-cli/pull/24976) | @AmaanBilwar | Merge Conflict | `2026-04-09` |
 | [#22351 Improve diagnostics and error handling for malformed streaming responses](https://github.com/google-gemini/gemini-cli/issues/22351) | [#22352](https://github.com/google-gemini/gemini-cli/pull/22352) | @junaiddshaukat | Test Failure | `2026-04-09` |
-| [#22920 AgentLoopContext is incompatible with Config type](https://github.com/google-gemini/gemini-cli/issues/22920) | [#22981](https://github.com/google-gemini/gemini-cli/pull/22981) | @SupunGeethanjana | Merge Conflict | `2026-04-09` |
 | [#22929 False command conflicts when launching from home directory (workspace and user commands resolve to same path)](https://github.com/google-gemini/gemini-cli/issues/22929) | [#23069](https://github.com/google-gemini/gemini-cli/pull/23069) | @Br1an67 | Test Failure | `2026-04-09` |
 | [#23018 ACP: Execute tool call title field contains conversational text.](https://github.com/google-gemini/gemini-cli/issues/23018) | [#23092](https://github.com/google-gemini/gemini-cli/pull/23092) | @jasonmatthewsuhari | Merge Conflict | `2026-04-09` |
 | [#11462 Consider adding visual regression testing for terminal UI components](https://github.com/google-gemini/gemini-cli/issues/11462) | [#20695](https://github.com/google-gemini/gemini-cli/pull/20695) | @Champbreed | Test Failure | `2026-04-10` |
@@ -237,6 +237,7 @@
 
 | Issue | Days Idle |
 | :--- | :--- |
+| [#23095 Keybindings does not work](https://github.com/google-gemini/gemini-cli/issues/23095) | 0 |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | 0 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 0 |
 | [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 0 |
@@ -268,7 +269,6 @@
 | [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 0 |
 | [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 0 |
 | [#18593 Valid chat JSON missing from `/resume` list; forcing resume with `--resume` loads incorrect Session ID](https://github.com/google-gemini/gemini-cli/issues/18593) | 0 |
-| [#23095 Keybindings does not work](https://github.com/google-gemini/gemini-cli/issues/23095) | 0 |
 | [#22934 test(acp): add missing coverage for extensions command error paths](https://github.com/google-gemini/gemini-cli/issues/22934) | 0 |
 | [#20480 Feature: evolve --resume to support resuming sessions from any folder via session ID](https://github.com/google-gemini/gemini-cli/issues/20480) | 0 |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | 0 |
