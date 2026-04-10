@@ -5,6 +5,7 @@ import os
 import re
 import time
 import sys
+import shutil
 
 # Target repository
 TARGET_REPO = 'google-gemini/gemini-cli'
@@ -111,20 +112,26 @@ def get_pr_batch_query(pr_numbers):
         """)
     return f"query {{ repository(owner: \"{owner}\", name: \"{repo}\") {{ {' '.join(fragments)} }} }}"
 
+def call_gh(args):
+    gh_bin = shutil.which('gh') or 'gh'
+    cmd = [gh_bin] + args
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    return result
+
 def gh_api_graphql(query, variables=None, retries=3):
-    cmd = ['gh', 'api', 'graphql']
+    args = ['api', 'graphql']
     if variables:
         for k, v in variables.items():
-            if v is not None: cmd.extend(['-F', f'{k}={v}'])
-    cmd.extend(['-f', f'query={query}'])
+            if v is not None: args.extend(['-F', f'{k}={v}'])
+    args.extend(['-f', f'query={query}'])
     
     for i in range(retries):
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        result = call_gh(args)
         if result.returncode == 0:
             return json.loads(result.stdout)
         print(f"LOG: gh api graphql failed (attempt {i+1}/{retries}): {result.stderr.strip()}")
         if i < retries - 1:
-            time.sleep(2 ** i) # Exponential backoff
+            time.sleep(2 ** i)
     return None
 
 def parse_date(date_str):
@@ -187,8 +194,8 @@ def automate_cleanup(stale_assignments, stale_blocked_prs):
             for user in item['assignees']:
                 print(f"LOG: Unassigning @{user} from #{issue_no}...")
                 comment = UNASSIGN_COMMENT.format(author=user)
-                subprocess.run(['gh', 'issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
-                subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO], capture_output=True)
+                call_gh(['issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO])
+                call_gh(['issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO])
 
     # 2. Handle Stale Blocked PRs (Close PR + Unassign Issue)
     if stale_blocked_prs:
@@ -200,12 +207,14 @@ def automate_cleanup(stale_assignments, stale_blocked_prs):
             
             print(f"LOG: Closing stale PR #{pr_no} and unassigning #{issue_no} from @{author}...")
             comment = CLOSE_PR_COMMENT.format(author=author)
-            subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
-            subprocess.run(['gh', 'pr', 'close', str(pr_no), '-R', TARGET_REPO], capture_output=True)
-            subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO], capture_output=True)
+            call_gh(['pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO])
+            call_gh(['pr', 'close', str(pr_no), '-R', TARGET_REPO])
+            call_gh(['issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO])
 
 def main():
     print(f"LOG: Starting dashboard generation for {TARGET_REPO}...")
+    gh_loc = shutil.which('gh')
+    print(f"LOG: Found gh at: {gh_loc}")
     
     all_issue_nodes = []
     cursor = None
@@ -258,6 +267,7 @@ def main():
 
     now = datetime.datetime.now(datetime.timezone.utc)
     report_start = (now - datetime.timedelta(days=now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+    print(f"LOG: Reporting period starts from {report_start.strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Lists for HELP_ISSUES_TRIAGE.md
     oncaller_attention = []
@@ -307,12 +317,13 @@ def main():
                             pr_json = pr_cache[pr_no]
                         else:
                             print(f"LOG: GraphQL requestedReviewer empty for PR #{pr_no}, using fallback...")
-                            try:
-                                pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO], stderr=subprocess.STDOUT))
+                            result = call_gh(['pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO])
+                            if result.returncode == 0:
+                                pr_json = json.loads(result.stdout)
                                 print(f"LOG: Fallback for PR #{pr_no} returned: requests={len(pr_json.get('reviewRequests', []))}, links={[n['number'] for n in pr_json.get('closingIssuesReferences', [])]}")
                                 pr_cache[pr_no] = pr_json
-                            except Exception as e:
-                                print(f"LOG: Fallback failed for PR #{pr_no}: {e}")
+                            else:
+                                print(f"LOG: Fallback failed for PR #{pr_no}: {result.stderr.strip()}")
                                 pr_json = {}
                         
                         fallback_nodes = pr_json.get('reviewRequests', [])
@@ -377,20 +388,20 @@ def main():
                     pr_json = pr_cache[pr_no]
                 else:
                     print(f"LOG: GraphQL closingIssuesReferences empty for PR #{pr_no}, using fallback...")
-                    try:
-                        pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO], stderr=subprocess.STDOUT))
+                    result = call_gh(['pr', 'view', str(pr_no), '--json', 'reviewRequests,closingIssuesReferences', '-R', TARGET_REPO])
+                    if result.returncode == 0:
+                        pr_json = json.loads(result.stdout)
                         pr_cache[pr_no] = pr_json
-                    except Exception as e:
-                        print(f"LOG: Link fallback failed for PR #{pr_no}: {e}")
+                    else:
+                        print(f"LOG: Link fallback failed for PR #{pr_no}: {result.stderr.strip()}")
                         pr_json = {}
                 
                 linked_nums = [n['number'] for n in pr_json.get('closingIssuesReferences', [])]
             
             if issue_no in linked_nums: is_officially_linked = True
-            
             if not is_officially_linked: continue
 
-            # Enforce ownership: PR must be authored or assigned by an issue assignee
+            # Enforce ownership
             is_owned = (author in assignees) or any(pa in assignees for pa in pr_assignees)
             
             if not is_owned:
@@ -426,7 +437,18 @@ def main():
                 waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_feedback": latest_rev_act_iso[:10]})
                 has_active_work = True
 
-        if has_active_work or issue['state'] != 'OPEN': continue
+    for issue_no, item in issue_to_info.items():
+        # Fallback for issues without active valid PRs
+        if any(x['issue_md'].startswith(f"[#{issue_no} ") for x in oncaller_attention + followup_needed + waiting_for_author + active_blocked_prs + unowned_prs):
+            continue
+        
+        if item['state'] != 'OPEN': continue
+        
+        issue_title = sanitize(item['title'])
+        issue_url = item['url']
+        issue_updated_at = parse_date(item['updatedAt'])
+        assignees = [a['login'] for a in item['assignees']['nodes']]
+        
         days_idle = (now - issue_updated_at).days
         if not assignees:
             available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
@@ -434,7 +456,7 @@ def main():
             if days_idle >= STALE_ASSIGNMENT_DAYS:
                 stale_assignments.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "days_stale": days_idle})
             else:
-                recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": issue['updatedAt'][:10]})
+                recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": item['updatedAt'][:10]})
 
     print("LOG: Sorting results...")
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
