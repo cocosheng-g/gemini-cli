@@ -323,16 +323,19 @@ def main():
             else:
                 waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_feedback": latest_rev_act_iso[:10]})
                 has_active_work = True
-        if has_active_work or issue['state'] != 'OPEN': continue
-        if not found_open_pr:
-            days_idle = (now - issue_updated_at).days
-            if not assignees:
-                available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
+        if has_active_work:
+            # If it has active work (Author/Reviewer/Blocked/Unowned PR), it is accounted for.
+            continue
+
+        # If we reach here, no valid linked PR was found for this issue
+        days_idle = (now - issue_updated_at).days
+        if not assignees:
+            available_pickup.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "days_idle": days_idle})
+        else:
+            if days_idle >= STALE_ASSIGNMENT_DAYS:
+                stale_assignments.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "days_stale": days_idle})
             else:
-                if days_idle >= STALE_ASSIGNMENT_DAYS:
-                    stale_assignments.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "days_stale": days_idle})
-                else:
-                    recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": issue['updatedAt'][:10]})
+                recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": issue['updatedAt'][:10]})
 
     # Sorting
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
