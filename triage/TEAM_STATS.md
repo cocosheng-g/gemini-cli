@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 14:45 (UTC)*
+*Last Updated: 2026-04-10 14:53 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -9,7 +9,7 @@
 ## 📈 Weekly Summary
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
 | :--- | :--- | :--- |
-| **Coco Sheng** (@cocosheng-g) | **5** | 7 |
+| **Coco Sheng** (@cocosheng-g) | **5** | 6 |
 | **Tommaso Sciortino** (@scidomino) | **2** | 3 |
 | **Dev Randalpura** (@devr0306) | **2** | 2 |
 | **A.K.M. Adib** (@Adib234) | **0** | 3 |
@@ -60,7 +60,7 @@
 </details>
 
 <details>
-<summary><b>Coco Sheng (@cocosheng-g)</b> — 🟢 Active Queue (7) | 🔴 Recently Closed (5)</summary>
+<summary><b>Coco Sheng (@cocosheng-g)</b> — 🟢 Active Queue (6) | 🔴 Recently Closed (5)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
@@ -70,8 +70,7 @@
 | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | [#22611](https://github.com/google-gemini/gemini-cli/issues/22611) | fix(cli): clear thought state on response completion to prevent UI ghosting | 🟢 Active | `2026-04-10` |
 | [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | [#22321](https://github.com/google-gemini/gemini-cli/issues/22321) | feat(cli): Add 'list' subcommand to '/commands' | 🟢 Active | `2026-04-10` |
 | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | [#21635](https://github.com/google-gemini/gemini-cli/issues/21635) | fix: improve audio MIME normalization and validation in file reads | 🟢 Active | `2026-04-10` |
-| [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | [#16888](https://github.com/google-gemini/gemini-cli/issues/16888) | fix: improve audio MIME normalization and validation in file reads | 🟢 Active | `2026-04-10` |
-| [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | [#24838](https://github.com/google-gemini/gemini-cli/issues/24838) | fix(mcp): treat GET 404 as 405 in StreamableHTTPClientTransport | 🟢 Active | `2026-04-09` |
+| [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | [#24838](https://github.com/google-gemini/gemini-cli/issues/24838) | fix(mcp): treat GET 404 as 405 in StreamableHTTPClientTransport | 🟢 Active | `2026-04-10` |
 
 #### 🔴 Recently Closed (Since Monday)
 | PR | Issue | Title | Status | Closed Date |
