@@ -439,13 +439,15 @@ def main():
                 placed_in_dashboard = True
                 continue
 
-            # Active categories
-            is_blocked = "Blocked" in status_label
+            is_blocked = "Blocked" in status_label or "Merge Conflict" in status_label or "Test Failure" in status_label
+            block_reason = status_label
+            if ": " in status_label: block_reason = status_label.split(": ")[1]
+            elif "(" in status_label: block_reason = status_label.split("(")[1].rstrip(")")
 
             if is_blocked:
                 days_stale = (now - datetime.datetime.fromisoformat(latest_author_act_iso.replace('Z', '+00:00'))).days
                 if days_stale >= STALE_BLOCKED_PR_DAYS_CLOSE:
-                    blocked_stale_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": days_stale})
+                    blocked_stale_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": block_reason, "author": pr['author']['login'], "days_stale": days_stale})
                 elif days_stale >= STALE_BLOCKED_PR_DAYS_WARNING:
                     warned = False
                     for c in pr.get('comments', {}).get('nodes', []):
@@ -453,10 +455,10 @@ def main():
                             warned = True
                             break
                     if not warned:
-                        warn_blocked_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": status_label.split(': ')[1], "author": pr['author']['login'], "days_stale": days_stale})
-                    active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": status_label.split(': ')[1], "last_update": latest_author_act_iso[:10]})
+                        warn_blocked_prs.append({"issue_no": issue_no, "issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reason": block_reason, "author": pr['author']['login'], "days_stale": days_stale})
+                    active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": block_reason, "last_update": latest_author_act_iso[:10]})
                 else:
-                    active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": status_label.split(': ')[1], "last_update": latest_author_act_iso[:10]})
+                    active_blocked_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": pr['author']['login'], "reason": block_reason, "last_update": latest_author_act_iso[:10]})
                 placed_in_dashboard = True
             elif author_acted_last:
                 item = {"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "last_update": latest_author_act_iso[:10], "reviewers": sorted(list(human_reviewers))}
