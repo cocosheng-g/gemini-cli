@@ -261,8 +261,8 @@ def main():
                     login = rev['author']['login']
                     if login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
 
+            # 1. Maintainer Stats logic (Always process for stats)
             if pr['state'] != 'OPEN':
-                # History for TEAM_STATS based on REVIEWERS
                 if pr_no not in processed_prs_for_history:
                     updated_at = parse_date(pr.get('mergedAt') or pr.get('updatedAt'))
                     for r_login in human_reviewers:
@@ -283,13 +283,12 @@ def main():
                     member_stats[r_login]["open_queue"].append({"number": pr['number'], "title": pr_title, "url": pr['url'], "state": pr['state'], "updated": latest_author_act_iso[:10], "issue_no": issue_no, "status_label": status_label, "priority": get_status_priority(status_label)})
 
             # --- OPEN PR logic for Dashboard ---
+            if issue['state'] != 'OPEN': continue # Skip PRs for closed issues in HELP_ISSUES_TRIAGE.md
+            
             # Enforce ownership: PR must be authored or assigned by an issue assignee
             if author not in assignees and not any(pa in assignees for pa in pr_assignees):
-                if issue['state'] == 'OPEN' and pr['state'] == 'OPEN':
-                    unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
+                unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
                 continue
-            
-            if issue['state'] != 'OPEN': continue # Skip PRs for closed issues in HELP_ISSUES_TRIAGE.md
             
             # Since we only fetch details for OPEN PRs, we'll have full info here
             # Ensure it's officially linked to THIS issue (if we have details)
