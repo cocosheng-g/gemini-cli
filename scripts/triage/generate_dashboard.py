@@ -162,13 +162,15 @@ def get_author_activity(pr):
 def get_reviewer_activity(pr):
     latest = ""
     author = pr.get('author', {}).get('login')
+    # Bots whose comments/reviews should count as requiring author action
+    ACTIVITY_BOTS = {"gemini-code-assist"}
     for rev in pr.get('latestReviews', {}).get('nodes', []):
         login = rev.get('author', {}).get('login')
-        if login and login != author and login not in BOT_BLACKLIST:
+        if login and login != author and (login not in BOT_BLACKLIST or login in ACTIVITY_BOTS):
             latest = max(latest, rev['updatedAt'])
     for c in pr.get('comments', {}).get('nodes', []):
         login = c.get('author', {}).get('login')
-        if login and login != author and login not in BOT_BLACKLIST:
+        if login and login != author and (login not in BOT_BLACKLIST or login in ACTIVITY_BOTS):
             latest = max(latest, c['publishedAt'])
     return latest
 
