@@ -132,7 +132,34 @@ def main():
             return days_labels[delta]
         return None
 
+    TEAMS_QUERY = """
+    query {
+      organization(login: "google-gemini") {
+        teams(first: 20, query: "gemini-cli-") {
+          nodes {
+            members(first: 100) {
+              nodes { login }
+            }
+          }
+        }
+      }
+    }
+    """
+    
+    print("LOG: Fetching organization team members to exclude from metrics...")
+    dynamic_maintainers = set()
+    res_teams = gh_api_graphql(TEAMS_QUERY)
+    if res_teams and 'data' in res_teams and 'organization' in res_teams['data']:
+        for team in res_teams['data']['organization']['teams']['nodes']:
+            for member in team['members']['nodes']:
+                dynamic_maintainers.add(member['login'])
+
     BOTS = {"google-gemini-bot", "gemini-cli[bot]", "github-actions[bot]", "gemini-code-assist"}
+    MAINTAINERS = dynamic_maintainers if dynamic_maintainers else {
+        "Adib234", "cocosheng-g", "cynthialong0-0", "devr0306", "ivanporty", "kschaab",
+        "ruomengz", "scidomino", "spencer426", "sripasg", "hoteye", "mrpmohiburrahman", "lesteral", "jacob314"
+    }
+    EXCLUDED_USERS = BOTS | MAINTAINERS
     
     for issue in all_issues:
         created_at = parse_date(issue['createdAt'])
@@ -158,7 +185,7 @@ def main():
                 
         for c in issue.get('comments', {}).get('nodes', []):
             c_author = c.get('author', {}).get('login') if c.get('author') else None
-            if c_author and c_author not in BOTS:
+            if c_author and c_author not in EXCLUDED_USERS:
                 c_time = parse_date(c['publishedAt'])
                 if c_time >= thirty_days_ago:
                     d_label = get_bin_label(c_time)
@@ -175,14 +202,14 @@ def main():
             pr_created = parse_date(pr['createdAt'])
             pr_author = pr.get('author', {}).get('login') if pr.get('author') else None
             
-            if pr_author and pr_author not in BOTS:
+            if pr_author and pr_author not in EXCLUDED_USERS:
                 if pr_author not in contributors:
                     contributors[pr_author] = {'opened': 0, 'merged': 0, 'closed': 0}
             
             if pr_created >= thirty_days_ago:
                 new_prs += 1
                 d_label = get_bin_label(pr_created)
-                if pr_author and pr_author not in BOTS:
+                if pr_author and pr_author not in EXCLUDED_USERS:
                     contributors[pr_author]['opened'] += 1
                     if d_label: active_contributors_by_day[d_label].add(pr_author)
                 if d_label: opened_by_day[d_label] += 1
@@ -190,7 +217,7 @@ def main():
             first_review_time = None
             for rev in pr.get('reviews', {}).get('nodes', []):
                 r_author = rev.get('author', {}).get('login') if rev.get('author') else None
-                if r_author and r_author not in BOTS:
+                if r_author and r_author not in EXCLUDED_USERS:
                     r_time = parse_date(rev['createdAt'])
                     if r_time >= thirty_days_ago:
                         r_label = get_bin_label(r_time)
@@ -203,7 +230,7 @@ def main():
             
             for c in pr.get('comments', {}).get('nodes', []):
                 c_author = c.get('author', {}).get('login') if c.get('author') else None
-                if c_author and c_author not in BOTS:
+                if c_author and c_author not in EXCLUDED_USERS:
                     c_time = parse_date(c['publishedAt'])
                     if c_time >= thirty_days_ago:
                         c_label = get_bin_label(c_time)
@@ -216,7 +243,7 @@ def main():
             
             for commit_node in pr.get('commits', {}).get('nodes', []):
                 commit_author = commit_node.get('commit', {}).get('author', {}).get('user', {}).get('login') if commit_node.get('commit', {}).get('author', {}).get('user') else None
-                if commit_author and commit_author not in BOTS:
+                if commit_author and commit_author not in EXCLUDED_USERS:
                     commit_time = parse_date(commit_node['commit']['committedDate'])
                     if commit_time >= thirty_days_ago:
                         commit_label = get_bin_label(commit_time)
@@ -235,7 +262,7 @@ def main():
                 if merged_at >= thirty_days_ago:
                     merged_prs += 1
                     d_label = get_bin_label(merged_at)
-                    if pr_author and pr_author not in BOTS:
+                    if pr_author and pr_author not in EXCLUDED_USERS:
                         contributors[pr_author]['merged'] += 1
                         if d_label: active_contributors_by_day[d_label].add(pr_author)
                     if d_label: merged_by_day[d_label] += 1
@@ -248,7 +275,7 @@ def main():
                 if pr_closed >= thirty_days_ago:
                     unmerged_closed_prs += 1
                     d_label = get_bin_label(pr_closed)
-                    if pr_author and pr_author not in BOTS:
+                    if pr_author and pr_author not in EXCLUDED_USERS:
                         contributors[pr_author]['closed'] += 1
                         if d_label: active_contributors_by_day[d_label].add(pr_author)
                     if d_label: closed_unmerged_by_day[d_label] += 1
