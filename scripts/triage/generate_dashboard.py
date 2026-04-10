@@ -333,7 +333,7 @@ def main():
 
     # Sorting
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
-    initial_pickup.sort(key=lambda x: x['updated_at'], reverse=True)
+    initial_pickup.sort(key=lambda x: (x['updated_at'], x['issue_md']))
     recently_assigned.sort(key=lambda x: (x['last_update'], x['issue_md']))
     active_blocked_prs.sort(key=lambda x: (x['last_update'], x['issue_md']))
 
