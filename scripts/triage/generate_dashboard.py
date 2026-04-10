@@ -214,6 +214,7 @@ def main():
     waiting_for_author = []
     recently_assigned = []
     active_blocked_prs = []
+    unowned_prs = []
     available_pickup = []
 
     # Member stats for TEAM_STATS.md
@@ -284,6 +285,8 @@ def main():
             # --- OPEN PR logic for Dashboard ---
             # Enforce ownership: PR must be authored or assigned by an issue assignee
             if author not in assignees and not any(pa in assignees for pa in pr_assignees):
+                if issue['state'] == 'OPEN' and pr['state'] == 'OPEN':
+                    unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
                 continue
             
             if issue['state'] != 'OPEN': continue # Skip PRs for closed issues in HELP_ISSUES_TRIAGE.md
@@ -338,6 +341,7 @@ def main():
     waiting_for_author.sort(key=lambda x: (x['last_feedback'], x['issue_md']))
     recently_assigned.sort(key=lambda x: (x['last_update'], x['issue_md']))
     active_blocked_prs.sort(key=lambda x: (x['last_update'], x['issue_md']))
+    unowned_prs.sort(key=lambda x: (x['last_update'], x['issue_md']))
 
     # --- Write HELP_ISSUES_TRIAGE.md ---
     open_issues_count = len([i for i in all_issue_nodes if i['state'] == 'OPEN'])
@@ -379,6 +383,13 @@ def main():
     md_rev += f"\n## 🌱 Available for Pickup ({len(available_pickup)})\n**Action: Open for contributors.**\n\n| Issue | Days Idle |\n| :--- | :--- |\n"
     for i in available_pickup: md_rev += f"| {i['issue_md']} | {i['days_idle']} |\n"
     if not available_pickup: md_rev += "| - | _None_ |\n"
+
+    md_rev += f"\n## ⚠️ Unowned PRs ({len(unowned_prs)})\n**Status: PR author/assignee does not match issue assignee.**\n\n| Issue | Linked PR | PR Author | Issue Assignee | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    for i in unowned_prs:
+        pr_auth = f"@{i['author']}"
+        iss_assign = f"@{', @'.join(i['issue_assignees'])}" if i['issue_assignees'] else "_Unassigned_"
+        md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {pr_auth} | {iss_assign} | `{i['last_update']}` |\n"
+    if not unowned_prs: md_rev += "| - | - | - | - | - |\n"
 
     md_rev += "\n---\n*Dashboard maintained by automated triage script.*"
     with open("HELP_ISSUES_TRIAGE.md", "w") as f: f.write(md_rev)
