@@ -366,6 +366,9 @@ def main():
             latest_rev_act_iso = get_reviewer_activity(pr)
             status_label = get_status_label(pr)
 
+            if special_teams:
+                status_label += f" (Needs 🛡️ {', '.join(sorted(list(special_teams)))})"
+
             for r_login in human_reviewers:
                 if r_login in member_stats:
                     member_stats[r_login]["open_queue"].append({"number": pr['number'], "title": pr_title, "url": pr['url'], "state": pr['state'], "updated": latest_author_act_iso[:10], "issue_no": issue_no, "status_label": status_label, "priority": get_status_priority(status_label)})
