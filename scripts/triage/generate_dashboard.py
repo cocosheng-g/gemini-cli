@@ -170,49 +170,53 @@ def get_status_priority(label):
 
 def automate_cleanup(stale_assignments, stale_blocked_prs):
     if not stale_assignments and not stale_blocked_prs:
-        print("No stale items to clean up.")
+        print("LOG: No stale items to clean up.")
         return
     
     # 1. Handle Stale Assignments (Issues with no PR)
     if stale_assignments:
-        print(f"Automating cleanup for {len(stale_assignments)} stale assignments...")
+        print(f"LOG: Automating cleanup for {len(stale_assignments)} stale assignments...")
         for item in stale_assignments:
             issue_no = item['issue_no']
             for user in item['assignees']:
-                print(f"  - Unassigning @{user} from #{issue_no}...")
+                print(f"LOG: Unassigning @{user} from #{issue_no}...")
                 comment = UNASSIGN_COMMENT.format(author=user)
                 subprocess.run(['gh', 'issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
                 subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO], capture_output=True)
 
     # 2. Handle Stale Blocked PRs (Close PR + Unassign Issue)
     if stale_blocked_prs:
-        print(f"Automating cleanup for {len(stale_blocked_prs)} stale blocked PRs...")
+        print(f"LOG: Automating cleanup for {len(stale_blocked_prs)} stale blocked PRs...")
         for item in stale_blocked_prs:
             pr_no = item['pr_no']
             issue_no = item['issue_no']
             author = item['author']
             
-            print(f"  - Closing stale PR #{pr_no} and unassigning #{issue_no} from @{author}...")
+            print(f"LOG: Closing stale PR #{pr_no} and unassigning #{issue_no} from @{author}...")
             comment = CLOSE_PR_COMMENT.format(author=author)
-            # Comment and close PR
             subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
             subprocess.run(['gh', 'pr', 'close', str(pr_no), '-R', TARGET_REPO], capture_output=True)
-            # Unassign issue
             subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO], capture_output=True)
 
 def main():
-    print("Fetching issue list...")
+    print(f"LOG: Starting dashboard generation for {TARGET_REPO}...")
+    print(f"LOG: Search Query: {SEARCH_QUERY}")
+    
     all_issue_nodes = []
     cursor = None
+    page = 1
     while True:
+        print(f"LOG: Fetching issue page {page}...")
         res = gh_api_graphql(ISSUES_QUERY, {"searchQuery": SEARCH_QUERY, "cursor": cursor})
         if not res: break
         search_data = res['data']['search']
         all_issue_nodes.extend(search_data['nodes'])
+        print(f"LOG: Loaded {len(search_data['nodes'])} issues from this page.")
         if not search_data['pageInfo']['hasNextPage']: break
         cursor = search_data['pageInfo']['endCursor']
+        page += 1
     
-    print(f"Total issues fetched: {len(all_issue_nodes)}")
+    print(f"LOG: Total issues fetched: {len(all_issue_nodes)}")
 
     # Map issue info and collect PRs for detailed fetching
     issue_to_info = {i['number']: i for i in all_issue_nodes}
@@ -226,16 +230,16 @@ def main():
             s = e['source']
             if 'number' in s and s.get('repository', {}).get('nameWithOwner') == TARGET_REPO:
                 pr_infos.append(s)
-                # Only fetch full details for OPEN PRs
                 if s['state'] == 'OPEN':
                     pr_to_fetch.add(s['number'])
         issue_to_pr_info[i['number']] = pr_infos
 
-    print(f"Fetching details for {len(pr_to_fetch)} OPEN PRs...")
+    print(f"LOG: Fetching full details for {len(pr_to_fetch)} OPEN PRs...")
     pr_details = {}
     pr_list = sorted(list(pr_to_fetch))
     for i in range(0, len(pr_list), 20):
         batch = pr_list[i:i+20]
+        print(f"LOG: Fetching PR batch {i//20 + 1} ({len(batch)} PRs)...")
         res = gh_api_graphql(get_pr_batch_query(batch))
         if res and 'data' in res:
             repo_data = res['data']['repository']
@@ -243,10 +247,11 @@ def main():
                 pr_obj = repo_data.get(f'pr{j}')
                 if pr_obj: pr_details[pr_obj['number']] = pr_obj
     
-    print(f"Successfully loaded details for {len(pr_details)} PRs.")
+    print(f"LOG: Successfully loaded detailed info for {len(pr_details)} PRs.")
 
     now = datetime.datetime.now(datetime.timezone.utc)
     report_start = (now - datetime.timedelta(days=now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+    print(f"LOG: Reporting period starts from {report_start.strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Lists for HELP_ISSUES_TRIAGE.md
     oncaller_attention = []
@@ -264,6 +269,7 @@ def main():
     member_stats = {login: {"name": name, "weekly_closed": 0, "open_queue": [], "history": []} for login, name in MAINTAINERS.items()}
     processed_prs_for_history = set()
 
+    print("LOG: Categorizing issues and PRs...")
     for issue_no, pr_infos in issue_to_pr_info.items():
         issue = issue_to_info[issue_no]
         issue_title = sanitize(issue['title'])
@@ -276,18 +282,14 @@ def main():
         
         for s in pr_infos:
             pr_no = s['number']
-            # Get full details if we fetched them (for OPEN PRs)
-            # Otherwise use pre-fetched basic info (for stats)
             pr = pr_details.get(pr_no, s)
             
-            # Identify human reviewers and special teams
             human_reviewers = set()
             special_teams = set()
             author = pr['author']['login']
             pr_assignees = [a['login'] for a in pr.get('assignees', {}).get('nodes', [])]
-            if pr_no == 25008: print(f"DEBUG: PR 25008. Author: {author}, Issue Assignees: {assignees}, PR Assignees: {pr_assignees}, Special Teams: {special_teams}")
             
-            # 1. Maintainer Stats logic (Always process for stats)
+            # Reviewer collection
             if 'reviewRequests' in pr:
                 for req in pr.get('reviewRequests', {}).get('nodes', []):
                     rr = req.get('requestedReviewer')
@@ -299,15 +301,12 @@ def main():
                             slug = rr.get('slug', '').split('/')[-1]
                             if slug in ONCALLER_TEAMS: special_teams.add(slug)
             
-            # latestReviews is available in both batch detail and ISSUES_QUERY PullRequest fragment
             for rev in pr.get('latestReviews', {}).get('nodes', []):
                 if rev.get('author'):
                     login = rev['author']['login']
                     if login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
 
-            if pr_no == 25008: print(f"DEBUG: PR 25008. Author: {author}, Issue Assignees: {assignees}, PR Assignees: {pr_assignees}, Special Teams: {special_teams}, Human Reviewers: {human_reviewers}")
-
-            # 1. Maintainer Stats logic (Always process for stats)
+            # 1. Maintainer Stats logic
             if pr['state'] != 'OPEN':
                 if pr_no not in processed_prs_for_history:
                     updated_at = parse_date(pr.get('mergedAt') or pr.get('updatedAt'))
@@ -323,21 +322,18 @@ def main():
             latest_rev_act_iso = get_reviewer_activity(pr)
             status_label = get_status_label(pr)
 
-            # --- Individual Queues for TEAM_STATS ---
+            # TEAM_STATS Active Queue
             for r_login in human_reviewers:
                 if r_login in member_stats:
                     member_stats[r_login]["open_queue"].append({"number": pr['number'], "title": pr_title, "url": pr['url'], "state": pr['state'], "updated": latest_author_act_iso[:10], "issue_no": issue_no, "status_label": status_label, "priority": get_status_priority(status_label)})
 
-            # --- OPEN PR logic for Dashboard ---
-            if issue['state'] != 'OPEN': continue # Skip PRs for closed issues in HELP_ISSUES_TRIAGE.md
+            # 2. Dashboard Logic
+            if issue['state'] != 'OPEN': continue
             
-            # Enforce ownership: PR must be authored or assigned by an issue assignee
             if author not in assignees and not any(pa in assignees for pa in pr_assignees):
                 unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
                 continue
             
-            # Since we only fetch details for OPEN PRs, we'll have full info here
-            # Ensure it's officially linked to THIS issue (if we have details)
             if 'closingIssuesReferences' in pr:
                 linked_nums = [n['number'] for n in pr['closingIssuesReferences']['nodes']]
                 if issue_no not in linked_nums: continue
@@ -368,7 +364,6 @@ def main():
                 waiting_for_author.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "reviewers": sorted(list(human_reviewers)), "last_feedback": latest_rev_act_iso[:10]})
                 has_active_work = True
 
-        # Fallback for issues without active valid PRs
         if has_active_work or issue['state'] != 'OPEN': continue
         days_idle = (now - issue_updated_at).days
         if not assignees:
@@ -379,8 +374,7 @@ def main():
             else:
                 recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": issue['updatedAt'][:10]})
 
-    # Sorting
-    print(f"DEBUG: oncaller_attention size: {len(oncaller_attention)}")
+    print("LOG: Sorting results...")
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
     initial_pickup.sort(key=lambda x: (x['last_update'], x['issue_md']))
     followup_needed.sort(key=lambda x: (x['last_update'], x['issue_md']))
@@ -390,6 +384,7 @@ def main():
     unowned_prs.sort(key=lambda x: (x['last_update'], x['issue_md']))
 
     # --- Write HELP_ISSUES_TRIAGE.md ---
+    print("LOG: Generating HELP_ISSUES_TRIAGE.md...")
     open_issues_count = len([i for i in all_issue_nodes if i['state'] == 'OPEN'])
     md_rev = f"# 🔎 Gemini CLI Help Wanted Triage Dashboard\n\n*Last Synchronized: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
     md_rev += f"**Total Issues Tracked: {open_issues_count} open issues**\n\n"
@@ -457,6 +452,7 @@ def main():
     with open("HELP_ISSUES_TRIAGE.md", "w") as f: f.write(md_rev)
 
     # --- Write TEAM_STATS.md ---
+    print("LOG: Generating TEAM_STATS.md...")
     md_stats = f"# 📊 Gemini CLI Weekly Team Review Stats\n\n*Reporting Period: **Monday {report_start.strftime('%Y-%m-%d')}** to Today*\n*Last Updated: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
     md_stats += "## 📈 Weekly Summary\n| Maintainer | Closed/Merged (Week) | Current Open Queue |\n| :--- | :--- | :--- |\n"
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['weekly_closed'], reverse=True):
@@ -488,7 +484,7 @@ def main():
 
     md_stats += "\n---\n*Report generated by automated triage script.*"
     with open("TEAM_STATS.md", "w") as f: f.write(md_stats)
-    print("Done. Generated HELP_ISSUES_TRIAGE.md and TEAM_STATS.md with perfect parity.")
+    print("LOG: Dashboard generation complete.")
 
     automate_cleanup(stale_assignments, blocked_stale_prs)
 

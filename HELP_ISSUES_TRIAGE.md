@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 03:22 (UTC)*
+*Last Synchronized: 2026-04-10 03:26 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
@@ -215,6 +215,7 @@
 
 | Issue | Days Idle |
 | :--- | :--- |
+| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | 0 |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | 0 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 0 |
 | [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 0 |
@@ -241,7 +242,6 @@
 | [#16550 Command line recall doesn't remember in-flight edits if you accidentally scroll up too far](https://github.com/google-gemini/gemini-cli/issues/16550) | 0 |
 | [#11438 The ripgrep tool should prefer the system ripgrep, when possible.](https://github.com/google-gemini/gemini-cli/issues/11438) | 0 |
 | [#21340 feat: Add configurable shell executable for run_shell_command on Windows](https://github.com/google-gemini/gemini-cli/issues/21340) | 0 |
-| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | 0 |
 | [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | 0 |
 | [#20661 [Bug] run_shell_command returns garbled Chinese text for the Agent, while referenced files (@filename) work correctly](https://github.com/google-gemini/gemini-cli/issues/20661) | 0 |
 | [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | 0 |
@@ -298,7 +298,6 @@
 | :--- | :--- | :--- | :--- | :--- |
 | [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#21631](https://github.com/google-gemini/gemini-cli/pull/21631) | @Sangini-spec | @fayerman-source | `2026-03-11` |
 | [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21141](https://github.com/google-gemini/gemini-cli/pull/21141) | @neeraj-par | _Unassigned_ | `2026-03-11` |
-| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21233](https://github.com/google-gemini/gemini-cli/pull/21233) | @ved015 | _Unassigned_ | `2026-03-11` |
 | [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | [#21440](https://github.com/google-gemini/gemini-cli/pull/21440) | @hrishi2814 | _Unassigned_ | `2026-03-12` |
 | [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | @nivbrook | @sahilkirad | `2026-03-23` |
 | [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#21840](https://github.com/google-gemini/gemini-cli/pull/21840) | @imadraude | @student-ankitpandit | `2026-03-23` |
@@ -340,6 +339,7 @@
 | [#22934 test(acp): add missing coverage for extensions command error paths](https://github.com/google-gemini/gemini-cli/issues/22934) | [#23060](https://github.com/google-gemini/gemini-cli/pull/23060) | @Br1an67 | _Unassigned_ | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | [#25068](https://github.com/google-gemini/gemini-cli/pull/25068) | @dovahkiin-v | @tusaryan | `2026-04-09` |
 | [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | @achaljhawar | @ChandanKT-git | `2026-04-10` |
+| [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21233](https://github.com/google-gemini/gemini-cli/pull/21233) | @ved015 | _Unassigned_ | `2026-04-10` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#22894](https://github.com/google-gemini/gemini-cli/pull/22894) | @Neil-N4 | _Unassigned_ | `2026-04-10` |
 </details>
 
