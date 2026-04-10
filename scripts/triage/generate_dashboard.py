@@ -343,7 +343,9 @@ def main():
     md_rev = f"# 🔎 Gemini CLI Help Wanted Triage Dashboard\n\n*Last Synchronized: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
     md_rev += f"**Total Issues Tracked: {open_issues_count} open issues**\n\n"
     
-    md_rev += f"\n<details>\n<summary><b>🚨 Needs Oncaller Attention ({len(oncaller_attention)})</b> — <i>Specialized approval required.</i></summary>\n\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
+    md_rev += "## 🚨 Needs Oncaller Attention\n"
+
+    md_rev += f"\n<details>\n<summary><b>🛡️ Specialized Approval Required ({len(oncaller_attention)})</b></summary>\n\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
     for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} |\n"
     if not oncaller_attention: md_rev += "| - | - | - | - |\n"
     md_rev += "</details>\n"
@@ -362,6 +364,8 @@ def main():
     for i in initial_pickup: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | `{i['last_update']}` |\n"
     if not initial_pickup: md_rev += "| - | - | - |\n"
     md_rev += "</details>\n"
+
+    md_rev += "\n## 🛠️ Active Development\n"
 
     md_rev += f"\n<details>\n<summary><b>⌛ Awaiting Reviewer Follow-up ({len(followup_needed)})</b> — <i>Reviewers, please follow up.</i></summary>\n\n**Criteria: Review in progress, author has responded to latest feedback.**\n\n| Issue | Linked PR | Reviewers | Status | Last Update |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in followup_needed: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join(['@'+r for r in i['reviewers']])} | {i['status']} | `{i['last_update']}` |\n"
@@ -382,6 +386,8 @@ def main():
     for i in active_blocked_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | @{i['author']} | {i['reason']} | `{i['last_update']}` |\n"
     if not active_blocked_prs: md_rev += "| - | - | - | - | - |\n"
     md_rev += "</details>\n"
+
+    md_rev += "\n## 🌱 Community & Backlog\n"
 
     md_rev += f"\n<details>\n<summary><b>🌱 Available for Pickup ({len(available_pickup)})</b> — <i>Open for contributors.</i></summary>\n\n**Criteria: Open issues with no assignee and no active PR.**\n\n| Issue | Days Idle |\n| :--- | :--- |\n"
     for i in available_pickup: md_rev += f"| {i['issue_md']} | {i['days_idle']} |\n"

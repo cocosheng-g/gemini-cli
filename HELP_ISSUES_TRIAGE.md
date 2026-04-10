@@ -1,12 +1,13 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 02:59 (UTC)*
+*Last Synchronized: 2026-04-10 03:03 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
+## 🚨 Needs Oncaller Attention
 
 <details>
-<summary><b>🚨 Needs Oncaller Attention (21)</b> — <i>Specialized approval required.</i></summary>
+<summary><b>🛡️ Specialized Approval Required (21)</b></summary>
 
 **Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**
 
@@ -85,6 +86,8 @@
 | [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | [#23105](https://github.com/google-gemini/gemini-cli/pull/23105) | `2026-04-09` |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `2026-04-10` |
 </details>
+
+## 🛠️ Active Development
 
 <details>
 <summary><b>⌛ Awaiting Reviewer Follow-up (8)</b> — <i>Reviewers, please follow up.</i></summary>
@@ -201,6 +204,8 @@
 | [#15945 System-wide PTY exhaustion due to file descriptor leak](https://github.com/google-gemini/gemini-cli/issues/15945) | [#25079](https://github.com/google-gemini/gemini-cli/pull/25079) | @spencer426 | Test Failure | `2026-04-10` |
 | [#20675 [Bug]: Interactive shell does not show properly on Windows 10 when using arrow keys in external subshell prompts (v0.31.0)](https://github.com/google-gemini/gemini-cli/issues/20675) | [#23505](https://github.com/google-gemini/gemini-cli/pull/23505) | @KumarADITHYA123 | Test Failure | `2026-04-10` |
 </details>
+
+## 🌱 Community & Backlog
 
 <details>
 <summary><b>🌱 Available for Pickup (72)</b> — <i>Open for contributors.</i></summary>
