@@ -83,7 +83,7 @@ def main():
     
     seen_prs = set()
     
-    # Initialize daily bins
+    # Initialize 3-day bins to avoid overlapping x-axis labels
     days_labels = []
     opened_by_day = {}
     merged_by_day = {}
@@ -92,15 +92,23 @@ def main():
     ttfr_by_day_lists = {}
     ttm_by_day_lists = {}
     
-    for i in range(30):
-        d = (thirty_days_ago + datetime.timedelta(days=i)).strftime('%m-%d')
-        days_labels.append(d)
-        opened_by_day[d] = 0
-        merged_by_day[d] = 0
-        new_issues_by_day[d] = 0
-        closed_unmerged_by_day[d] = 0
-        ttfr_by_day_lists[d] = []
-        ttm_by_day_lists[d] = []
+    for i in range(10):
+        start_d = thirty_days_ago + datetime.timedelta(days=i*3)
+        end_d = start_d + datetime.timedelta(days=2)
+        d_label = f"{start_d.strftime('%m/%d')}-{end_d.strftime('%m/%d')}"
+        days_labels.append(d_label)
+        opened_by_day[d_label] = 0
+        merged_by_day[d_label] = 0
+        new_issues_by_day[d_label] = 0
+        closed_unmerged_by_day[d_label] = 0
+        ttfr_by_day_lists[d_label] = []
+        ttm_by_day_lists[d_label] = []
+
+    def get_bin_label(date_obj):
+        delta = (date_obj - thirty_days_ago).days
+        if 0 <= delta < 30:
+            return days_labels[delta // 3]
+        return None
 
     BOTS = {"google-gemini-bot", "gemini-cli[bot]", "github-actions[bot]", "gemini-code-assist"}
     
@@ -108,8 +116,8 @@ def main():
         created_at = parse_date(issue['createdAt'])
         if created_at >= thirty_days_ago:
             new_issues += 1
-            d_label = created_at.strftime('%m-%d')
-            if d_label in new_issues_by_day: new_issues_by_day[d_label] += 1
+            d_label = get_bin_label(created_at)
+            if d_label: new_issues_by_day[d_label] += 1
             
         if issue['state'] == 'CLOSED' and issue['closedAt']:
             closed_at = parse_date(issue['closedAt'])
@@ -127,8 +135,8 @@ def main():
             
             if pr_created >= thirty_days_ago:
                 new_prs += 1
-                d_label = pr_created.strftime('%m-%d')
-                if d_label in opened_by_day: opened_by_day[d_label] += 1
+                d_label = get_bin_label(pr_created)
+                if d_label: opened_by_day[d_label] += 1
                 
                 first_review_time = None
                 for rev in pr.get('reviews', {}).get('nodes', []):
@@ -148,24 +156,24 @@ def main():
                 if first_review_time:
                     ttfr_val = (first_review_time - pr_created).total_seconds() / 3600.0
                     ttfr_list.append(ttfr_val)
-                    if d_label in ttfr_by_day_lists: ttfr_by_day_lists[d_label].append(ttfr_val)
+                    if d_label: ttfr_by_day_lists[d_label].append(ttfr_val)
                     
             if pr['state'] == 'MERGED' and pr['mergedAt']:
                 merged_at = parse_date(pr['mergedAt'])
                 if merged_at >= thirty_days_ago:
                     merged_prs += 1
-                    d_label = merged_at.strftime('%m-%d')
-                    if d_label in merged_by_day: merged_by_day[d_label] += 1
+                    d_label = get_bin_label(merged_at)
+                    if d_label: merged_by_day[d_label] += 1
                     ttm_val = (merged_at - pr_created).total_seconds() / 3600.0 / 24.0
                     ttm_list.append(ttm_val)
-                    if d_label in ttm_by_day_lists: ttm_by_day_lists[d_label].append(ttm_val)
+                    if d_label: ttm_by_day_lists[d_label].append(ttm_val)
                     
             elif pr['state'] == 'CLOSED' and pr['closedAt']:
                 pr_closed = parse_date(pr['closedAt'])
                 if pr_closed >= thirty_days_ago:
                     unmerged_closed_prs += 1
-                    d_label = pr_closed.strftime('%m-%d')
-                    if d_label in closed_unmerged_by_day: closed_unmerged_by_day[d_label] += 1
+                    d_label = get_bin_label(pr_closed)
+                    if d_label: closed_unmerged_by_day[d_label] += 1
                     
     avg_ttfr = sum(ttfr_list) / len(ttfr_list) if ttfr_list else 0
     avg_ttm = sum(ttm_list) / len(ttm_list) if ttm_list else 0
@@ -188,6 +196,7 @@ def main():
     md += "Tracks the sheer volume of contribution activity over the past 30 days.\n\n"
     
     md += "### Daily Volume Activity\n"
+    md += "> **Legend:** 📊 Bar = PRs Opened | 📈 Line 1 = PRs Merged | 📉 Line 2 = PRs Closed (Unmerged)\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "PRs Opened vs Merged vs Closed (Unmerged)"\n'
@@ -199,6 +208,7 @@ def main():
     md += "```\n\n"
     
     md += "### Daily New Issues\n"
+    md += "> **Legend:** 📊 Bar = New Help Wanted Issues\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "New Help Wanted Issues"\n'
@@ -219,6 +229,7 @@ def main():
     md += "Measures the speed and responsiveness of the maintainer team in processing community PRs.\n\n"
     
     md += "### Time to First Review (TTFR) Trend\n"
+    md += "> **Legend:** 📈 Line = Average Time to First Review (in hours) for PRs opened on that day\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Average TTFR per Day (Hours)"\n'
@@ -228,6 +239,7 @@ def main():
     md += "```\n\n"
     
     md += "### Time to Merge (TTM) Trend\n"
+    md += "> **Legend:** 📈 Line = Average Time to Merge (in days) for PRs opened on that day\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "Average TTM per Day (Days)"\n'
@@ -245,6 +257,7 @@ def main():
     md += "Indicates the general success and retention rate of contributors attempting to resolve issues.\n\n"
     
     md += "### Drop-off Trend\n"
+    md += "> **Legend:** 📊 Bar = Number of PRs closed without merging (e.g. abandoned, stale)\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
     md += f'    title "PRs Closed Without Merge (Drop-off)"\n'
