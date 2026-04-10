@@ -7,13 +7,17 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
           ref: dashboard-automation
       - name: Generate Dashboard
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.TRIAGE_PAT }}
         run: python3 scripts/triage/generate_dashboard.py
       - name: Commit and Push
         run: |
