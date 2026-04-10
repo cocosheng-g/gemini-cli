@@ -82,6 +82,7 @@ def main():
     ttm_list = []
     
     seen_prs = set()
+    contributors = {}
     
     # Initialize 5-day bins to avoid overlapping x-axis labels
     days_labels = []
@@ -91,6 +92,7 @@ def main():
     closed_unmerged_by_day = {}
     ttfr_by_day_lists = {}
     ttm_by_day_lists = {}
+    active_contributors_by_day = {}
     
     for i in range(6):
         start_d = thirty_days_ago + datetime.timedelta(days=i*5)
@@ -103,6 +105,7 @@ def main():
         closed_unmerged_by_day[d_label] = 0
         ttfr_by_day_lists[d_label] = []
         ttm_by_day_lists[d_label] = []
+        active_contributors_by_day[d_label] = set()
 
     def get_bin_label(date_obj):
         delta = (date_obj - thirty_days_ago).days
@@ -133,9 +136,16 @@ def main():
             pr_created = parse_date(pr['createdAt'])
             pr_author = pr.get('author', {}).get('login') if pr.get('author') else None
             
+            if pr_author and pr_author not in BOTS:
+                if pr_author not in contributors:
+                    contributors[pr_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+            
             if pr_created >= thirty_days_ago:
                 new_prs += 1
                 d_label = get_bin_label(pr_created)
+                if pr_author and pr_author not in BOTS:
+                    contributors[pr_author]['opened'] += 1
+                    if d_label: active_contributors_by_day[d_label].add(pr_author)
                 if d_label: opened_by_day[d_label] += 1
                 
                 first_review_time = None
@@ -163,6 +173,9 @@ def main():
                 if merged_at >= thirty_days_ago:
                     merged_prs += 1
                     d_label = get_bin_label(merged_at)
+                    if pr_author and pr_author not in BOTS:
+                        contributors[pr_author]['merged'] += 1
+                        if d_label: active_contributors_by_day[d_label].add(pr_author)
                     if d_label: merged_by_day[d_label] += 1
                     ttm_val = (merged_at - pr_created).total_seconds() / 3600.0 / 24.0
                     ttm_list.append(ttm_val)
@@ -173,6 +186,9 @@ def main():
                 if pr_closed >= thirty_days_ago:
                     unmerged_closed_prs += 1
                     d_label = get_bin_label(pr_closed)
+                    if pr_author and pr_author not in BOTS:
+                        contributors[pr_author]['closed'] += 1
+                        if d_label: active_contributors_by_day[d_label].add(pr_author)
                     if d_label: closed_unmerged_by_day[d_label] += 1
                     
     avg_ttfr = sum(ttfr_list) / len(ttfr_list) if ttfr_list else 0
@@ -180,6 +196,10 @@ def main():
     
     ttfr_data = [round(sum(ttfr_by_day_lists[d]) / len(ttfr_by_day_lists[d]), 1) if ttfr_by_day_lists[d] else 0 for d in days_labels]
     ttm_data = [round(sum(ttm_by_day_lists[d]) / len(ttm_by_day_lists[d]), 1) if ttm_by_day_lists[d] else 0 for d in days_labels]
+    
+    active_contributors_data = [len(active_contributors_by_day[d]) for d in days_labels]
+    avg_opened_data = [round(opened_by_day[d] / len(active_contributors_by_day[d]), 1) if active_contributors_by_day[d] else 0 for d in days_labels]
+    avg_merged_data = [round(merged_by_day[d] / len(active_contributors_by_day[d]), 1) if active_contributors_by_day[d] else 0 for d in days_labels]
     
     conversion_rate = merged_prs / new_prs * 100 if new_prs > 0 else 0
     dropoff_rate = unmerged_closed_prs / (merged_prs + unmerged_closed_prs) * 100 if (merged_prs + unmerged_closed_prs) > 0 else 0
@@ -278,6 +298,44 @@ def main():
     md += "| :--- | :--- | :--- |\n"
     md += f"| 📉 Author Drop-off Rate | **{dropoff_rate:.1f}%** | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |\n\n"
     
+    md += "### 👥 Contributor Engagement\n"
+    active_contributors_count = len([c for c in contributors.values() if c['opened'] > 0 or c['merged'] > 0 or c['closed'] > 0])
+    avg_prs_opened = sum(c['opened'] for c in contributors.values()) / active_contributors_count if active_contributors_count > 0 else 0
+    avg_prs_merged = sum(c['merged'] for c in contributors.values()) / active_contributors_count if active_contributors_count > 0 else 0
+
+    md += "> **Legend:** 📊 Bar = Number of unique active contributors (opened, merged, or closed a PR)\n\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "Active Contributors"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Count"\n'
+    md += f'    bar {active_contributors_data}\n'
+    md += "```\n\n"
+
+    md += "> **Legend:** 📈 Line = Avg PRs Opened per Active Contributor\n\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "Avg PRs Opened per Contributor"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "PRs"\n'
+    md += f'    line {avg_opened_data}\n'
+    md += "```\n\n"
+
+    md += "> **Legend:** 📈 Line = Avg PRs Merged per Active Contributor\n\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "Avg PRs Merged per Contributor"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "PRs"\n'
+    md += f'    line {avg_merged_data}\n'
+    md += "```\n\n"
+
+    md += "| Metric | Value | Calculation |\n"
+    md += "| :--- | :--- | :--- |\n"
+    md += f"| 🧑‍💻 Total Active Contributors | **{active_contributors_count}** | Number of unique human contributors who opened, merged, or closed a PR in the last 30 days. |\n"
+    md += f"| 📈 Avg PRs Opened | **{avg_prs_opened:.1f}** | Total PRs opened divided by total active contributors over 30 days. |\n"
+    md += f"| 🎯 Avg PRs Merged | **{avg_prs_merged:.1f}** | Total PRs merged divided by total active contributors over 30 days. |\n\n"
+
     md += "---\n*Metrics maintained by automated daily script.*"
     
     os.makedirs("triage", exist_ok=True)
