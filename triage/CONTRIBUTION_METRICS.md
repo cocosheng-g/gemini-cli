@@ -39,13 +39,13 @@ xychart-beta
     bar [4, 6, 3, 2, 10, 5, 6, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0]
 ```
 
-| Metric | Last 30 Days | Calculation |
-| :--- | :--- | :--- |
-| 🆕 New Help Wanted Issues | **45** | Number of new issues created with the `help wanted` label. |
-| 🛠️ PRs Opened | **122** | Number of new PRs opened linked to a `help wanted` issue. |
-| 🟣 PRs Merged | **38** | Number of those linked PRs that were successfully merged. |
-| ⚪ PRs Closed (Unmerged) | **123** | Number of those linked PRs that were closed without merging (e.g. abandoned, stale). |
-| 🔄 Issue to PR Conversion Rate | **31.1%** | Percentage of opened PRs that successfully get merged (`Merged / Opened`). |
+| Metric | Last 30 Days | Target / Goal | Calculation |
+| :--- | :--- | :--- | :--- |
+| 🆕 New Help Wanted Issues | **45** | Steady / Growing | Number of new issues created with the `help wanted` label. |
+| 🛠️ PRs Opened | **122** | - | Number of new PRs opened linked to a `help wanted` issue. |
+| 🟣 PRs Merged | **38** | Track closely to Opened | Number of those linked PRs that were successfully merged. |
+| ⚪ PRs Closed (Unmerged) | **123** | - | Number of those linked PRs that were closed without merging (e.g. abandoned, stale). |
+| 🔄 Issue to PR Conversion Rate | **31.1%** | > 50% | Percentage of opened PRs that successfully get merged (`Merged / Opened`). |
 
 ## ⏱️ Efficiency & Bottlenecks
 Measures the speed and responsiveness of the maintainer team in processing community PRs.
@@ -82,17 +82,17 @@ xychart-beta
     line [3.1, 12.8, 0, 0, 0, 0, 13.2, 2.4, 0, 1.7, 0, 0, 3.1, 16.5, 10.4, 18.4, 8.1, 0, 0, 0, 2.9, 0.0, 27.7, 0, 0, 0, 0, 0.2, 30.4, 36.3]
 ```
 
-| Metric | Average | Calculation |
-| :--- | :--- | :--- |
-| ⚡ Time to First Review (TTFR) | **162.1 hours** | Average time from PR creation until the first comment or review from a maintainer. (Target: < 168h / 1 week) |
-| 🚢 Time to Merge (TTM) | **13.6 days** | Average time from PR creation to when it is successfully merged into the codebase. (Target: < 14 days) |
+| Metric | Average | Target / Goal | Calculation |
+| :--- | :--- | :--- | :--- |
+| ⚡ Time to First Review (TTFR) | **162.1 hours** | < 168 hours (1 week) | Average time from PR creation until the first comment or review from a maintainer. |
+| 🚢 Time to Merge (TTM) | **13.6 days** | < 14 days (2 weeks) | Average time from PR creation to when it is successfully merged into the codebase. |
 
 ## ❤️ Community Health
 Indicates the general success and retention rate of contributors attempting to resolve issues.
 
-| Metric | Rate | Calculation |
-| :--- | :--- | :--- |
-| 📉 Author Drop-off Rate | **76.4%** | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |
+| Metric | Rate | Target / Goal | Calculation |
+| :--- | :--- | :--- | :--- |
+| 📉 Author Drop-off Rate | **76.4%** | < 20% | Percentage of closed PRs that were abandoned or unmerged out of all resolved PRs (`Unmerged / Total Closed`). High drop-off could mean tasks are too hard or setup is complex. |
 
 ### 👥 Contributor Engagement
 > **Legend:** 📊 Bar = Number of unique active contributors (opened, merged, or closed a PR)
@@ -140,11 +140,11 @@ xychart-beta
     line [0.6, 0.4, 0.0, 0.0, 0.0, 0.0, 0.4, 0.1, 0.0, 0.1, 0.0, 0.0, 0.1, 0.2, 0.5, 0.3, 0.3, 0.0, 0.0, 0.0, 0.2, 0.5, 0.8, 0, 0.0, 0.0, 0.0, 0.1, 0.2, 0.1]
 ```
 
-| Metric | Value | Calculation |
-| :--- | :--- | :--- |
-| 🧑‍💻 Total Active Contributors | **150** | Number of unique human contributors who opened, merged, or closed a PR in the last 30 days. |
-| 📈 Avg PRs Opened | **0.8** | Total PRs opened divided by total active contributors over 30 days. |
-| 🎯 Avg PRs Merged | **0.3** | Total PRs merged divided by total active contributors over 30 days. |
+| Metric | Value | Target / Goal | Calculation |
+| :--- | :--- | :--- | :--- |
+| 🧑‍💻 Total Active Contributors | **150** | Steady Growth | Number of unique human contributors who opened, merged, or closed a PR in the last 30 days. |
+| 📈 Avg PRs Opened | **0.8** | > 1.5 PRs | Total PRs opened divided by total active contributors over 30 days. |
+| 🎯 Avg PRs Merged | **0.3** | > 1.5 PRs | Total PRs merged divided by total active contributors over 30 days. |
 
 ---
 *Metrics maintained by automated daily script.*
