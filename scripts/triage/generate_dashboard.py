@@ -420,6 +420,7 @@ def main():
     print("LOG: Generating HELP_ISSUES_TRIAGE.md...")
     open_issues_count = len([i for i in all_issue_nodes if i['state'] == 'OPEN'])
     md_rev = f"# 🔎 Gemini CLI Help Wanted Triage Dashboard\n\n*Last Synchronized: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
+    md_rev += "> This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.\n\n"
     md_rev += f"**Total Issues Tracked: {open_issues_count} open issues**\n\n"
     
     md_rev += "## 🚨 Needs Oncaller Attention\n"
@@ -487,6 +488,8 @@ def main():
     # --- Write TEAM_STATS.md ---
     print("LOG: Generating TEAM_STATS.md...")
     md_stats = f"# 📊 Gemini CLI Weekly Team Review Stats\n\n*Reporting Period: **Monday {report_start.strftime('%Y-%m-%d')}** to Today*\n*Last Updated: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
+    md_stats += "> This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.\n"
+    md_stats += "> **Motivation:** Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀\n\n"
     md_stats += "## 📈 Weekly Summary\n| Maintainer | Closed/Merged (Week) | Current Open Queue |\n| :--- | :--- | :--- |\n"
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['weekly_closed'], reverse=True):
         md_stats += f"| **{data['name']}** (@{login}) | **{data['weekly_closed']}** | {len(data['open_queue'])} |\n"
