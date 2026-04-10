@@ -1,0 +1,127 @@
+name: '🤖 Core UI Combined Triage'
+
+# This workflow combines a deterministic script pass (janitorial)
+# with an AI-powered semantic triage pass (Gemini).
+# Target: area/core, area/extensions, area/site (excluding help wanted)
+
+on:
+  schedule:
+    - cron: '30 2 * * *' # Daily at 2:30 AM UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run in dry-run mode'
+        required: false
+        default: false
+        type: 'boolean'
+
+concurrency:
+  group: '${{ github.workflow }}'
+  cancel-in-progress: true
+
+jobs:
+  triage:
+    if: "github.repository == 'google-gemini/gemini-cli'"
+    runs-on: 'ubuntu-latest'
+    permissions:
+      contents: 'read'
+      issues: 'write'
+      pull-requests: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+
+      - name: 'Generate GitHub App Token'
+        id: 'generate_token'
+        uses: 'actions/create-github-app-token@v2'
+        with:
+          app-id: '${{ secrets.APP_ID }}'
+          private-key: '${{ secrets.PRIVATE_KEY }}'
+
+      - name: 'Deterministic Janitorial Pass'
+        id: 'janitorial'
+        env:
+          GITHUB_TOKEN: '${{ steps.generate_token.outputs.token }}'
+          DRY_RUN: '${{ inputs.dry_run }}'
+        run: |
+          set -euo pipefail
+          
+          QUERY='repo:google-gemini/gemini-cli is:issue is:open label:area/core,area/extensions,area/site -label:"help wanted"'
+          ISSUES=$(gh issue list --search "$QUERY" --limit 100 --json number,url)
+          
+          AI_TRIAGE_LIST=""
+          
+          echo "Processing $(echo "$ISSUES" | jq 'length') issues..."
+          
+          for row in $(echo "$ISSUES" | jq -r '.[] | @base64'); do
+            _jq() {
+              echo "${row}" | base64 --decode | jq -r "${1}"
+            }
+            NUMBER=$(_jq '.number')
+            URL=$(_jq '.url')
+            
+            echo "--- Analyzing #$NUMBER ---"
+            
+            # Run deterministic analysis script
+            ANALYSIS=$(node triage-skill/.gemini/skills/core-ui-triage/scripts/analyze_issue.cjs "$URL")
+            
+            STALE_60=$(echo "$ANALYSIS" | jq -r '.inactive_over_60_days')
+            PENDING_14=$(echo "$ANALYSIS" | jq -r '.is_stale') 
+            NI_RESOLVED=$(echo "$ANALYSIS" | jq -r '.needs_info_resolved')
+            
+            # Check for merged PR cross-references
+            MERGED_PR=$(echo "$ANALYSIS" | jq -r '.cross_references[] | select(.is_merged == true) | .issue' | head -n 1)
+
+            HAS_NEEDS_INFO=$(echo "$ANALYSIS" | jq -r '.labels | contains(["status/needs-info"])')
+
+            if [ "$MERGED_PR" != "" ]; then
+              echo "Issue #$NUMBER resolved by PR #$MERGED_PR. Closing."
+              if [ "$DRY_RUN" != "true" ]; then
+                gh issue close "$NUMBER" --comment "Closing because this issue was referenced by a merged pull request. Feel free to reopen if the problem persists." --reason "completed"
+              fi
+            elif [ "$NI_RESOLVED" == "true" ]; then
+              echo "Issue #$NUMBER received response for needs-info. Moving to triage."
+              if [ "$DRY_RUN" != "true" ]; then
+                gh issue edit "$NUMBER" --remove-label "status/needs-info" --add-label "status/need-triage"
+              fi
+              AI_TRIAGE_LIST="$AI_TRIAGE_LIST $NUMBER"
+            elif [ "$STALE_60" == "true" ]; then
+              echo "Issue #$NUMBER inactive > 60 days. Closing."
+              if [ "$DRY_RUN" != "true" ]; then
+                gh issue close "$NUMBER" --comment "Closing due to 60 days of inactivity. Feel free to reopen if this is still relevant." --reason "not planned"
+              fi
+            elif [ "$PENDING_14" == "true" ] && [ "$HAS_NEEDS_INFO" == "true" ]; then
+              echo "Issue #$NUMBER pending response > 14 days with status/needs-info. Closing."
+              if [ "$DRY_RUN" != "true" ]; then
+                gh issue close "$NUMBER" --comment "Closing because more information was requested and we haven't received a response in over 2 weeks." --reason "not planned"
+              fi
+            else
+              echo "Issue #$NUMBER needs semantic triage."
+              AI_TRIAGE_LIST="$AI_TRIAGE_LIST $NUMBER"
+            fi
+          done
+          
+          echo "needs_ai_triage=$(echo $AI_TRIAGE_LIST | xargs)" >> $GITHUB_OUTPUT
+
+      - name: 'Semantic AI Triage'
+        if: steps.janitorial.outputs.needs_ai_triage != ''
+        uses: 'google-github-actions/run-gemini-cli@v0'
+        with:
+          gcp_workload_identity_provider: '${{ vars.GCP_WIF_PROVIDER }}'
+          gcp_project_id: '${{ vars.GOOGLE_CLOUD_PROJECT }}'
+          gcp_location: '${{ vars.GOOGLE_CLOUD_LOCATION }}'
+          gcp_service_account: '${{ vars.SERVICE_ACCOUNT_EMAIL }}'
+          gemini_api_key: '${{ secrets.GEMINI_API_KEY }}'
+          prompt: |
+            You are a senior maintainer. Triage these issues: ${{ steps.janitorial.outputs.needs_ai_triage }}
+            
+            Use the 'github-issue-triage' skill logic:
+            1. **Vagueness**: If a bug lacks repro steps, mark 'status/needs-info' and ask for details.
+            2. **Feature Check**: Grep the codebase to see if the feature already exists (check packages/cli/src/ui/key/keyBindings.ts).
+            3. **Categorization**: Label as 'help wanted' only if it is well-defined and doesn't touch core architecture.
+            
+            Reference: triage-skill/.gemini/skills/core-ui-triage/references/triage_rules.md
+            
+            Execute the appropriate 'gh issue' commands for each.
