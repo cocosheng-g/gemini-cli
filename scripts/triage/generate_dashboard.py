@@ -301,28 +301,38 @@ def main():
             # Reviewer collection
             if 'reviewRequests' in pr:
                 nodes = pr.get('reviewRequests', {}).get('nodes', [])
-                if pr_no == 25008: print(f"DEBUG: PR 25008 reviewRequests nodes count: {len(nodes)}")
                 for req in nodes:
                     rr = req.get('requestedReviewer')
                     if not rr:
-                        if pr_no == 25008: print(f"DEBUG: PR 25008 found empty requestedReviewer node")
-                        continue
+                        # Fallback: if GraphQL fails to populate the node (common in Actions), 
+                        # use the CLI to fetch JSON for this specific PR.
+                        print(f"LOG: GraphQL requestedReviewer empty for PR #{pr_no}, using gh pr view fallback...")
+                        try:
+                            pr_json = json.loads(subprocess.check_output(['gh', 'pr', 'view', str(pr_no), '--json', 'reviewRequests', '-R', TARGET_REPO]))
+                            fallback_nodes = pr_json.get('reviewRequests', [])
+                            for f_rr in fallback_nodes:
+                                # gh pr view returns different format than GraphQL API
+                                if 'login' in f_rr: # User
+                                    if f_rr['login'] != author and f_rr['login'] not in BOT_BLACKLIST: human_reviewers.add(f_rr['login'])
+                                elif 'slug' in f_rr: # Team
+                                    team_name = f_rr['slug'].split('/')[-1]
+                                    if team_name in ONCALLER_TEAMS:
+                                        print(f"LOG: Found special team request (via fallback): {team_name} on PR #{pr_no}")
+                                        special_teams.add(team_name)
+                        except Exception as e:
+                            print(f"LOG: Fallback failed for PR #{pr_no}: {e}")
+                        break # Processed all via fallback, no need to continue this loop
                     
                     typename = rr.get('__typename')
-                    if pr_no == 25008: print(f"DEBUG: PR 25008 requestedReviewer: {rr}")
-                    
                     if typename == 'User':
                         login = rr.get('login')
                         if login and login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
                     elif typename == 'Team':
                         slug = rr.get('slug', '')
-                        # Handle both full slug and short slug
                         team_name = slug.split('/')[-1]
                         if team_name in ONCALLER_TEAMS:
-                            print(f"LOG: Found special team request: {team_name} (from slug: {slug}) on PR #{pr_no}")
+                            print(f"LOG: Found special team request: {team_name} on PR #{pr_no}")
                             special_teams.add(team_name)
-                        else:
-                            if pr_no == 25008: print(f"DEBUG: PR 25008 ignoring team: {team_name} (not in {ONCALLER_TEAMS})")
             
             for rev in pr.get('latestReviews', {}).get('nodes', []):
                 if rev.get('author'):
