@@ -3,6 +3,8 @@ import json
 import datetime
 import os
 import re
+import time
+import sys
 
 # Target repository
 TARGET_REPO = 'google-gemini/gemini-cli'
@@ -109,17 +111,22 @@ def get_pr_batch_query(pr_numbers):
         """)
     return f"query {{ repository(owner: \"{owner}\", name: \"{repo}\") {{ {' '.join(fragments)} }} }}"
 
-def gh_api_graphql(query, variables=None):
+def gh_api_graphql(query, variables=None, retries=3):
     cmd = ['gh', 'api', 'graphql']
     if variables:
         for k, v in variables.items():
             if v is not None: cmd.extend(['-F', f'{k}={v}'])
     cmd.extend(['-f', f'query={query}'])
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    if result.returncode != 0:
-        print(f"ERROR: gh api graphql failed: {result.stderr}")
-        return None
-    return json.loads(result.stdout)
+    
+    for i in range(retries):
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode == 0:
+            return json.loads(result.stdout)
+        
+        print(f"LOG: gh api graphql failed (attempt {i+1}/{retries}): {result.stderr.strip()}")
+        if i < retries - 1:
+            time.sleep(2 ** i) # Exponential backoff
+    return None
 
 def parse_date(date_str):
     if not date_str: return None
@@ -206,8 +213,12 @@ def main():
     page = 1
     while True:
         print(f"LOG: Fetching issue page {page}...")
-        res = gh_api_graphql(ISSUES_QUERY, {"searchQuery": SEARCH_QUERY, "cursor": cursor})
-        if not res: break
+        # Use smaller page size (50) for better reliability
+        res = gh_api_graphql(ISSUES_QUERY.replace('first: 100', 'first: 50'), {"searchQuery": SEARCH_QUERY, "cursor": cursor})
+        if not res:
+            print("LOG: Critical fetch failure. Exiting to prevent incomplete dashboard.")
+            sys.exit(1)
+        
         search_data = res['data']['search']
         all_issue_nodes.extend(search_data['nodes'])
         if not search_data['pageInfo']['hasNextPage']: break
