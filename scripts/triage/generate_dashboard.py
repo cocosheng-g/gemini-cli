@@ -285,8 +285,9 @@ def main():
             special_teams = set()
             author = pr['author']['login']
             pr_assignees = [a['login'] for a in pr.get('assignees', {}).get('nodes', [])]
+            if pr_no == 25008: print(f"DEBUG: PR 25008. Author: {author}, Issue Assignees: {assignees}, PR Assignees: {pr_assignees}, Special Teams: {special_teams}")
             
-            # Extract reviewers from whatever source we have
+            # 1. Maintainer Stats logic (Always process for stats)
             if 'reviewRequests' in pr:
                 for req in pr.get('reviewRequests', {}).get('nodes', []):
                     rr = req.get('requestedReviewer')
@@ -303,6 +304,8 @@ def main():
                 if rev.get('author'):
                     login = rev['author']['login']
                     if login != author and login not in BOT_BLACKLIST: human_reviewers.add(login)
+
+            if pr_no == 25008: print(f"DEBUG: PR 25008. Author: {author}, Issue Assignees: {assignees}, PR Assignees: {pr_assignees}, Special Teams: {special_teams}, Human Reviewers: {human_reviewers}")
 
             # 1. Maintainer Stats logic (Always process for stats)
             if pr['state'] != 'OPEN':
@@ -377,6 +380,7 @@ def main():
                 recently_assigned.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "assignees": assignees, "last_update": issue['updatedAt'][:10]})
 
     # Sorting
+    print(f"DEBUG: oncaller_attention size: {len(oncaller_attention)}")
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
     initial_pickup.sort(key=lambda x: (x['last_update'], x['issue_md']))
     followup_needed.sort(key=lambda x: (x['last_update'], x['issue_md']))

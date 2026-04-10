@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 03:11 (UTC)*
+*Last Updated: 2026-04-10 03:22 (UTC)*
 
 ## 📈 Weekly Summary
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
@@ -99,7 +99,7 @@
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
 | [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | [#19711](https://github.com/google-gemini/gemini-cli/issues/19711) | fix(core): remove no-unsafe-type-assertion in core tool execution | 🔴 Blocked: Merge Conflict | `2026-03-30` |
-| [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | [#20948](https://github.com/google-gemini/gemini-cli/issues/20948) | feat(cli): restore unsent draft before input history | 🟢 Active | `2026-04-09` |
+| [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | [#20948](https://github.com/google-gemini/gemini-cli/issues/20948) | feat(cli): restore unsent draft before input history | 🟢 Active | `2026-04-10` |
 
 #### 🔴 Recently Closed (Since Monday)
 | PR | Issue | Title | Status | Closed Date |

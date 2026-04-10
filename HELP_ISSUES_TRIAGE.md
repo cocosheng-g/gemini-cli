@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 03:12 (UTC)*
+*Last Synchronized: 2026-04-10 03:22 (UTC)*
 
 **Total Issues Tracked: 175 open issues**
 
@@ -89,7 +89,7 @@
 ## 🛠️ Active Development
 
 <details>
-<summary><b>⌛ Awaiting Reviewer Follow-up (8)</b> — <i>Reviewers, please follow up.</i></summary>
+<summary><b>⌛ Awaiting Reviewer Follow-up (9)</b> — <i>Reviewers, please follow up.</i></summary>
 
 **Criteria: Review in progress, author has responded to latest feedback.**
 
@@ -101,12 +101,13 @@
 | [#20755 Shell Tool Trailing Newline Trimming](https://github.com/google-gemini/gemini-cli/issues/20755) | [#23705](https://github.com/google-gemini/gemini-cli/pull/23705) | @mrpmohiburrahman | Author Updated | `2026-04-08` |
 | [#24337 fix(cli): make slash-command IDE status subscription cleanup-safe](https://github.com/google-gemini/gemini-cli/issues/24337) | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | @scidomino | Author Updated | `2026-04-09` |
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | @cocosheng-g | Author Updated | `2026-04-09` |
+| [#20948 Suggestion: Feature Request: Add "Last Edited Buffer" to command history to prevent data loss on accidental deletion.](https://github.com/google-gemini/gemini-cli/issues/20948) | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | @devr0306 | Author Updated | `2026-04-10` |
 | [#22321 Feature Request: Add 'list' subcommand to '/commands' to show loaded command files](https://github.com/google-gemini/gemini-cli/issues/22321) | [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | @cocosheng-g, @marsam2489-lang | Author Updated | `2026-04-10` |
 | [#22616 bug: Text sanitization inadvertently swallows valid text due to C1 control characters](https://github.com/google-gemini/gemini-cli/issues/22616) | [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | @cocosheng-g | Author Updated | `2026-04-10` |
 </details>
 
 <details>
-<summary><b>✍️ Awaiting Author Action (3)</b> — <i>Waiting for contributor.</i></summary>
+<summary><b>✍️ Awaiting Author Action (2)</b> — <i>Waiting for contributor.</i></summary>
 
 **Criteria: Reviewer acted last, waiting for contributor to address comments.**
 
@@ -114,11 +115,10 @@
 | :--- | :--- | :--- | :--- |
 | [#19675 Make the CLI more friendly with tmux](https://github.com/google-gemini/gemini-cli/issues/19675) | [#22067](https://github.com/google-gemini/gemini-cli/pull/22067) | @anowardear062-svg, @mrpmohiburrahman, @spencer426 | `2026-04-05` |
 | [#20655 Token estimation falls through to generic fallback for audio/video parts](https://github.com/google-gemini/gemini-cli/issues/20655) | [#20658](https://github.com/google-gemini/gemini-cli/pull/20658) | @mrpmohiburrahman | `2026-04-05` |
-| [#20948 Suggestion: Feature Request: Add "Last Edited Buffer" to command history to prevent data loss on accidental deletion.](https://github.com/google-gemini/gemini-cli/issues/20948) | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | @devr0306 | `2026-04-09` |
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (45)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (47)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -169,6 +169,8 @@
 | [#24211 Hardcoded padding in terminal title causes trailing spaces in tmux pane_title](https://github.com/google-gemini/gemini-cli/issues/24211) | @tusaryan | `2026-04-09` |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | @tusaryan | `2026-04-09` |
 | [#7989 Provide an official way to add comments in GEMINI.md](https://github.com/google-gemini/gemini-cli/issues/7989) | @JagjeevanAK | `2026-04-09` |
+| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | @sahilkirad | `2026-04-10` |
+| [#20968 Windows PowerShell Output Encoding Bug](https://github.com/google-gemini/gemini-cli/issues/20968) | @ishaanxgupta | `2026-04-10` |
 </details>
 
 <details>
@@ -207,20 +209,18 @@
 ## 🌱 Community & Backlog
 
 <details>
-<summary><b>🌱 Available for Pickup (74)</b> — <i>Open for contributors.</i></summary>
+<summary><b>🌱 Available for Pickup (72)</b> — <i>Open for contributors.</i></summary>
 
 **Criteria: Open issues with no assignee and no active PR.**
 
 | Issue | Days Idle |
 | :--- | :--- |
-| [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 0 |
-| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | 0 |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | 0 |
+| [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 0 |
 | [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 0 |
 | [#19985 CLI hangs/freezes when using `@filename:line` or `@filename:range` syntax](https://github.com/google-gemini/gemini-cli/issues/19985) | 0 |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | 0 |
 | [#22035 Allow wrapping tool descriptions to prevent truncation in the UI](https://github.com/google-gemini/gemini-cli/issues/22035) | 0 |
-| [#20968 Windows PowerShell Output Encoding Bug](https://github.com/google-gemini/gemini-cli/issues/20968) | 0 |
 | [#19583 feat(policy): support granular skill activation permissions](https://github.com/google-gemini/gemini-cli/issues/19583) | 0 |
 | [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | 0 |
 | [#18388 Delete option for MCP](https://github.com/google-gemini/gemini-cli/issues/18388) | 0 |
@@ -300,7 +300,7 @@
 | [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21141](https://github.com/google-gemini/gemini-cli/pull/21141) | @neeraj-par | _Unassigned_ | `2026-03-11` |
 | [#21142 feat(cli): add /stats perf subcommand for memory and startup timing display](https://github.com/google-gemini/gemini-cli/issues/21142) | [#21233](https://github.com/google-gemini/gemini-cli/pull/21233) | @ved015 | _Unassigned_ | `2026-03-11` |
 | [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | [#21440](https://github.com/google-gemini/gemini-cli/pull/21440) | @hrishi2814 | _Unassigned_ | `2026-03-12` |
-| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | @nivbrook | _Unassigned_ | `2026-03-23` |
+| [#18895 CLI cannot use fresh token in MCP OAuth](https://github.com/google-gemini/gemini-cli/issues/18895) | [#23493](https://github.com/google-gemini/gemini-cli/pull/23493) | @nivbrook | @sahilkirad | `2026-03-23` |
 | [#21836 [Bug]: ripgrep ENOENT on Termux due to incompatible binary](https://github.com/google-gemini/gemini-cli/issues/21836) | [#21840](https://github.com/google-gemini/gemini-cli/pull/21840) | @imadraude | @student-ankitpandit | `2026-03-23` |
 | [#19710 Fix unsafe type assertions in Core Utilities (Phase 1.2: JSON & Config)](https://github.com/google-gemini/gemini-cli/issues/19710) | [#23628](https://github.com/google-gemini/gemini-cli/pull/23628) | @KumarADITHYA123 | @Yuvraj-cyborg | `2026-03-24` |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | [#19901](https://github.com/google-gemini/gemini-cli/pull/19901) | @Ayushhgit | _Unassigned_ | `2026-03-27` |
