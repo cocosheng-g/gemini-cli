@@ -122,7 +122,6 @@ def gh_api_graphql(query, variables=None, retries=3):
         result = subprocess.run(cmd, capture_output=True, text=True)
         if result.returncode == 0:
             return json.loads(result.stdout)
-        
         print(f"LOG: gh api graphql failed (attempt {i+1}/{retries}): {result.stderr.strip()}")
         if i < retries - 1:
             time.sleep(2 ** i) # Exponential backoff
@@ -221,6 +220,7 @@ def main():
         
         search_data = res['data']['search']
         all_issue_nodes.extend(search_data['nodes'])
+        print(f"LOG: Loaded {len(search_data['nodes'])} issues from this page.")
         if not search_data['pageInfo']['hasNextPage']: break
         cursor = search_data['pageInfo']['endCursor']
         page += 1
@@ -248,6 +248,7 @@ def main():
     pr_list = sorted(list(pr_to_fetch))
     for i in range(0, len(pr_list), 20):
         batch = pr_list[i:i+20]
+        print(f"LOG: Fetching PR batch {i//20 + 1} ({len(batch)} PRs)...")
         res = gh_api_graphql(get_pr_batch_query(batch))
         if res and 'data' in res:
             repo_data = res['data']['repository']
@@ -259,6 +260,7 @@ def main():
 
     now = datetime.datetime.now(datetime.timezone.utc)
     report_start = (now - datetime.timedelta(days=now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+    print(f"LOG: Reporting period starts from {report_start.strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Lists for HELP_ISSUES_TRIAGE.md
     oncaller_attention = []
@@ -344,6 +346,7 @@ def main():
                 unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr['number'], "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
                 continue
             
+            # Since we only fetch details for OPEN PRs, we'll have full info here
             if 'closingIssuesReferences' in pr:
                 linked_nums = [n['number'] for n in pr['closingIssuesReferences']['nodes']]
                 if issue_no not in linked_nums: continue
