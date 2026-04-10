@@ -1,10 +1,10 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 19:27 (UTC)*
+*Last Synchronized: 2026-04-10 20:02 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
-**Total Issues Tracked: 177 open issues**
+**Total Issues Tracked: 176 open issues**
 
 ## 🚨 Needs Oncaller Attention
 
@@ -85,13 +85,12 @@
 ## 🛠️ Active Development
 
 <details>
-<summary><b>⌛ Awaiting Reviewer Follow-up (5)</b> — <i>Reviewers, please follow up.</i></summary>
+<summary><b>⌛ Awaiting Reviewer Follow-up (4)</b> — <i>Reviewers, please follow up.</i></summary>
 
 **Criteria: Review in progress, author has responded to latest feedback.**
 
 | Issue | Linked PR | Reviewers | Status | Last Update |
 | :--- | :--- | :--- | :--- | :--- |
-| [#15945 System-wide PTY exhaustion due to file descriptor leak](https://github.com/google-gemini/gemini-cli/issues/15945) | [#25079](https://github.com/google-gemini/gemini-cli/pull/25079) | @scidomino | Author Updated | `2026-04-10` |
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | @cocosheng-g | Author Updated | `2026-04-10` |
 | [#20948 Suggestion: Feature Request: Add "Last Edited Buffer" to command history to prevent data loss on accidental deletion.](https://github.com/google-gemini/gemini-cli/issues/20948) | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | @devr0306 | Author Updated | `2026-04-10` |
 | [#21635 Improve audio MIME normalization and validation in multimodal file reads](https://github.com/google-gemini/gemini-cli/issues/21635) | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | @cocosheng-g | Author Updated | `2026-04-10` |
@@ -239,11 +238,11 @@
 | [#21340 feat: Add configurable shell executable for run_shell_command on Windows](https://github.com/google-gemini/gemini-cli/issues/21340) | 0 |
 | [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | 0 |
 | [#20661 [Bug] run_shell_command returns garbled Chinese text for the Agent, while referenced files (@filename) work correctly](https://github.com/google-gemini/gemini-cli/issues/20661) | 0 |
-| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | 0 |
-| [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | 0 |
-| [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 0 |
-| [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 0 |
-| [#18593 Valid chat JSON missing from `/resume` list; forcing resume with `--resume` loads incorrect Session ID](https://github.com/google-gemini/gemini-cli/issues/18593) | 0 |
+| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | 1 |
+| [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | 1 |
+| [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 1 |
+| [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 1 |
+| [#18593 Valid chat JSON missing from `/resume` list; forcing resume with `--resume` loads incorrect Session ID](https://github.com/google-gemini/gemini-cli/issues/18593) | 1 |
 | [#20480 Feature: evolve --resume to support resuming sessions from any folder via session ID](https://github.com/google-gemini/gemini-cli/issues/20480) | 1 |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | 1 |
 | [#21568 deleteSession() does not clean tool output directories (UUID / filename mismatch)](https://github.com/google-gemini/gemini-cli/issues/21568) | 1 |
@@ -264,9 +263,9 @@
 | [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 1 |
 | [#22541 Theme Dialog preview theme is not reverted when quitting via double Ctrl+C and Ctrl+D](https://github.com/google-gemini/gemini-cli/issues/22541) | 1 |
 | [#21505 docs(sdk): add JSDoc to exported interfaces in packages/sdk/src/types.ts](https://github.com/google-gemini/gemini-cli/issues/21505) | 1 |
-| [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | 1 |
-| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 1 |
-| [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 1 |
+| [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | 2 |
+| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 2 |
+| [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 2 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 2 |
 | [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 2 |
 | [#21602 Request: Wrap long prompts in Tool Confirmation Screen instead of truncating](https://github.com/google-gemini/gemini-cli/issues/21602) | 2 |

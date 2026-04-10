@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 19:27 (UTC)*
+*Last Updated: 2026-04-10 20:02 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -10,7 +10,7 @@
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
 | :--- | :--- | :--- |
 | **Coco Sheng** (@cocosheng-g) | **6** | 6 |
-| **Tommaso Sciortino** (@scidomino) | **2** | 5 |
+| **Tommaso Sciortino** (@scidomino) | **3** | 4 |
 | **Dev Randalpura** (@devr0306) | **2** | 2 |
 | **A.K.M. Adib** (@Adib234) | **1** | 2 |
 | **Keith Schaab** (@kschaab) | **0** | 1 |
@@ -169,13 +169,12 @@
 </details>
 
 <details>
-<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (5) | 🔴 Recently Closed (2)</summary>
+<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (4) | 🔴 Recently Closed (3)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
 | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | [#24898](https://github.com/google-gemini/gemini-cli/issues/24898) | fix: skip normalization for long strings to avoid ENAMETOOLONG crash | 🟢 Active | `2026-04-10` |
-| [#25079](https://github.com/google-gemini/gemini-cli/pull/25079) | [#15945](https://github.com/google-gemini/gemini-cli/issues/15945) | fix(core): resolve PTY exhaustion and orphan MCP subprocess leaks | 🟢 Active | `2026-04-10` |
 | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | [#18067](https://github.com/google-gemini/gemini-cli/issues/18067) | feat: Add voice input with pluggable backend (Gemini zero-install + Whisper) | Needs gemini-cli-docs | `2026-04-04` |
 | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | [#24337](https://github.com/google-gemini/gemini-cli/issues/24337) | fix(cli): clean up slash command IDE listeners | Needs Author Update (Resolve Comments) | `2026-04-10` |
 | [#23347](https://github.com/google-gemini/gemini-cli/pull/23347) | [#16363](https://github.com/google-gemini/gemini-cli/issues/16363) | fix: use synchronous stderr write before exit to prevent silent failures | Needs Author Update (Resolve Comments) | `2026-04-08` |
@@ -183,6 +182,7 @@
 #### 🔴 Recently Closed (Since Monday)
 | PR | Issue | Title | Status | Closed Date |
 | :--- | :--- | :--- | :--- | :--- |
+| [#25079](https://github.com/google-gemini/gemini-cli/pull/25079) | [#15945](https://github.com/google-gemini/gemini-cli/issues/15945) | fix(core): resolve PTY exhaustion and orphan MCP subprocess leaks | `MERGED` | `2026-04-10` |
 | [#19025](https://github.com/google-gemini/gemini-cli/pull/19025) | [#18388](https://github.com/google-gemini/gemini-cli/issues/18388) | feat(cli): add /mcp remove slash command for interactive server removal | `CLOSED` | `2026-04-09` |
 | [#24870](https://github.com/google-gemini/gemini-cli/pull/24870) | [#21006](https://github.com/google-gemini/gemini-cli/issues/21006) | fix(core): dispose Scheduler to prevent McpProgress listener leak | `MERGED` | `2026-04-08` |
 
