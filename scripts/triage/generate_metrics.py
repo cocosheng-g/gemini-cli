@@ -225,6 +225,7 @@ def main():
     md += "### PRs Opened vs Merged vs Closed (Unmerged)\n"
     md += "> **Legend:** 📊 Bar = PRs Opened | 📈 Line 1 = PRs Merged | 📉 Line 2 = PRs Closed (Unmerged)\n\n"
     md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
     md += f'    title "PR Activity ({date_range_str})"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
@@ -237,6 +238,7 @@ def main():
     md += "### Daily New Issues\n"
     md += "> **Legend:** 📊 Bar = New Help Wanted Issues\n\n"
     md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
     md += f'    title "New Help Wanted Issues"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
@@ -258,6 +260,7 @@ def main():
     md += "### Time to First Review (TTFR) Trend\n"
     md += "> **Legend:** 📈 Line = Average Time to First Review (in hours) for PRs opened on that day\n\n"
     md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
     md += f'    title "Average TTFR per Day (Hours)"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
@@ -268,6 +271,7 @@ def main():
     md += "### Time to Merge (TTM) Trend\n"
     md += "> **Legend:** 📈 Line = Average Time to Merge (in days) for PRs successfully merged on that day\n\n"
     md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
     md += f'    title "Average TTM per Day (Days)"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
@@ -294,6 +298,7 @@ def main():
 
     md += "> **Legend:** 📊 Bar = Number of unique active contributors (opened, merged, or closed a PR)\n\n"
     md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
     md += f'    title "Active Contributors"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
@@ -303,6 +308,7 @@ def main():
 
     md += "> **Legend:** 📈 Line = Avg PRs Opened per Active Contributor\n\n"
     md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
     md += f'    title "Avg PRs Opened per Contributor"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
@@ -312,6 +318,7 @@ def main():
 
     md += "> **Legend:** 📈 Line = Avg PRs Merged per Active Contributor\n\n"
     md += "```mermaid\n"
+    md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
     md += f'    title "Avg PRs Merged per Contributor"\n'
     md += f'    x-axis {json.dumps(display_labels, ensure_ascii=False)}\n'
