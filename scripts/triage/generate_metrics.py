@@ -83,7 +83,7 @@ def main():
     
     seen_prs = set()
     
-    # Initialize 3-day bins to avoid overlapping x-axis labels
+    # Initialize 5-day bins to avoid overlapping x-axis labels
     days_labels = []
     opened_by_day = {}
     merged_by_day = {}
@@ -92,10 +92,10 @@ def main():
     ttfr_by_day_lists = {}
     ttm_by_day_lists = {}
     
-    for i in range(10):
-        start_d = thirty_days_ago + datetime.timedelta(days=i*3)
-        end_d = start_d + datetime.timedelta(days=2)
-        d_label = f"{start_d.strftime('%m/%d')}-{end_d.strftime('%m/%d')}"
+    for i in range(6):
+        start_d = thirty_days_ago + datetime.timedelta(days=i*5)
+        end_d = start_d + datetime.timedelta(days=4)
+        d_label = f"{start_d.strftime('%b%d')}-{end_d.strftime('%d')}"
         days_labels.append(d_label)
         opened_by_day[d_label] = 0
         merged_by_day[d_label] = 0
@@ -107,7 +107,7 @@ def main():
     def get_bin_label(date_obj):
         delta = (date_obj - thirty_days_ago).days
         if 0 <= delta < 30:
-            return days_labels[delta // 3]
+            return days_labels[delta // 5]
         return None
 
     BOTS = {"google-gemini-bot", "gemini-cli[bot]", "github-actions[bot]", "gemini-code-assist"}
@@ -195,16 +195,34 @@ def main():
     md += "## 🚀 Velocity & Throughput\n"
     md += "Tracks the sheer volume of contribution activity over the past 30 days.\n\n"
     
-    md += "### Daily Volume Activity\n"
-    md += "> **Legend:** 📊 Bar = PRs Opened | 📈 Line 1 = PRs Merged | 📉 Line 2 = PRs Closed (Unmerged)\n\n"
+    md += "### PRs Opened\n"
+    md += "> **Legend:** 📊 Bar = Number of PRs opened\n\n"
     md += "```mermaid\n"
     md += "xychart-beta\n"
-    md += f'    title "PRs Opened vs Merged vs Closed (Unmerged)"\n'
+    md += f'    title "PRs Opened (Last 30 Days)"\n'
     md += f'    x-axis {json.dumps(days_labels)}\n'
     md += '    y-axis "Count"\n'
     md += f'    bar {opened_data}\n'
-    md += f'    line {merged_data}\n'
-    md += f'    line {closed_unmerged_data}\n'
+    md += "```\n\n"
+
+    md += "### PRs Merged\n"
+    md += "> **Legend:** 📊 Bar = Number of PRs successfully merged\n\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "PRs Merged (Last 30 Days)"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Count"\n'
+    md += f'    bar {merged_data}\n'
+    md += "```\n\n"
+
+    md += "### PRs Closed (Unmerged)\n"
+    md += "> **Legend:** 📊 Bar = Number of PRs closed without merging (e.g., abandoned, stale)\n\n"
+    md += "```mermaid\n"
+    md += "xychart-beta\n"
+    md += f'    title "PRs Closed Without Merging (Last 30 Days)"\n'
+    md += f'    x-axis {json.dumps(days_labels)}\n'
+    md += '    y-axis "Count"\n'
+    md += f'    bar {closed_unmerged_data}\n'
     md += "```\n\n"
     
     md += "### Daily New Issues\n"
@@ -255,16 +273,6 @@ def main():
     
     md += "## ❤️ Community Health\n"
     md += "Indicates the general success and retention rate of contributors attempting to resolve issues.\n\n"
-    
-    md += "### Drop-off Trend\n"
-    md += "> **Legend:** 📊 Bar = Number of PRs closed without merging (e.g. abandoned, stale)\n\n"
-    md += "```mermaid\n"
-    md += "xychart-beta\n"
-    md += f'    title "PRs Closed Without Merge (Drop-off)"\n'
-    md += f'    x-axis {json.dumps(days_labels)}\n'
-    md += '    y-axis "Count"\n'
-    md += f'    bar {closed_unmerged_data}\n'
-    md += "```\n\n"
     
     md += "| Metric | Rate | Calculation |\n"
     md += "| :--- | :--- | :--- |\n"
