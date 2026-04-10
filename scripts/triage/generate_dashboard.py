@@ -546,6 +546,10 @@ def main():
     if not initial_pickup: md_stats += "| - | - | - |\n"
 
     md_stats += "\n---\n## 👤 Individual Review Queues\n"
+    md_stats += "> **How to manage your queue:**\n"
+    md_stats += "> 1. **Prioritize 🟢 Active PRs**: Ensure PRs without `(Needs Author Update)` receive your review feedback.\n"
+    md_stats += "> 2. **Follow up on 🛡️ Specialized Approvals**: If your PR needs specialized approval, proactively ping the respective team.\n"
+    md_stats += "> 3. **Monitor 🔴 Blocked PRs**: The triage script will automatically warn the author and eventually close stale/blocked PRs, but you can also provide guidance.\n"
     for login, data in sorted(member_stats.items(), key=lambda x: x[1]['name']):
         history_count = len(data['history'])
         summary = f"<b>{data['name']} (@{login})</b> — 🟢 Active Queue ({len(data['open_queue'])})"
