@@ -41,6 +41,14 @@ def main():
           ... on Issue {
             number state createdAt closedAt
             comments(last: 30) { nodes { author { login } publishedAt } }
+            labelsTimeline: timelineItems(itemTypes: LABELED_EVENT, last: 30) {
+              nodes {
+                ... on LabeledEvent {
+                  createdAt
+                  label { name }
+                }
+              }
+            }
             timelineItems(itemTypes: CROSS_REFERENCED_EVENT, first: 30) {
               nodes {
                 ... on CrossReferencedEvent {
@@ -128,6 +136,16 @@ def main():
     
     for issue in all_issues:
         created_at = parse_date(issue['createdAt'])
+        for ev in issue.get('labelsTimeline', {}).get('nodes', []):
+            if ev and ev.get('label') and ev['label'].get('name') == 'help wanted':
+                hw_time = parse_date(ev['createdAt'])
+                if hw_time:
+                    created_at = hw_time
+                    break
+        
+        # Save it back so snapshot calculation can use it
+        issue['_help_wanted_at'] = created_at
+
         if created_at >= thirty_days_ago:
             new_issues += 1
             d_label = get_bin_label(created_at)
@@ -243,7 +261,7 @@ def main():
         day_end = thirty_days_ago + datetime.timedelta(days=i, hours=23, minutes=59, seconds=59)
         d_label = days_labels[i]
         for issue in all_issues:
-            created_at = parse_date(issue['createdAt'])
+            created_at = issue.get('_help_wanted_at', parse_date(issue['createdAt']))
             if created_at and created_at <= day_end:
                 closed_at = parse_date(issue.get('closedAt'))
                 if issue['state'] == 'CLOSED' and closed_at and closed_at <= day_end:
