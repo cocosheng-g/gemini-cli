@@ -411,7 +411,31 @@ def main():
             
             if special_teams:
                 print(f"LOG: Issue #{issue_no} / PR #{pr_no} categorized as Specialized Approval. Teams: {special_teams}")
-                oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no})
+                
+                detailed_status = "🟢 Ready to Review"
+                if "Merge Conflict" in status_label:
+                    detailed_status = "🔴 Merge Conflict"
+                elif "Test Failure" in status_label:
+                    detailed_status = "🔴 Test Failure"
+                elif "Draft" in status_label:
+                    detailed_status = "🔘 Draft"
+                elif not author_acted_last:
+                    detailed_status = "✍️ Needs Author Update (Comments)"
+                else:
+                    maintainer_approved = False
+                    for rev in pr.get('latestReviews', {}).get('nodes', []):
+                        r_author = rev.get('author', {})
+                        if r_author and r_author.get('login') in human_reviewers and rev.get('state') == 'APPROVED':
+                            maintainer_approved = True
+                            break
+                    if maintainer_approved:
+                        detailed_status = "🛡️ Maintainer Approved, Needs Team Review"
+                    elif not human_reviewers:
+                        detailed_status = "👀 Needs Maintainer Review"
+                    else:
+                        detailed_status = "👀 Needs Maintainer Approval"
+                        
+                oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no, "status": detailed_status})
                 placed_in_dashboard = True
                 continue
 
@@ -490,9 +514,9 @@ def main():
     if not initial_pickup: md_rev += "| - | - | - |\n"
     md_rev += "</details>\n"
 
-    md_rev += f"\n<details>\n<summary><b>🛡️ Specialized Approval Required ({len(oncaller_attention)})</b> — <i>Specialized approval required.</i></summary>\n\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers |\n| :--- | :--- | :--- | :--- |\n"
-    for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} |\n"
-    if not oncaller_attention: md_rev += "| - | - | - | - |\n"
+    md_rev += f"\n<details>\n<summary><b>🛡️ Specialized Approval Required ({len(oncaller_attention)})</b> — <i>Specialized approval required.</i></summary>\n\n**Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**\n\n| Issue | Linked PR | Required Teams | Human Reviewers | Status |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    for i in oncaller_attention: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {', '.join([f'`{t}`' for t in i['teams']])} | {', '.join(['@'+r for r in i['reviewers']]) if i['reviewers'] else '_None_'} | {i['status']} |\n"
+    if not oncaller_attention: md_rev += "| - | - | - | - | - |\n"
     md_rev += "</details>\n"
 
     md_rev += f"\n<details>\n<summary><b>🚩 Stale Assignments ({len(stale_assignments)})</b> — <i>Auto-cleanup.</i></summary>\n\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
