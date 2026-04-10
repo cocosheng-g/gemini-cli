@@ -23,6 +23,6 @@ jobs:
         run: |
           git config user.name "Review Dashboard Bot"
           git config user.email "bot@google.com"
-          git add HELP_ISSUES_TRIAGE.md TEAM_STATS.md
+          git add triage/HELP_ISSUES_TRIAGE.md triage/TEAM_STATS.md
           git commit -m "chore: update review dashboard [skip ci]" || exit 0
           git push
