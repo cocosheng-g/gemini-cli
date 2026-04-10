@@ -365,18 +365,21 @@ def main():
             
             if not is_officially_linked: continue
 
-            # Enforce ownership
-            is_owned = (author in assignees) or any(pa in assignees for pa in pr_assignees)
-            
-            if not is_owned:
-                unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
-                continue
-            
-            found_open_pr = True
+            # Specialized Approval Required check (Capture regardless of ownership)
             if special_teams:
                 print(f"LOG: Issue #{issue_no} / PR #{pr_no} categorized as Specialized Approval. Teams: {special_teams}")
                 oncaller_attention.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "teams": sorted(list(special_teams)), "reviewers": sorted(list(human_reviewers)), "last_update": latest_author_act_iso[:10], "issue_no": issue_no})
-
+                # If it's a specialized approval item, we don't put it in Unowned PRs even if unowned
+                found_open_pr = True
+            else:
+                # Enforce ownership for other high-priority triage lists
+                is_owned = (author in assignees) or any(pa in assignees for pa in pr_assignees)
+                if not is_owned:
+                    unowned_prs.append({"issue_md": f"[#{issue_no} {issue_title}]({issue_url})", "pr_no": pr_no, "pr_url": pr['url'], "pr_title": pr_title, "author": author, "assignees": pr_assignees, "issue_assignees": assignees, "last_update": latest_author_act_iso[:10]})
+                    continue
+                found_open_pr = True
+            
+            # If we reached here, it's either Specialized Approval or Owned PR
             is_blocked = "Blocked" in status_label
             author_acted_last = not latest_rev_act_iso or latest_author_act_iso > latest_rev_act_iso
             
