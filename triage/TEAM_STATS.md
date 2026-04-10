@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-10 15:22 (UTC)*
+*Last Updated: 2026-04-10 15:38 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -76,8 +76,8 @@
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
 | [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | [#22616](https://github.com/google-gemini/gemini-cli/issues/22616) | fix(cli): resolve text sanitization data loss due to C1 control characters | 🟢 Active | `2026-04-10` |
+| [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | [#22321](https://github.com/google-gemini/gemini-cli/issues/22321) | feat(cli): Add 'list' subcommand to '/commands' | 🟢 Active | `2026-04-10` |
 | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | [#22611](https://github.com/google-gemini/gemini-cli/issues/22611) | fix(cli): clear thought state on response completion to prevent UI ghosting | Needs Author Update (Resolve Comments) | `2026-04-10` |
-| [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | [#22321](https://github.com/google-gemini/gemini-cli/issues/22321) | feat(cli): Add 'list' subcommand to '/commands' | Needs Author Update (Resolve Comments) | `2026-04-10` |
 | [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | [#21635](https://github.com/google-gemini/gemini-cli/issues/21635) | fix: improve audio MIME normalization and validation in file reads | Needs Author Update (Resolve Comments) | `2026-04-10` |
 | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | [#24838](https://github.com/google-gemini/gemini-cli/issues/24838) | fix(mcp): treat GET 404 as 405 in StreamableHTTPClientTransport | Needs gemini-cli-prompt-approvers, Author Update (Resolve Comments) | `2026-04-10` |
 | [#15504](https://github.com/google-gemini/gemini-cli/pull/15504) | [#15503](https://github.com/google-gemini/gemini-cli/issues/15503) | feat: add github colorblind themes | Needs Author Update (Test Failure) | `2026-04-09` |
