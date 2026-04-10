@@ -334,8 +334,8 @@ def main():
     # Sorting
     oncaller_attention.sort(key=lambda x: (", ".join(x['teams']), x['issue_no']))
     initial_pickup.sort(key=lambda x: x['updated_at'], reverse=True)
-    recently_assigned.sort(key=lambda x: x['last_update'])
-    active_blocked_prs.sort(key=lambda x: x['last_update'])
+    recently_assigned.sort(key=lambda x: (x['last_update'], x['issue_md']))
+    active_blocked_prs.sort(key=lambda x: (x['last_update'], x['issue_md']))
 
     # --- Write HELP_ISSUES_TRIAGE.md ---
     open_issues_count = len([i for i in all_issue_nodes if i['state'] == 'OPEN'])
