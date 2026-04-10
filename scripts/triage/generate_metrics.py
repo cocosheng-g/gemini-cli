@@ -164,47 +164,48 @@ def main():
                     if d_label: active_contributors_by_day[d_label].add(pr_author)
                 if d_label: opened_by_day[d_label] += 1
                 
-                first_review_time = None
-                for rev in pr.get('reviews', {}).get('nodes', []):
-                    r_author = rev.get('author', {}).get('login') if rev.get('author') else None
-                    if r_author and r_author not in BOTS:
-                        r_time = parse_date(rev['createdAt'])
-                        if r_time >= thirty_days_ago:
-                            r_label = get_bin_label(r_time)
-                            if r_label:
-                                if r_author not in contributors: contributors[r_author] = {'opened': 0, 'merged': 0, 'closed': 0}
-                                active_contributors_by_day[r_label].add(r_author)
-                        if r_author != pr_author:
-                            if not first_review_time or r_time < first_review_time:
-                                first_review_time = r_time
-                
-                for c in pr.get('comments', {}).get('nodes', []):
-                    c_author = c.get('author', {}).get('login') if c.get('author') else None
-                    if c_author and c_author not in BOTS:
-                        c_time = parse_date(c['publishedAt'])
-                        if c_time >= thirty_days_ago:
-                            c_label = get_bin_label(c_time)
-                            if c_label:
-                                if c_author not in contributors: contributors[c_author] = {'opened': 0, 'merged': 0, 'closed': 0}
-                                active_contributors_by_day[c_label].add(c_author)
-                        if c_author != pr_author:
-                            if not first_review_time or c_time < first_review_time:
-                                first_review_time = c_time
-                
-                for commit_node in pr.get('commits', {}).get('nodes', []):
-                    commit_author = commit_node.get('commit', {}).get('author', {}).get('user', {}).get('login') if commit_node.get('commit', {}).get('author', {}).get('user') else None
-                    if commit_author and commit_author not in BOTS:
-                        commit_time = parse_date(commit_node['commit']['committedDate'])
-                        if commit_time >= thirty_days_ago:
-                            commit_label = get_bin_label(commit_time)
-                            if commit_label:
-                                if commit_author not in contributors: contributors[commit_author] = {'opened': 0, 'merged': 0, 'closed': 0}
-                                active_contributors_by_day[commit_label].add(commit_author)
-                            
-                if first_review_time:
-                    ttfr_val = (first_review_time - pr_created).total_seconds() / 3600.0
-                    ttfr_list.append(ttfr_val)
-                    if d_label: ttfr_by_day_lists[d_label].append(ttfr_val)
+            first_review_time = None
+            for rev in pr.get('reviews', {}).get('nodes', []):
+                r_author = rev.get('author', {}).get('login') if rev.get('author') else None
+                if r_author and r_author not in BOTS:
+                    r_time = parse_date(rev['createdAt'])
+                    if r_time >= thirty_days_ago:
+                        r_label = get_bin_label(r_time)
+                        if r_label:
+                            if r_author not in contributors: contributors[r_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+                            active_contributors_by_day[r_label].add(r_author)
+                    if r_author != pr_author:
+                        if not first_review_time or r_time < first_review_time:
+                            first_review_time = r_time
+            
+            for c in pr.get('comments', {}).get('nodes', []):
+                c_author = c.get('author', {}).get('login') if c.get('author') else None
+                if c_author and c_author not in BOTS:
+                    c_time = parse_date(c['publishedAt'])
+                    if c_time >= thirty_days_ago:
+                        c_label = get_bin_label(c_time)
+                        if c_label:
+                            if c_author not in contributors: contributors[c_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+                            active_contributors_by_day[c_label].add(c_author)
+                    if c_author != pr_author:
+                        if not first_review_time or c_time < first_review_time:
+                            first_review_time = c_time
+            
+            for commit_node in pr.get('commits', {}).get('nodes', []):
+                commit_author = commit_node.get('commit', {}).get('author', {}).get('user', {}).get('login') if commit_node.get('commit', {}).get('author', {}).get('user') else None
+                if commit_author and commit_author not in BOTS:
+                    commit_time = parse_date(commit_node['commit']['committedDate'])
+                    if commit_time >= thirty_days_ago:
+                        commit_label = get_bin_label(commit_time)
+                        if commit_label:
+                            if commit_author not in contributors: contributors[commit_author] = {'opened': 0, 'merged': 0, 'closed': 0}
+                            active_contributors_by_day[commit_label].add(commit_author)
+                        
+            if first_review_time and first_review_time >= thirty_days_ago:
+                ttfr_val = (first_review_time - pr_created).total_seconds() / 3600.0
+                ttfr_list.append(ttfr_val)
+                review_label = get_bin_label(first_review_time)
+                if review_label: ttfr_by_day_lists[review_label].append(ttfr_val)
                     
             if pr['state'] == 'MERGED' and pr['mergedAt']:
                 merged_at = parse_date(pr['mergedAt'])
@@ -292,7 +293,7 @@ def main():
     md += "Measures the speed and responsiveness of the maintainer team in processing community PRs.\n\n"
     
     md += "### Time to First Review (TTFR) Trend\n"
-    md += "> **Legend:** 📈 Line = Average Time to First Review (in hours) for PRs opened on that day\n\n"
+    md += "> **Legend:** 📈 Line = Average Time to First Review (in hours) for PRs reviewed on that day\n\n"
     md += "```mermaid\n"
     md += "---\nconfig:\n  xyChart:\n    showDataLabel: true\n---\n"
     md += "xychart-beta\n"
