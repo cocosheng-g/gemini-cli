@@ -99,8 +99,8 @@ def main():
         d = thirty_days_ago + datetime.timedelta(days=i)
         d_label = d.strftime('%m-%d')
         days_labels.append(d_label)
-        # To prevent x-axis overlapping, only show every 3rd label (e.g., index 0, 3, 6...)
-        display_labels.append(d_label if i % 3 == 0 else "")
+        # To prevent x-axis overlapping and Mermaid parsing errors, use unique spaces for hidden labels
+        display_labels.append(d_label if i % 3 == 0 else " " * (i + 1))
         
         opened_by_day[d_label] = 0
         merged_by_day[d_label] = 0
