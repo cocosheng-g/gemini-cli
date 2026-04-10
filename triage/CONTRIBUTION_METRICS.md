@@ -5,17 +5,37 @@
 ## 🚀 Velocity & Throughput
 Tracks the sheer volume of contribution activity over the past 30 days.
 
-### Daily Volume Activity
-> **Legend:** 📊 Bar = PRs Opened | 📈 Line 1 = PRs Merged | 📉 Line 2 = PRs Closed (Unmerged)
+### PRs Opened
+> **Legend:** 📊 Bar = Number of PRs opened
 
 ```mermaid
 xychart-beta
-    title "PRs Opened vs Merged vs Closed (Unmerged)"
-    x-axis ["03/11-03/13", "03/14-03/16", "03/17-03/19", "03/20-03/22", "03/23-03/25", "03/26-03/28", "03/29-03/31", "04/01-04/03", "04/04-04/06", "04/07-04/09"]
+    title "PRs Opened (Last 30 Days)"
+    x-axis ["Mar11-15", "Mar16-20", "Mar21-25", "Mar26-30", "Mar31-04", "Apr05-09"]
     y-axis "Count"
-    bar [23, 24, 12, 13, 8, 6, 5, 3, 3, 26]
-    line [12, 0, 5, 1, 5, 3, 1, 4, 0, 7]
-    line [9, 38, 4, 4, 11, 6, 6, 1, 4, 41]
+    bar [41, 25, 14, 10, 4, 29]
+```
+
+### PRs Merged
+> **Legend:** 📊 Bar = Number of PRs successfully merged
+
+```mermaid
+xychart-beta
+    title "PRs Merged (Last 30 Days)"
+    x-axis ["Mar11-15", "Mar16-20", "Mar21-25", "Mar26-30", "Mar31-04", "Apr05-09"]
+    y-axis "Count"
+    bar [12, 6, 5, 3, 5, 7]
+```
+
+### PRs Closed (Unmerged)
+> **Legend:** 📊 Bar = Number of PRs closed without merging (e.g., abandoned, stale)
+
+```mermaid
+xychart-beta
+    title "PRs Closed Without Merging (Last 30 Days)"
+    x-axis ["Mar11-15", "Mar16-20", "Mar21-25", "Mar26-30", "Mar31-04", "Apr05-09"]
+    y-axis "Count"
+    bar [46, 8, 12, 9, 5, 44]
 ```
 
 ### Daily New Issues
@@ -24,9 +44,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "New Help Wanted Issues"
-    x-axis ["03/11-03/13", "03/14-03/16", "03/17-03/19", "03/20-03/22", "03/23-03/25", "03/26-03/28", "03/29-03/31", "04/01-04/03", "04/04-04/06", "04/07-04/09"]
+    x-axis ["Mar11-15", "Mar16-20", "Mar21-25", "Mar26-30", "Mar31-04", "Apr05-09"]
     y-axis "Count"
-    bar [12, 18, 10, 1, 0, 0, 2, 0, 0, 2]
+    bar [25, 15, 1, 2, 0, 2]
 ```
 
 | Metric | Last 30 Days | Calculation |
@@ -46,9 +66,9 @@ Measures the speed and responsiveness of the maintainer team in processing commu
 ```mermaid
 xychart-beta
     title "Average TTFR per Day (Hours)"
-    x-axis ["03/11-03/13", "03/14-03/16", "03/17-03/19", "03/20-03/22", "03/23-03/25", "03/26-03/28", "03/29-03/31", "04/01-04/03", "04/04-04/06", "04/07-04/09"]
+    x-axis ["Mar11-15", "Mar16-20", "Mar21-25", "Mar26-30", "Mar31-04", "Apr05-09"]
     y-axis "Hours"
-    line [142.0, 290.5, 160.1, 244.7, 84.3, 38.7, 133.3, 67.2, 16.9, 7.1]
+    line [204.7, 211.8, 179.6, 61.5, 99.0, 9.2]
 ```
 
 ### Time to Merge (TTM) Trend
@@ -57,9 +77,9 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Average TTM per Day (Days)"
-    x-axis ["03/11-03/13", "03/14-03/16", "03/17-03/19", "03/20-03/22", "03/23-03/25", "03/26-03/28", "03/29-03/31", "04/01-04/03", "04/04-04/06", "04/07-04/09"]
+    x-axis ["Mar11-15", "Mar16-20", "Mar21-25", "Mar26-30", "Mar31-04", "Apr05-09"]
     y-axis "Days"
-    line [6.3, 0, 11.0, 1.7, 11.4, 11.5, 2.9, 20.8, 0, 29.5]
+    line [6.3, 9.5, 11.4, 11.5, 17.2, 29.5]
 ```
 
 | Metric | Average | Calculation |
@@ -69,17 +89,6 @@ xychart-beta
 
 ## ❤️ Community Health
 Indicates the general success and retention rate of contributors attempting to resolve issues.
-
-### Drop-off Trend
-> **Legend:** 📊 Bar = Number of PRs closed without merging (e.g. abandoned, stale)
-
-```mermaid
-xychart-beta
-    title "PRs Closed Without Merge (Drop-off)"
-    x-axis ["03/11-03/13", "03/14-03/16", "03/17-03/19", "03/20-03/22", "03/23-03/25", "03/26-03/28", "03/29-03/31", "04/01-04/03", "04/04-04/06", "04/07-04/09"]
-    y-axis "Count"
-    bar [9, 38, 4, 4, 11, 6, 6, 1, 4, 41]
-```
 
 | Metric | Rate | Calculation |
 | :--- | :--- | :--- |
