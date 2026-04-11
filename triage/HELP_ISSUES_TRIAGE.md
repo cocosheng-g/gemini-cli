@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-11 15:02 (UTC)*
+*Last Synchronized: 2026-04-11 15:56 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -86,7 +86,7 @@
 ## 🛠️ Active Development
 
 <details>
-<summary><b>⌛ Awaiting Reviewer Follow-up (4)</b> — <i>Reviewers, please follow up.</i></summary>
+<summary><b>⌛ Awaiting Reviewer Follow-up (3)</b> — <i>Reviewers, please follow up.</i></summary>
 
 **Criteria: Review in progress, author has responded to latest feedback.**
 
@@ -95,11 +95,10 @@
 | [#20948 Suggestion: Feature Request: Add "Last Edited Buffer" to command history to prevent data loss on accidental deletion.](https://github.com/google-gemini/gemini-cli/issues/20948) | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | @devr0306 | Author Updated | `2026-04-10` |
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | @cocosheng-g | Author Updated | `2026-04-11` |
 | [#24893 bug: fetchJson allows unbounded redirects due to post-increment operator](https://github.com/google-gemini/gemini-cli/issues/24893) | [#24896](https://github.com/google-gemini/gemini-cli/pull/24896) | @scidomino | Author Updated | `2026-04-11` |
-| [#24898 Gemini CLI crashes on an SQL INSERT (I think) in prompt](https://github.com/google-gemini/gemini-cli/issues/24898) | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | @scidomino | Author Updated | `2026-04-11` |
 </details>
 
 <details>
-<summary><b>✍️ Awaiting Author Action (6)</b> — <i>Waiting for contributor.</i></summary>
+<summary><b>✍️ Awaiting Author Action (7)</b> — <i>Waiting for contributor.</i></summary>
 
 **Criteria: Reviewer acted last, waiting for contributor to address comments.**
 
@@ -111,6 +110,7 @@
 | [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | _None (Team only)_ | `2026-04-09` |
 | [#22611 bug: Stale 'Thinking...' state persists after response completion](https://github.com/google-gemini/gemini-cli/issues/22611) | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | @cocosheng-g | `2026-04-10` |
 | [#24337 fix(cli): make slash-command IDE status subscription cleanup-safe](https://github.com/google-gemini/gemini-cli/issues/24337) | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | @scidomino | `2026-04-10` |
+| [#24898 Gemini CLI crashes on an SQL INSERT (I think) in prompt](https://github.com/google-gemini/gemini-cli/issues/24898) | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | @scidomino | `2026-04-11` |
 </details>
 
 <details>
@@ -254,9 +254,9 @@
 | [#21400 Add an update command](https://github.com/google-gemini/gemini-cli/issues/21400) | 1 |
 | [#21390 Support priority paygo on gemini-cli via vertex](https://github.com/google-gemini/gemini-cli/issues/21390) | 1 |
 | [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | 1 |
-| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 1 |
-| [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 1 |
-| [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | 1 |
+| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 2 |
+| [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 2 |
+| [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | 2 |
 | [#22691 Ability to specify the exact workspace directory without walking up file tree](https://github.com/google-gemini/gemini-cli/issues/22691) | 2 |
 | [#19868 "context.fileFiltering.customIgnoreFilePaths" setting breaks file completion when using @](https://github.com/google-gemini/gemini-cli/issues/19868) | 2 |
 | [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | 2 |

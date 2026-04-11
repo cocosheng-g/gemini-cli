@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-11 15:02 (UTC)*
+*Last Updated: 2026-04-11 15:56 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -173,8 +173,8 @@
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
-| [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | [#24898](https://github.com/google-gemini/gemini-cli/issues/24898) | fix: skip normalization for long strings to avoid ENAMETOOLONG crash | 🟢 Active | `2026-04-11` |
 | [#24896](https://github.com/google-gemini/gemini-cli/pull/24896) | [#24893](https://github.com/google-gemini/gemini-cli/issues/24893) | fix: correct redirect count increment in fetchJson | 🟢 Active | `2026-04-11` |
+| [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | [#24898](https://github.com/google-gemini/gemini-cli/issues/24898) | fix: skip normalization for long strings to avoid ENAMETOOLONG crash | Needs Author Update (Resolve Comments) | `2026-04-11` |
 | [#23347](https://github.com/google-gemini/gemini-cli/pull/23347) | [#16363](https://github.com/google-gemini/gemini-cli/issues/16363) | fix: use synchronous stderr write before exit to prevent silent failures | Needs Author Update (Resolve Comments) | `2026-04-11` |
 | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | [#24337](https://github.com/google-gemini/gemini-cli/issues/24337) | fix(cli): clean up slash command IDE listeners | Needs Author Update (Resolve Comments) | `2026-04-10` |
 | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | [#18067](https://github.com/google-gemini/gemini-cli/issues/18067) | feat: Add voice input with pluggable backend (Gemini zero-install + Whisper) | Needs gemini-cli-docs, Author Update (Merge Conflict) | `2026-04-04` |
