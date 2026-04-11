@@ -1,10 +1,10 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-11 18:43 (UTC)*
+*Last Synchronized: 2026-04-11 19:34 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
-**Total Issues Tracked: 179 open issues**
+**Total Issues Tracked: 180 open issues**
 
 ## 🚨 Needs Oncaller Attention
 
@@ -219,7 +219,7 @@
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | 0 |
 | [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | 0 |
 | [#2353 Option to choose shell (PowerShell) on Windows](https://github.com/google-gemini/gemini-cli/issues/2353) | 0 |
-| [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 0 |
+| [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 1 |
 | [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 1 |
 | [#21560 Detected terminal name: iTerm2 3.6.8 │ │ │ │ ℹ Loading extension: nanobanana │ │ ⚠ [STARTUP] Cannot start phase 'load_builtin_commands': phase is already active. Call end() before starting again. (x2) ▄│ │ ⚠ [STARTUP] Phase 'load_builtin_commands' was star](https://github.com/google-gemini/gemini-cli/issues/21560) | 1 |
 | [#18612 [VSCode Plugin] Unable to change root directory](https://github.com/google-gemini/gemini-cli/issues/18612) | 1 |
@@ -266,22 +266,22 @@
 | [#22541 Theme Dialog preview theme is not reverted when quitting via double Ctrl+C and Ctrl+D](https://github.com/google-gemini/gemini-cli/issues/22541) | 2 |
 | [#21505 docs(sdk): add JSDoc to exported interfaces in packages/sdk/src/types.ts](https://github.com/google-gemini/gemini-cli/issues/21505) | 2 |
 | [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | 2 |
-| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 2 |
-| [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 2 |
-| [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 2 |
-| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 2 |
+| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 3 |
+| [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 3 |
+| [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 3 |
+| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 3 |
 | [#21602 Request: Wrap long prompts in Tool Confirmation Screen instead of truncating](https://github.com/google-gemini/gemini-cli/issues/21602) | 3 |
 | [#21477 bug: TUI hangs indefinitely on "Initializing..." — IdeClient.getInstance() blocks BuiltinCommandLoader in bare terminal](https://github.com/google-gemini/gemini-cli/issues/21477) | 3 |
 | [#19249 feat: emit token usage metadata via ACP extNotification in zed-integration](https://github.com/google-gemini/gemini-cli/issues/19249) | 3 |
 | [#19835 Support for live streaming in custom discovered tools](https://github.com/google-gemini/gemini-cli/issues/19835) | 3 |
 | [#16341 Copy text button](https://github.com/google-gemini/gemini-cli/issues/16341) | 3 |
 | [#19602 Feature: Manually provide new session UUID via command line arg](https://github.com/google-gemini/gemini-cli/issues/19602) | 3 |
-| [#18990 Feature Request: The CLI input prompt does not support Tab-completion for file paths, which makes working with files inconvenient. Please consider adding this standard shell feature to improve usability.](https://github.com/google-gemini/gemini-cli/issues/18990) | 3 |
+| [#18990 Feature Request: The CLI input prompt does not support Tab-completion for file paths, which makes working with files inconvenient. Please consider adding this standard shell feature to improve usability.](https://github.com/google-gemini/gemini-cli/issues/18990) | 4 |
 | [#18385 Support Git Submodules in Extensions](https://github.com/google-gemini/gemini-cli/issues/18385) | 4 |
 </details>
 
 <details>
-<summary><b>⚠️ Unowned PRs (10)</b> — <i>Ownership mismatch.</i></summary>
+<summary><b>⚠️ Unowned PRs (11)</b> — <i>Ownership mismatch.</i></summary>
 
 **Criteria: PRs where author/assignee does not match the linked issue's assignee.**
 
@@ -297,6 +297,7 @@
 | [#22193 Gemini CLI doesn't maintain keyboard focus when VS Code extension closes a diff](https://github.com/google-gemini/gemini-cli/issues/22193) | [#23215](https://github.com/google-gemini/gemini-cli/pull/23215) | @iiitutu | @gjuggler | `2026-04-09` |
 | [#22934 test(acp): add missing coverage for extensions command error paths](https://github.com/google-gemini/gemini-cli/issues/22934) | [#23060](https://github.com/google-gemini/gemini-cli/pull/23060) | @Br1an67 | @sahilkirad | `2026-04-09` |
 | [#16220 chore: ESLint Suppression Audit](https://github.com/google-gemini/gemini-cli/issues/16220) | [#25086](https://github.com/google-gemini/gemini-cli/pull/25086) | @achaljhawar | @ChandanKT-git | `2026-04-10` |
+| [#24547 'U+FFFD' character in file broken by `replace` tool](https://github.com/google-gemini/gemini-cli/issues/24547) | [#24685](https://github.com/google-gemini/gemini-cli/pull/24685) | @knQzx | @nazmulidris | `2026-04-10` |
 </details>
 
 ---
