@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-11 09:40 (UTC)*
+*Last Updated: 2026-04-11 10:33 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -152,7 +152,7 @@
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
-| [#22067](https://github.com/google-gemini/gemini-cli/pull/22067) | [#19675](https://github.com/google-gemini/gemini-cli/issues/19675) | fix(cli): use tmux-safe thinking indicator | Needs Author Update (Resolve Comments) | `2026-04-05` |
+| [#22067](https://github.com/google-gemini/gemini-cli/pull/22067) | [#19675](https://github.com/google-gemini/gemini-cli/issues/19675) | fix(cli): use tmux-safe thinking indicator | 🟢 Active | `2026-04-11` |
 
 </details>
 

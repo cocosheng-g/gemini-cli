@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-11 09:40 (UTC)*
+*Last Synchronized: 2026-04-11 10:33 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -217,8 +217,8 @@
 | [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 0 |
 | [#2353 Option to choose shell (PowerShell) on Windows](https://github.com/google-gemini/gemini-cli/issues/2353) | 0 |
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 0 |
-| [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 0 |
-| [#21560 Detected terminal name: iTerm2 3.6.8 │ │ │ │ ℹ Loading extension: nanobanana │ │ ⚠ [STARTUP] Cannot start phase 'load_builtin_commands': phase is already active. Call end() before starting again. (x2) ▄│ │ ⚠ [STARTUP] Phase 'load_builtin_commands' was star](https://github.com/google-gemini/gemini-cli/issues/21560) | 0 |
+| [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 1 |
+| [#21560 Detected terminal name: iTerm2 3.6.8 │ │ │ │ ℹ Loading extension: nanobanana │ │ ⚠ [STARTUP] Cannot start phase 'load_builtin_commands': phase is already active. Call end() before starting again. (x2) ▄│ │ ⚠ [STARTUP] Phase 'load_builtin_commands' was star](https://github.com/google-gemini/gemini-cli/issues/21560) | 1 |
 | [#18612 [VSCode Plugin] Unable to change root directory](https://github.com/google-gemini/gemini-cli/issues/18612) | 1 |
 | [#18654 Enhanced Copy Workflow via External Editor Integration](https://github.com/google-gemini/gemini-cli/issues/18654) | 1 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 1 |
