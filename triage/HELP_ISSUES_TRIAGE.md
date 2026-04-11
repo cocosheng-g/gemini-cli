@@ -1,10 +1,10 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-10 23:03 (UTC)*
+*Last Synchronized: 2026-04-11 00:00 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
-**Total Issues Tracked: 177 open issues**
+**Total Issues Tracked: 178 open issues**
 
 ## 🚨 Needs Oncaller Attention
 
@@ -66,13 +66,13 @@
 </details>
 
 <details>
-<summary><b>🚩 Stale Assignments (0)</b> — <i>Auto-cleanup.</i></summary>
+<summary><b>🚩 Stale Assignments (1)</b> — <i>Auto-cleanup.</i></summary>
 
 **Criteria: Assigned issues with no open PR, idle for >14 days.**
 
 | Issue | Assignee | Days Stale |
 | :--- | :--- | :--- |
-| - | - | - |
+| [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | @GoBeromsu | 14 |
 </details>
 
 <details>
@@ -117,13 +117,12 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (66)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (65)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
 | Issue | Assignee | Last Update |
 | :--- | :--- | :--- |
-| [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | @GoBeromsu | `2026-03-27` |
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | @jonathanh1 | `2026-03-28` |
 | [#13973 feat: smarter redaction in filename presentation](https://github.com/google-gemini/gemini-cli/issues/13973) | @yujie0505 | `2026-03-28` |
 | [#15585 Avoid Ambiguous Width Characters](https://github.com/google-gemini/gemini-cli/issues/15585) | @jacob314 | `2026-03-30` |
@@ -210,12 +209,13 @@
 ## 🌱 Community & Backlog
 
 <details>
-<summary><b>🌱 Available for Pickup (63)</b> — <i>Open for contributors.</i></summary>
+<summary><b>🌱 Available for Pickup (64)</b> — <i>Open for contributors.</i></summary>
 
 **Criteria: Open issues with no assignee and no active PR.**
 
 | Issue | Days Idle |
 | :--- | :--- |
+| [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 0 |
 | [#2353 Option to choose shell (PowerShell) on Windows](https://github.com/google-gemini/gemini-cli/issues/2353) | 0 |
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 0 |
 | [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 0 |
@@ -225,7 +225,7 @@
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 0 |
 | [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 0 |
 | [#19985 CLI hangs/freezes when using `@filename:line` or `@filename:range` syntax](https://github.com/google-gemini/gemini-cli/issues/19985) | 0 |
-| [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | 0 |
+| [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | 1 |
 | [#19583 feat(policy): support granular skill activation permissions](https://github.com/google-gemini/gemini-cli/issues/19583) | 1 |
 | [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | 1 |
 | [#18388 Delete option for MCP](https://github.com/google-gemini/gemini-cli/issues/18388) | 1 |
