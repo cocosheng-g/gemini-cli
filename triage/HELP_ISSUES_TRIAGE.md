@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-11 17:31 (UTC)*
+*Last Synchronized: 2026-04-11 18:43 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -247,11 +247,11 @@
 | [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 1 |
 | [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 1 |
 | [#18593 Valid chat JSON missing from `/resume` list; forcing resume with `--resume` loads incorrect Session ID](https://github.com/google-gemini/gemini-cli/issues/18593) | 1 |
-| [#20480 Feature: evolve --resume to support resuming sessions from any folder via session ID](https://github.com/google-gemini/gemini-cli/issues/20480) | 1 |
-| [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | 1 |
-| [#21568 deleteSession() does not clean tool output directories (UUID / filename mismatch)](https://github.com/google-gemini/gemini-cli/issues/21568) | 1 |
-| [#21328 Add delete as an alias for /extensions uninstall](https://github.com/google-gemini/gemini-cli/issues/21328) | 1 |
-| [#21400 Add an update command](https://github.com/google-gemini/gemini-cli/issues/21400) | 1 |
+| [#20480 Feature: evolve --resume to support resuming sessions from any folder via session ID](https://github.com/google-gemini/gemini-cli/issues/20480) | 2 |
+| [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | 2 |
+| [#21568 deleteSession() does not clean tool output directories (UUID / filename mismatch)](https://github.com/google-gemini/gemini-cli/issues/21568) | 2 |
+| [#21328 Add delete as an alias for /extensions uninstall](https://github.com/google-gemini/gemini-cli/issues/21328) | 2 |
+| [#21400 Add an update command](https://github.com/google-gemini/gemini-cli/issues/21400) | 2 |
 | [#21390 Support priority paygo on gemini-cli via vertex](https://github.com/google-gemini/gemini-cli/issues/21390) | 2 |
 | [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | 2 |
 | [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 2 |
@@ -270,8 +270,8 @@
 | [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 2 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 2 |
 | [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 2 |
-| [#21602 Request: Wrap long prompts in Tool Confirmation Screen instead of truncating](https://github.com/google-gemini/gemini-cli/issues/21602) | 2 |
-| [#21477 bug: TUI hangs indefinitely on "Initializing..." — IdeClient.getInstance() blocks BuiltinCommandLoader in bare terminal](https://github.com/google-gemini/gemini-cli/issues/21477) | 2 |
+| [#21602 Request: Wrap long prompts in Tool Confirmation Screen instead of truncating](https://github.com/google-gemini/gemini-cli/issues/21602) | 3 |
+| [#21477 bug: TUI hangs indefinitely on "Initializing..." — IdeClient.getInstance() blocks BuiltinCommandLoader in bare terminal](https://github.com/google-gemini/gemini-cli/issues/21477) | 3 |
 | [#19249 feat: emit token usage metadata via ACP extNotification in zed-integration](https://github.com/google-gemini/gemini-cli/issues/19249) | 3 |
 | [#19835 Support for live streaming in custom discovered tools](https://github.com/google-gemini/gemini-cli/issues/19835) | 3 |
 | [#16341 Copy text button](https://github.com/google-gemini/gemini-cli/issues/16341) | 3 |
