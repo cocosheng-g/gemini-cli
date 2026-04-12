@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-12 13:07 (UTC)*
+*Last Synchronized: 2026-04-12 14:09 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -116,7 +116,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (64)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (65)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -184,6 +184,7 @@
 | [#19983 Bug Report: CLI Configuration & UX Inconsistency](https://github.com/google-gemini/gemini-cli/issues/19983) | @h30s | `2026-04-11` |
 | [#21366 When searchung in /resume and using search /: cannot select filtered result, since "enter" is put in search term and thereforce no mean of selecting desired resume point](https://github.com/google-gemini/gemini-cli/issues/21366) | @f-pieri | `2026-04-11` |
 | [#21686 Typing unmapped keys in Vim Normal mode inserts characters into input field](https://github.com/google-gemini/gemini-cli/issues/21686) | @Rajeshpatel07 | `2026-04-11` |
+| [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | @ayush-devcore | `2026-04-12` |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | @sanatan0511 | `2026-04-12` |
 | [#24729 The newly created file is not detected by the @ function.](https://github.com/google-gemini/gemini-cli/issues/24729) | @prassamin | `2026-04-12` |
 </details>
@@ -209,7 +210,7 @@
 ## 🌱 Community & Backlog
 
 <details>
-<summary><b>🌱 Available for Pickup (65)</b> — <i>Open for contributors.</i></summary>
+<summary><b>🌱 Available for Pickup (64)</b> — <i>Open for contributors.</i></summary>
 
 **Criteria: Open issues with no assignee and no active PR.**
 
@@ -246,7 +247,6 @@
 | [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | 2 |
 | [#20661 [Bug] run_shell_command returns garbled Chinese text for the Agent, while referenced files (@filename) work correctly](https://github.com/google-gemini/gemini-cli/issues/20661) | 2 |
 | [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | 2 |
-| [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | 2 |
 | [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 2 |
 | [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 2 |
 | [#18593 Valid chat JSON missing from `/resume` list; forcing resume with `--resume` loads incorrect Session ID](https://github.com/google-gemini/gemini-cli/issues/18593) | 2 |
