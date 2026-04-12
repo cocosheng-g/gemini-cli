@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-12 05:23 (UTC)*
+*Last Synchronized: 2026-04-12 06:53 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -49,9 +49,9 @@
 | [#20847 Feature request: --session-id flag to set session UUID at launch](https://github.com/google-gemini/gemini-cli/issues/20847) | [#24976](https://github.com/google-gemini/gemini-cli/pull/24976) | `gemini-cli-docs` | _None_ | 👀 Needs Maintainer Review |
 | [#21036 UX Improvement for /chat save.](https://github.com/google-gemini/gemini-cli/issues/21036) | [#21439](https://github.com/google-gemini/gemini-cli/pull/21439) | `gemini-cli-docs` | _None_ | 👀 Needs Maintainer Review |
 | [#21084 External editor support: unclear error messages, missing editors, incomplete documentation](https://github.com/google-gemini/gemini-cli/issues/21084) | [#21090](https://github.com/google-gemini/gemini-cli/pull/21090) | `gemini-cli-docs` | @jacob314 | 👀 Needs Maintainer Approval |
+| [#22928 [Feature Request] Option to hide '/skills' from the primary slash command menu](https://github.com/google-gemini/gemini-cli/issues/22928) | [#25178](https://github.com/google-gemini/gemini-cli/pull/25178) | `gemini-cli-docs` | _None_ | 👀 Needs Maintainer Review |
 | [#12345 Add AGENTS.md to the context filename list by default](https://github.com/google-gemini/gemini-cli/issues/12345) | [#24913](https://github.com/google-gemini/gemini-cli/pull/24913) | `gemini-cli-docs`, `gemini-cli-prompt-approvers` | _None_ | 👀 Needs Maintainer Review |
 | [#17235 Missing JSON schema key intermittently](https://github.com/google-gemini/gemini-cli/issues/17235) | [#21963](https://github.com/google-gemini/gemini-cli/pull/21963) | `gemini-cli-prompt-approvers` | _None_ | 👀 Needs Maintainer Review |
-| [#22928 [Feature Request] Option to hide '/skills' from the primary slash command menu](https://github.com/google-gemini/gemini-cli/issues/22928) | [#25178](https://github.com/google-gemini/gemini-cli/pull/25178) | `gemini-cli-docs` | _None_ | ✍️ Needs Author Update (Comments) |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | [#25150](https://github.com/google-gemini/gemini-cli/pull/25150) | `gemini-cli-docs` | _None_ | ✍️ Needs Author Update (Comments) |
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | `gemini-cli-prompt-approvers` | @cocosheng-g | ✍️ Needs Author Update (Comments) |
 | [#11462 Consider adding visual regression testing for terminal UI components](https://github.com/google-gemini/gemini-cli/issues/11462) | [#20695](https://github.com/google-gemini/gemini-cli/pull/20695) | `gemini-cli-askmode-approvers` | @hoteye | 🔴 Test Failure |
@@ -224,7 +224,7 @@
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 1 |
 | [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 1 |
 | [#21560 Detected terminal name: iTerm2 3.6.8 │ │ │ │ ℹ Loading extension: nanobanana │ │ ⚠ [STARTUP] Cannot start phase 'load_builtin_commands': phase is already active. Call end() before starting again. (x2) ▄│ │ ⚠ [STARTUP] Phase 'load_builtin_commands' was star](https://github.com/google-gemini/gemini-cli/issues/21560) | 1 |
-| [#18612 [VSCode Plugin] Unable to change root directory](https://github.com/google-gemini/gemini-cli/issues/18612) | 1 |
+| [#18612 [VSCode Plugin] Unable to change root directory](https://github.com/google-gemini/gemini-cli/issues/18612) | 2 |
 | [#18654 Enhanced Copy Workflow via External Editor Integration](https://github.com/google-gemini/gemini-cli/issues/18654) | 2 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 2 |
 | [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 2 |
