@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-12 19:39 (UTC)*
+*Last Synchronized: 2026-04-12 20:36 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -90,7 +90,7 @@
 ## 🛠️ Active Development
 
 <details>
-<summary><b>⌛ Awaiting Reviewer Follow-up (5)</b> — <i>Reviewers, please follow up.</i></summary>
+<summary><b>⌛ Awaiting Reviewer Follow-up (4)</b> — <i>Reviewers, please follow up.</i></summary>
 
 **Criteria: Review in progress, author has responded to latest feedback.**
 
@@ -100,7 +100,6 @@
 | [#15503 feat: github colorblind themes](https://github.com/google-gemini/gemini-cli/issues/15503) | [#15504](https://github.com/google-gemini/gemini-cli/pull/15504) | @cocosheng-g | Author Updated | `2026-04-11` |
 | [#24893 bug: fetchJson allows unbounded redirects due to post-increment operator](https://github.com/google-gemini/gemini-cli/issues/24893) | [#24896](https://github.com/google-gemini/gemini-cli/pull/24896) | @scidomino | Author Updated | `2026-04-11` |
 | [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | @cocosheng-g | Author Updated | `2026-04-12` |
-| [#24898 Gemini CLI crashes on an SQL INSERT (I think) in prompt](https://github.com/google-gemini/gemini-cli/issues/24898) | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | @scidomino | Author Updated | `2026-04-12` |
 </details>
 
 <details>
@@ -192,7 +191,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Blocked PRs (10)</b> — <i>Active work with blockers.</i></summary>
+<summary><b>🛠️ Active Development: Blocked PRs (11)</b> — <i>Active work with blockers.</i></summary>
 
 **Criteria: Active PRs with conflicts or failures updated within 14 days.**
 
@@ -208,6 +207,7 @@
 | [#20675 [Bug]: Interactive shell does not show properly on Windows 10 when using arrow keys in external subshell prompts (v0.31.0)](https://github.com/google-gemini/gemini-cli/issues/20675) | [#23505](https://github.com/google-gemini/gemini-cli/pull/23505) | @KumarADITHYA123 | Test Failure | `2026-04-10` |
 | [#21264 docs(core): Add missing JSDoc comments to core utility functions](https://github.com/google-gemini/gemini-cli/issues/21264) | [#21270](https://github.com/google-gemini/gemini-cli/pull/21270) | @poyrazK | Test Failure | `2026-04-10` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#25220](https://github.com/google-gemini/gemini-cli/pull/25220) | @AjayBora002 | Test Failure | `2026-04-12` |
+| [#24898 Gemini CLI crashes on an SQL INSERT (I think) in prompt](https://github.com/google-gemini/gemini-cli/issues/24898) | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | @renuka16032007 | Test Failure | `2026-04-12` |
 </details>
 
 ## 🌱 Community & Backlog
@@ -221,7 +221,7 @@
 | :--- | :--- |
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 0 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 0 |
-| [#24547 'U+FFFD' character in file broken by `replace` tool](https://github.com/google-gemini/gemini-cli/issues/24547) | 0 |
+| [#24547 'U+FFFD' character in file broken by `replace` tool](https://github.com/google-gemini/gemini-cli/issues/24547) | 1 |
 | [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 1 |
 | [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 1 |
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | 1 |
@@ -245,13 +245,13 @@
 | [#14940 Auto-completion keeps requesting gemini-2.5-flash-lite even when using gemini-3.0, causing infinite "usage limit reached" warnings](https://github.com/google-gemini/gemini-cli/issues/14940) | 2 |
 | [#15618 Vim mode should align with Bash vim mode, NOT Vim editor](https://github.com/google-gemini/gemini-cli/issues/15618) | 2 |
 | [#18165 Termux Bug](https://github.com/google-gemini/gemini-cli/issues/18165) | 2 |
-| [#21340 feat: Add configurable shell executable for run_shell_command on Windows](https://github.com/google-gemini/gemini-cli/issues/21340) | 2 |
-| [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | 2 |
-| [#20661 [Bug] run_shell_command returns garbled Chinese text for the Agent, while referenced files (@filename) work correctly](https://github.com/google-gemini/gemini-cli/issues/20661) | 2 |
-| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | 2 |
-| [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 2 |
-| [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 2 |
-| [#18593 Valid chat JSON missing from `/resume` list; forcing resume with `--resume` loads incorrect Session ID](https://github.com/google-gemini/gemini-cli/issues/18593) | 2 |
+| [#21340 feat: Add configurable shell executable for run_shell_command on Windows](https://github.com/google-gemini/gemini-cli/issues/21340) | 3 |
+| [#20730 gemini is not able to view files that exist, and I am not able to tag them (despite not being gitignored/geminiignored)](https://github.com/google-gemini/gemini-cli/issues/20730) | 3 |
+| [#20661 [Bug] run_shell_command returns garbled Chinese text for the Agent, while referenced files (@filename) work correctly](https://github.com/google-gemini/gemini-cli/issues/20661) | 3 |
+| [#18345 RFC: Standardize "Reload/Refresh" Command Naming Conventions](https://github.com/google-gemini/gemini-cli/issues/18345) | 3 |
+| [#16124 /restart command](https://github.com/google-gemini/gemini-cli/issues/16124) | 3 |
+| [#18087 [Safety Critical] Input Handling Flaws deny 'Emergency Stop' on Touch Interfaces (Inequitable Keybindings)](https://github.com/google-gemini/gemini-cli/issues/18087) | 3 |
+| [#18593 Valid chat JSON missing from `/resume` list; forcing resume with `--resume` loads incorrect Session ID](https://github.com/google-gemini/gemini-cli/issues/18593) | 3 |
 | [#20480 Feature: evolve --resume to support resuming sessions from any folder via session ID](https://github.com/google-gemini/gemini-cli/issues/20480) | 3 |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | 3 |
 | [#21568 deleteSession() does not clean tool output directories (UUID / filename mismatch)](https://github.com/google-gemini/gemini-cli/issues/21568) | 3 |
@@ -267,8 +267,8 @@
 | [#20838 CTRL-z removes unfinished open questions in AskUser tool](https://github.com/google-gemini/gemini-cli/issues/20838) | 3 |
 | [#22452 BUG: CI_* env var scrub not applied in dev mode (`npm run start`) — interactive mode hangs](https://github.com/google-gemini/gemini-cli/issues/22452) | 3 |
 | [#22079 extensions install fails to find gemini-extension.json from GitHub URL](https://github.com/google-gemini/gemini-cli/issues/22079) | 3 |
-| [#22541 Theme Dialog preview theme is not reverted when quitting via double Ctrl+C and Ctrl+D](https://github.com/google-gemini/gemini-cli/issues/22541) | 3 |
-| [#21505 docs(sdk): add JSDoc to exported interfaces in packages/sdk/src/types.ts](https://github.com/google-gemini/gemini-cli/issues/21505) | 3 |
+| [#22541 Theme Dialog preview theme is not reverted when quitting via double Ctrl+C and Ctrl+D](https://github.com/google-gemini/gemini-cli/issues/22541) | 4 |
+| [#21505 docs(sdk): add JSDoc to exported interfaces in packages/sdk/src/types.ts](https://github.com/google-gemini/gemini-cli/issues/21505) | 4 |
 | [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | 4 |
 | [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 4 |
 | [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 4 |
@@ -278,7 +278,7 @@
 | [#19249 feat: emit token usage metadata via ACP extNotification in zed-integration](https://github.com/google-gemini/gemini-cli/issues/19249) | 4 |
 | [#19835 Support for live streaming in custom discovered tools](https://github.com/google-gemini/gemini-cli/issues/19835) | 4 |
 | [#16341 Copy text button](https://github.com/google-gemini/gemini-cli/issues/16341) | 4 |
-| [#19602 Feature: Manually provide new session UUID via command line arg](https://github.com/google-gemini/gemini-cli/issues/19602) | 4 |
+| [#19602 Feature: Manually provide new session UUID via command line arg](https://github.com/google-gemini/gemini-cli/issues/19602) | 5 |
 | [#18990 Feature Request: The CLI input prompt does not support Tab-completion for file paths, which makes working with files inconvenient. Please consider adding this standard shell feature to improve usability.](https://github.com/google-gemini/gemini-cli/issues/18990) | 5 |
 | [#18385 Support Git Submodules in Extensions](https://github.com/google-gemini/gemini-cli/issues/18385) | 5 |
 </details>
