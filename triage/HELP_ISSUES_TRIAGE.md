@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-12 15:59 (UTC)*
+*Last Synchronized: 2026-04-12 16:52 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -169,7 +169,6 @@
 | [#12634 Feature: Extension-Contributed Configuration Settings](https://github.com/google-gemini/gemini-cli/issues/12634) | @singhaditya73 | `2026-04-10` |
 | [#12878 Optionalize node-pty with external backend to support static/musl Node](https://github.com/google-gemini/gemini-cli/issues/12878) | @kartikangiras | `2026-04-10` |
 | [#16391 Bug: Clickable URLs in inline Markdown include trailing punctuation especially Chinese punctuations, leading to broken navigation](https://github.com/google-gemini/gemini-cli/issues/16391) | @yuvrajangadsingh | `2026-04-10` |
-| [#16550 Command line recall doesn't remember in-flight edits if you accidentally scroll up too far](https://github.com/google-gemini/gemini-cli/issues/16550) | @abhishekblue | `2026-04-10` |
 | [#20968 Windows PowerShell Output Encoding Bug](https://github.com/google-gemini/gemini-cli/issues/20968) | @ishaanxgupta | `2026-04-10` |
 | [#22671 Numeric Keypad (NumLock) unresponsive in VS Code Integrated Terminal (Linux Fedora KDE Plasma)](https://github.com/google-gemini/gemini-cli/issues/22671) | @Gitanaskhan26 | `2026-04-10` |
 | [#22738 [Windows/WezTerm] Shift+Tab and fallback F10 fail to cycle approval mode (Keystroke logs included)](https://github.com/google-gemini/gemini-cli/issues/22738) | @Gitanaskhan26 | `2026-04-10` |
@@ -185,6 +184,7 @@
 | [#21366 When searchung in /resume and using search /: cannot select filtered result, since "enter" is put in search term and thereforce no mean of selecting desired resume point](https://github.com/google-gemini/gemini-cli/issues/21366) | @f-pieri | `2026-04-11` |
 | [#21686 Typing unmapped keys in Vim Normal mode inserts characters into input field](https://github.com/google-gemini/gemini-cli/issues/21686) | @Rajeshpatel07 | `2026-04-11` |
 | [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | @ayush-devcore | `2026-04-12` |
+| [#16550 Command line recall doesn't remember in-flight edits if you accidentally scroll up too far](https://github.com/google-gemini/gemini-cli/issues/16550) | @abhishekblue | `2026-04-12` |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | @sanatan0511 | `2026-04-12` |
 | [#24729 The newly created file is not detected by the @ function.](https://github.com/google-gemini/gemini-cli/issues/24729) | @prassamin | `2026-04-12` |
 </details>
