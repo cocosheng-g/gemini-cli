@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-11 23:33 (UTC)*
+*Last Synchronized: 2026-04-12 02:32 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -182,7 +182,7 @@
 | [#19983 Bug Report: CLI Configuration & UX Inconsistency](https://github.com/google-gemini/gemini-cli/issues/19983) | @h30s | `2026-04-11` |
 | [#21366 When searchung in /resume and using search /: cannot select filtered result, since "enter" is put in search term and thereforce no mean of selecting desired resume point](https://github.com/google-gemini/gemini-cli/issues/21366) | @f-pieri | `2026-04-11` |
 | [#21686 Typing unmapped keys in Vim Normal mode inserts characters into input field](https://github.com/google-gemini/gemini-cli/issues/21686) | @Rajeshpatel07 | `2026-04-11` |
-| [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | @sanatan0511 | `2026-04-11` |
+| [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | @sanatan0511 | `2026-04-12` |
 </details>
 
 <details>
@@ -219,7 +219,7 @@
 | [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 0 |
 | [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 0 |
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | 0 |
-| [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | 0 |
+| [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | 1 |
 | [#2353 Option to choose shell (PowerShell) on Windows](https://github.com/google-gemini/gemini-cli/issues/2353) | 1 |
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 1 |
 | [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 1 |
@@ -227,8 +227,8 @@
 | [#18612 [VSCode Plugin] Unable to change root directory](https://github.com/google-gemini/gemini-cli/issues/18612) | 1 |
 | [#18654 Enhanced Copy Workflow via External Editor Integration](https://github.com/google-gemini/gemini-cli/issues/18654) | 1 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 1 |
-| [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 1 |
-| [#19985 CLI hangs/freezes when using `@filename:line` or `@filename:range` syntax](https://github.com/google-gemini/gemini-cli/issues/19985) | 1 |
+| [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 2 |
+| [#19985 CLI hangs/freezes when using `@filename:line` or `@filename:range` syntax](https://github.com/google-gemini/gemini-cli/issues/19985) | 2 |
 | [#19583 feat(policy): support granular skill activation permissions](https://github.com/google-gemini/gemini-cli/issues/19583) | 2 |
 | [#18388 Delete option for MCP](https://github.com/google-gemini/gemini-cli/issues/18388) | 2 |
 | [#15430 CLI ignores GOOGLE_GEMINI_BASE_URL and forces Cloud Auth/Endpoints](https://github.com/google-gemini/gemini-cli/issues/15430) | 2 |
