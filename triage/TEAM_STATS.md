@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-12 20:36 (UTC)*
+*Last Updated: 2026-04-12 21:34 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -20,7 +20,7 @@
 | **Ruomeng Zhang** (@ruomengz) | **0** | 0 |
 | **Sri Pasumarthi** (@sripasg) | **0** | 0 |
 
-### 🆕 Awaiting Reviewer Pickup (19)
+### 🆕 Awaiting Reviewer Pickup (20)
 **These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
 | Issue | Linked PR | Last Update |
@@ -42,6 +42,7 @@
 | [#18727 Already selected allow for this session, but still prompted for each operation](https://github.com/google-gemini/gemini-cli/issues/18727) | [#25176](https://github.com/google-gemini/gemini-cli/pull/25176) | `2026-04-11` |
 | [#18152 the dark grey color used for past commands has very low contrast and is difficult to read.](https://github.com/google-gemini/gemini-cli/issues/18152) | [#25223](https://github.com/google-gemini/gemini-cli/pull/25223) | `2026-04-12` |
 | [#19758 ![high](https://www.gstatic.com/codereviewagent/high-priority.svg)](https://github.com/google-gemini/gemini-cli/issues/19758) | [#25222](https://github.com/google-gemini/gemini-cli/pull/25222) | `2026-04-12` |
+| [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | [#20668](https://github.com/google-gemini/gemini-cli/pull/20668) | `2026-04-12` |
 | [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-12` |
 | [#22351 Improve diagnostics and error handling for malformed streaming responses](https://github.com/google-gemini/gemini-cli/issues/22351) | [#22352](https://github.com/google-gemini/gemini-cli/pull/22352) | `2026-04-12` |
 
