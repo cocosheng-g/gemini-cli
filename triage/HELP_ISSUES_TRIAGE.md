@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-12 18:50 (UTC)*
+*Last Synchronized: 2026-04-12 19:39 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -163,7 +163,6 @@
 | [#21993 Dev tools: filtering and searching](https://github.com/google-gemini/gemini-cli/issues/21993) | @M-DEV-1 | `2026-04-09` |
 | [#22185 Copy + pasta](https://github.com/google-gemini/gemini-cli/issues/22185) | @manavmax | `2026-04-09` |
 | [#22421 fix(cli): /chat subcommand usage strings incorrectly reference /resume](https://github.com/google-gemini/gemini-cli/issues/22421) | @skainguyen1412 | `2026-04-09` |
-| [#22784 Bug Description: The grep_search tool fails with a spawn EFTYPE error on Windows (win32). It appears the underlying ripgrep binary is either incompatible with the current OS/architecture or corrupted.](https://github.com/google-gemini/gemini-cli/issues/22784) | @manas-raj999 | `2026-04-09` |
 | [#22932 `/extensions update ...` needs meaningful version info.](https://github.com/google-gemini/gemini-cli/issues/22932) | @Br1an67 | `2026-04-09` |
 | [#24211 Hardcoded padding in terminal title causes trailing spaces in tmux pane_title](https://github.com/google-gemini/gemini-cli/issues/24211) | @tusaryan | `2026-04-09` |
 | [#7989 Provide an official way to add comments in GEMINI.md](https://github.com/google-gemini/gemini-cli/issues/7989) | @JagjeevanAK | `2026-04-09` |
@@ -188,6 +187,7 @@
 | [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | @ayush-devcore | `2026-04-12` |
 | [#16550 Command line recall doesn't remember in-flight edits if you accidentally scroll up too far](https://github.com/google-gemini/gemini-cli/issues/16550) | @abhishekblue | `2026-04-12` |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | @sanatan0511 | `2026-04-12` |
+| [#22784 Bug Description: The grep_search tool fails with a spawn EFTYPE error on Windows (win32). It appears the underlying ripgrep binary is either incompatible with the current OS/architecture or corrupted.](https://github.com/google-gemini/gemini-cli/issues/22784) | @manas-raj999 | `2026-04-12` |
 | [#24729 The newly created file is not detected by the @ function.](https://github.com/google-gemini/gemini-cli/issues/24729) | @prassamin | `2026-04-12` |
 </details>
 
@@ -269,17 +269,17 @@
 | [#22079 extensions install fails to find gemini-extension.json from GitHub URL](https://github.com/google-gemini/gemini-cli/issues/22079) | 3 |
 | [#22541 Theme Dialog preview theme is not reverted when quitting via double Ctrl+C and Ctrl+D](https://github.com/google-gemini/gemini-cli/issues/22541) | 3 |
 | [#21505 docs(sdk): add JSDoc to exported interfaces in packages/sdk/src/types.ts](https://github.com/google-gemini/gemini-cli/issues/21505) | 3 |
-| [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | 3 |
-| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 3 |
-| [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 3 |
-| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 3 |
+| [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | 4 |
+| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 4 |
+| [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 4 |
+| [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 4 |
 | [#21602 Request: Wrap long prompts in Tool Confirmation Screen instead of truncating](https://github.com/google-gemini/gemini-cli/issues/21602) | 4 |
 | [#21477 bug: TUI hangs indefinitely on "Initializing..." — IdeClient.getInstance() blocks BuiltinCommandLoader in bare terminal](https://github.com/google-gemini/gemini-cli/issues/21477) | 4 |
 | [#19249 feat: emit token usage metadata via ACP extNotification in zed-integration](https://github.com/google-gemini/gemini-cli/issues/19249) | 4 |
 | [#19835 Support for live streaming in custom discovered tools](https://github.com/google-gemini/gemini-cli/issues/19835) | 4 |
 | [#16341 Copy text button](https://github.com/google-gemini/gemini-cli/issues/16341) | 4 |
 | [#19602 Feature: Manually provide new session UUID via command line arg](https://github.com/google-gemini/gemini-cli/issues/19602) | 4 |
-| [#18990 Feature Request: The CLI input prompt does not support Tab-completion for file paths, which makes working with files inconvenient. Please consider adding this standard shell feature to improve usability.](https://github.com/google-gemini/gemini-cli/issues/18990) | 4 |
+| [#18990 Feature Request: The CLI input prompt does not support Tab-completion for file paths, which makes working with files inconvenient. Please consider adding this standard shell feature to improve usability.](https://github.com/google-gemini/gemini-cli/issues/18990) | 5 |
 | [#18385 Support Git Submodules in Extensions](https://github.com/google-gemini/gemini-cli/issues/18385) | 5 |
 </details>
 
