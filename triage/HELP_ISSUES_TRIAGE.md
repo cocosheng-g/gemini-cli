@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-13 21:50 (UTC)*
+*Last Synchronized: 2026-04-13 22:43 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -75,13 +75,13 @@
 </details>
 
 <details>
-<summary><b>🚩 Stale Assignments (1)</b> — <i>Auto-cleanup.</i></summary>
+<summary><b>🚩 Stale Assignments (0)</b> — <i>Auto-cleanup.</i></summary>
 
 **Criteria: Assigned issues with no open PR, idle for >14 days.**
 
 | Issue | Assignee | Days Stale |
 | :--- | :--- | :--- |
-| [#18390 Add vim mode cursor shape indicator and setting](https://github.com/google-gemini/gemini-cli/issues/18390) | @PyaaZz | 14 |
+| - | - | - |
 </details>
 
 <details>
@@ -124,7 +124,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (67)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (68)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -195,6 +195,7 @@
 | [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | @M-DEV-1 | `2026-04-12` |
 | [#22784 Bug Description: The grep_search tool fails with a spawn EFTYPE error on Windows (win32). It appears the underlying ripgrep binary is either incompatible with the current OS/architecture or corrupted.](https://github.com/google-gemini/gemini-cli/issues/22784) | @manas-raj999 | `2026-04-12` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | @AjayBora002 | `2026-04-12` |
+| [#18390 Add vim mode cursor shape indicator and setting](https://github.com/google-gemini/gemini-cli/issues/18390) | @chrisjcthomas | `2026-04-13` |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | @Anjaligarhwal | `2026-04-13` |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | @sanatan0511 | `2026-04-13` |
 </details>
@@ -274,9 +275,9 @@
 | [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 4 |
 | [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 4 |
 | [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | 4 |
-| [#19868 "context.fileFiltering.customIgnoreFilePaths" setting breaks file completion when using @](https://github.com/google-gemini/gemini-cli/issues/19868) | 4 |
-| [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | 4 |
-| [#20838 CTRL-z removes unfinished open questions in AskUser tool](https://github.com/google-gemini/gemini-cli/issues/20838) | 4 |
+| [#19868 "context.fileFiltering.customIgnoreFilePaths" setting breaks file completion when using @](https://github.com/google-gemini/gemini-cli/issues/19868) | 5 |
+| [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | 5 |
+| [#20838 CTRL-z removes unfinished open questions in AskUser tool](https://github.com/google-gemini/gemini-cli/issues/20838) | 5 |
 | [#22452 BUG: CI_* env var scrub not applied in dev mode (`npm run start`) — interactive mode hangs](https://github.com/google-gemini/gemini-cli/issues/22452) | 5 |
 | [#22079 extensions install fails to find gemini-extension.json from GitHub URL](https://github.com/google-gemini/gemini-cli/issues/22079) | 5 |
 | [#22541 Theme Dialog preview theme is not reverted when quitting via double Ctrl+C and Ctrl+D](https://github.com/google-gemini/gemini-cli/issues/22541) | 5 |
