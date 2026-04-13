@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-13** to Today*
-*Last Updated: 2026-04-13 18:01 (UTC)*
+*Last Updated: 2026-04-13 19:48 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -9,7 +9,7 @@
 ## 📈 Weekly Summary
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
 | :--- | :--- | :--- |
-| **Tommaso Sciortino** (@scidomino) | **0** | 7 |
+| **Tommaso Sciortino** (@scidomino) | **1** | 6 |
 | **Coco Sheng** (@cocosheng-g) | **0** | 5 |
 | **A.K.M. Adib** (@Adib234) | **0** | 3 |
 | **Dev Randalpura** (@devr0306) | **0** | 2 |
@@ -20,7 +20,7 @@
 | **Ruomeng Zhang** (@ruomengz) | **0** | 0 |
 | **Sri Pasumarthi** (@sripasg) | **0** | 0 |
 
-### 🆕 Awaiting Reviewer Pickup (25)
+### 🆕 Awaiting Reviewer Pickup (26)
 **These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
 | Issue | Linked PR | Last Update |
@@ -48,6 +48,7 @@
 | [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | [#20668](https://github.com/google-gemini/gemini-cli/pull/20668) | `2026-04-12` |
 | [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-12` |
 | [#22351 Improve diagnostics and error handling for malformed streaming responses](https://github.com/google-gemini/gemini-cli/issues/22351) | [#22352](https://github.com/google-gemini/gemini-cli/pull/22352) | `2026-04-12` |
+| [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | [#25324](https://github.com/google-gemini/gemini-cli/pull/25324) | `2026-04-13` |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | [#25273](https://github.com/google-gemini/gemini-cli/pull/25273) | `2026-04-13` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#25220](https://github.com/google-gemini/gemini-cli/pull/25220) | `2026-04-13` |
 
@@ -156,18 +157,22 @@
 </details>
 
 <details>
-<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (7)</summary>
+<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (6) | 🔴 Recently Closed (1)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
+| [#24896](https://github.com/google-gemini/gemini-cli/pull/24896) | [#24893](https://github.com/google-gemini/gemini-cli/issues/24893) | fix: correct redirect count increment in fetchJson | 🟢 Active | `2026-04-13` |
 | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | [#18067](https://github.com/google-gemini/gemini-cli/issues/18067) | feat: Add voice input with pluggable backend (Gemini zero-install + Whisper) | Needs gemini-cli-docs | `2026-04-12` |
 | [#25256](https://github.com/google-gemini/gemini-cli/pull/25256) | [#24729](https://github.com/google-gemini/gemini-cli/issues/24729) | feat: detect new files in @ recommendations with watcher based updates | Needs Author Update (Resolve Comments) | `2026-04-13` |
 | [#23347](https://github.com/google-gemini/gemini-cli/pull/23347) | [#16363](https://github.com/google-gemini/gemini-cli/issues/16363) | fix: use synchronous stderr write before exit to prevent silent failures | Needs Author Update (Resolve Comments) | `2026-04-11` |
-| [#25297](https://github.com/google-gemini/gemini-cli/pull/25297) | [#24547](https://github.com/google-gemini/gemini-cli/issues/24547) | fix(core): replace custom binary detection with isbinaryfile to correctly handle UTF-8 (U+FFFD) | Needs Author Update (Test Failure) | `2026-04-13` |
-| [#24896](https://github.com/google-gemini/gemini-cli/pull/24896) | [#24893](https://github.com/google-gemini/gemini-cli/issues/24893) | fix: correct redirect count increment in fetchJson | Needs Author Update (Test Failure) | `2026-04-13` |
 | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | [#24898](https://github.com/google-gemini/gemini-cli/issues/24898) | fix: skip normalization for long strings to avoid ENAMETOOLONG crash | Needs Author Update (Test Failure) | `2026-04-13` |
 | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | [#24337](https://github.com/google-gemini/gemini-cli/issues/24337) | fix(cli): clean up slash command IDE listeners | Needs Author Update (Test Failure) | `2026-04-13` |
+
+#### 🔴 Recently Closed (Since Monday)
+| PR | Issue | Title | Status | Closed Date |
+| :--- | :--- | :--- | :--- | :--- |
+| [#25297](https://github.com/google-gemini/gemini-cli/pull/25297) | [#24547](https://github.com/google-gemini/gemini-cli/issues/24547) | fix(core): replace custom binary detection with isbinaryfile to correctly handle UTF-8 (U+FFFD) | `MERGED` | `2026-04-13` |
 
 </details>
 
