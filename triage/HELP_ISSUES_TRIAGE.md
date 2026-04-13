@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-13 11:50 (UTC)*
+*Last Synchronized: 2026-04-13 13:25 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -9,7 +9,7 @@
 ## 🚨 Needs Oncaller Attention
 
 <details>
-<summary><b>🆕 Awaiting Reviewer Pickup (20)</b> — <i>Help contributors get their code merged!</i></summary>
+<summary><b>🆕 Awaiting Reviewer Pickup (21)</b> — <i>Help contributors get their code merged!</i></summary>
 
 **These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
@@ -35,6 +35,7 @@
 | [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | [#20668](https://github.com/google-gemini/gemini-cli/pull/20668) | `2026-04-12` |
 | [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-12` |
 | [#22351 Improve diagnostics and error handling for malformed streaming responses](https://github.com/google-gemini/gemini-cli/issues/22351) | [#22352](https://github.com/google-gemini/gemini-cli/pull/22352) | `2026-04-12` |
+| [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | [#25273](https://github.com/google-gemini/gemini-cli/pull/25273) | `2026-04-13` |
 </details>
 
 <details>
@@ -92,7 +93,7 @@
 ## 🛠️ Active Development
 
 <details>
-<summary><b>⌛ Awaiting Reviewer Follow-up (4)</b> — <i>Reviewers, please follow up.</i></summary>
+<summary><b>⌛ Awaiting Reviewer Follow-up (5)</b> — <i>Reviewers, please follow up.</i></summary>
 
 **Criteria: Review in progress, author has responded to latest feedback.**
 
@@ -101,11 +102,12 @@
 | [#20948 Suggestion: Feature Request: Add "Last Edited Buffer" to command history to prevent data loss on accidental deletion.](https://github.com/google-gemini/gemini-cli/issues/20948) | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | @devr0306 | Author Updated | `2026-04-10` |
 | [#15503 feat: github colorblind themes](https://github.com/google-gemini/gemini-cli/issues/15503) | [#15504](https://github.com/google-gemini/gemini-cli/pull/15504) | @cocosheng-g | Author Updated | `2026-04-11` |
 | [#24893 bug: fetchJson allows unbounded redirects due to post-increment operator](https://github.com/google-gemini/gemini-cli/issues/24893) | [#24896](https://github.com/google-gemini/gemini-cli/pull/24896) | @scidomino | Author Updated | `2026-04-11` |
-| [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | @cocosheng-g | Author Updated | `2026-04-12` |
+| [#18023 Auto update with pnpm installation doesn't work well](https://github.com/google-gemini/gemini-cli/issues/18023) | [#22748](https://github.com/google-gemini/gemini-cli/pull/22748) | @cocosheng-g | Author Updated | `2026-04-13` |
+| [#24337 fix(cli): make slash-command IDE status subscription cleanup-safe](https://github.com/google-gemini/gemini-cli/issues/24337) | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | @scidomino | Author Updated | `2026-04-13` |
 </details>
 
 <details>
-<summary><b>✍️ Awaiting Author Action (6)</b> — <i>Waiting for contributor.</i></summary>
+<summary><b>✍️ Awaiting Author Action (5)</b> — <i>Waiting for contributor.</i></summary>
 
 **Criteria: Reviewer acted last, waiting for contributor to address comments.**
 
@@ -116,7 +118,6 @@
 | [#22612 bug: Bun runtime fails to keep child processes alive due to 'detached: true'](https://github.com/google-gemini/gemini-cli/issues/22612) | [#22620](https://github.com/google-gemini/gemini-cli/pull/22620) | _None (Team only)_ | `2026-04-09` |
 | [#22321 Feature Request: Add 'list' subcommand to '/commands' to show loaded command files](https://github.com/google-gemini/gemini-cli/issues/22321) | [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | @cocosheng-g, @jkcinouye, @marsam2489-lang | `2026-04-12` |
 | [#22611 bug: Stale 'Thinking...' state persists after response completion](https://github.com/google-gemini/gemini-cli/issues/22611) | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | @cocosheng-g | `2026-04-12` |
-| [#24337 fix(cli): make slash-command IDE status subscription cleanup-safe](https://github.com/google-gemini/gemini-cli/issues/24337) | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | @scidomino | `2026-04-12` |
 </details>
 
 <details>
@@ -225,7 +226,7 @@
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 0 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 1 |
 | [#24547 'U+FFFD' character in file broken by `replace` tool](https://github.com/google-gemini/gemini-cli/issues/24547) | 1 |
-| [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 1 |
+| [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 2 |
 | [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 2 |
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | 2 |
 | [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | 2 |
