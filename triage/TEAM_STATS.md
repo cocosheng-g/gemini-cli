@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-13** to Today*
-*Last Updated: 2026-04-13 02:37 (UTC)*
+*Last Updated: 2026-04-13 05:42 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -115,7 +115,7 @@
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
-| [#23215](https://github.com/google-gemini/gemini-cli/pull/23215) | [#22193](https://github.com/google-gemini/gemini-cli/issues/22193) | fix(vscode-ide-companion): restore terminal focus after closing diff tabs | Needs Author Update (Resolve Comments) | `2026-04-13` |
+| [#23215](https://github.com/google-gemini/gemini-cli/pull/23215) | [#22193](https://github.com/google-gemini/gemini-cli/issues/22193) | fix(vscode-ide-companion): restore terminal focus after closing diff tabs | 🟢 Active | `2026-04-13` |
 
 </details>
 
