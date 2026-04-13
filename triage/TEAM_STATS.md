@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-13** to Today*
-*Last Updated: 2026-04-13 15:02 (UTC)*
+*Last Updated: 2026-04-13 16:43 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -9,9 +9,9 @@
 ## 📈 Weekly Summary
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
 | :--- | :--- | :--- |
+| **Tommaso Sciortino** (@scidomino) | **0** | 6 |
 | **Coco Sheng** (@cocosheng-g) | **0** | 5 |
-| **Tommaso Sciortino** (@scidomino) | **0** | 5 |
-| **A.K.M. Adib** (@Adib234) | **0** | 2 |
+| **A.K.M. Adib** (@Adib234) | **0** | 3 |
 | **Dev Randalpura** (@devr0306) | **0** | 2 |
 | **Keith Schaab** (@kschaab) | **0** | 1 |
 | **Spencer Tang** (@spencer426) | **0** | 1 |
@@ -56,11 +56,12 @@
 > 3. **Monitor 🔴 Blocked PRs**: The triage script will automatically warn the author and eventually close stale/blocked PRs, but you can also provide guidance.
 
 <details>
-<summary><b>A.K.M. Adib (@Adib234)</b> — 🟢 Active Queue (2)</summary>
+<summary><b>A.K.M. Adib (@Adib234)</b> — 🟢 Active Queue (3)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
+| [#25282](https://github.com/google-gemini/gemini-cli/pull/25282) | [#25210](https://github.com/google-gemini/gemini-cli/issues/25210) | fix(core): detect kmscon terminal as supporting true color | 🟢 Active | `2026-04-13` |
 | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | [#19717](https://github.com/google-gemini/gemini-cli/issues/19717) | fix(vscode): resolve unsafe assignment lint errors | Needs gemini-cli-askmode-approvers, gemini-cli-prompt-approvers | `2026-04-05` |
 | [#23747](https://github.com/google-gemini/gemini-cli/pull/23747) | [#23441](https://github.com/google-gemini/gemini-cli/issues/23441) | fix: add guidance when no skills available (#23441) | Needs Author Update (Test Failure) | `2026-03-25` |
 
@@ -152,7 +153,7 @@
 </details>
 
 <details>
-<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (5)</summary>
+<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (6)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
@@ -160,6 +161,7 @@
 | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | [#24337](https://github.com/google-gemini/gemini-cli/issues/24337) | fix(cli): clean up slash command IDE listeners | 🟢 Active | `2026-04-13` |
 | [#24896](https://github.com/google-gemini/gemini-cli/pull/24896) | [#24893](https://github.com/google-gemini/gemini-cli/issues/24893) | fix: correct redirect count increment in fetchJson | 🟢 Active | `2026-04-11` |
 | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | [#18067](https://github.com/google-gemini/gemini-cli/issues/18067) | feat: Add voice input with pluggable backend (Gemini zero-install + Whisper) | Needs gemini-cli-docs | `2026-04-12` |
+| [#25297](https://github.com/google-gemini/gemini-cli/pull/25297) | [#24547](https://github.com/google-gemini/gemini-cli/issues/24547) | fix(core): replace custom binary detection with isbinaryfile to correctly handle UTF-8 (U+FFFD) | Needs Author Update (Resolve Comments) | `2026-04-13` |
 | [#23347](https://github.com/google-gemini/gemini-cli/pull/23347) | [#16363](https://github.com/google-gemini/gemini-cli/issues/16363) | fix: use synchronous stderr write before exit to prevent silent failures | Needs Author Update (Resolve Comments) | `2026-04-11` |
 | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | [#24898](https://github.com/google-gemini/gemini-cli/issues/24898) | fix: skip normalization for long strings to avoid ENAMETOOLONG crash | Needs Author Update (Test Failure) | `2026-04-13` |
 

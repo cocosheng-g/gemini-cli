@@ -1,10 +1,10 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-13 15:02 (UTC)*
+*Last Synchronized: 2026-04-13 16:43 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
-**Total Issues Tracked: 180 open issues**
+**Total Issues Tracked: 181 open issues**
 
 ## 🚨 Needs Oncaller Attention
 
@@ -72,13 +72,13 @@
 </details>
 
 <details>
-<summary><b>🚩 Stale Assignments (1)</b> — <i>Auto-cleanup.</i></summary>
+<summary><b>🚩 Stale Assignments (0)</b> — <i>Auto-cleanup.</i></summary>
 
 **Criteria: Assigned issues with no open PR, idle for >14 days.**
 
 | Issue | Assignee | Days Stale |
 | :--- | :--- | :--- |
-| [#15585 Avoid Ambiguous Width Characters](https://github.com/google-gemini/gemini-cli/issues/15585) | @jacob314 | 14 |
+| - | - | - |
 </details>
 
 <details>
@@ -216,16 +216,18 @@
 ## 🌱 Community & Backlog
 
 <details>
-<summary><b>🌱 Available for Pickup (61)</b> — <i>Open for contributors.</i></summary>
+<summary><b>🌱 Available for Pickup (63)</b> — <i>Open for contributors.</i></summary>
 
 **Criteria: Open issues with no assignee and no active PR.**
 
 | Issue | Days Idle |
 | :--- | :--- |
+| [#25210 kmscon: true colour support is not detected](https://github.com/google-gemini/gemini-cli/issues/25210) | 0 |
+| [#24547 'U+FFFD' character in file broken by `replace` tool](https://github.com/google-gemini/gemini-cli/issues/24547) | 0 |
+| [#15585 Avoid Ambiguous Width Characters](https://github.com/google-gemini/gemini-cli/issues/15585) | 0 |
 | [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 0 |
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 0 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 1 |
-| [#24547 'U+FFFD' character in file broken by `replace` tool](https://github.com/google-gemini/gemini-cli/issues/24547) | 1 |
 | [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 2 |
 | [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 2 |
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | 2 |
@@ -262,9 +264,9 @@
 | [#21400 Add an update command](https://github.com/google-gemini/gemini-cli/issues/21400) | 3 |
 | [#21390 Support priority paygo on gemini-cli via vertex](https://github.com/google-gemini/gemini-cli/issues/21390) | 3 |
 | [#18871 [Feat] Add a command to delete current session upon exit](https://github.com/google-gemini/gemini-cli/issues/18871) | 3 |
-| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 3 |
-| [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 3 |
-| [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | 3 |
+| [#20227 feat(cli): Add ability to cycle through models and mark favorites](https://github.com/google-gemini/gemini-cli/issues/20227) | 4 |
+| [#18884 Error updating google workspace extension](https://github.com/google-gemini/gemini-cli/issues/18884) | 4 |
+| [#18914 [Android/Termux] Fix duplicate UI and repeated auth prompts caused by relauncher loop and resize remounting](https://github.com/google-gemini/gemini-cli/issues/18914) | 4 |
 | [#19868 "context.fileFiltering.customIgnoreFilePaths" setting breaks file completion when using @](https://github.com/google-gemini/gemini-cli/issues/19868) | 4 |
 | [#18487 A2A Server should support multiple workspace directories](https://github.com/google-gemini/gemini-cli/issues/18487) | 4 |
 | [#20838 CTRL-z removes unfinished open questions in AskUser tool](https://github.com/google-gemini/gemini-cli/issues/20838) | 4 |
