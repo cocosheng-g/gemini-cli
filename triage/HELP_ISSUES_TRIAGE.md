@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-13 10:13 (UTC)*
+*Last Synchronized: 2026-04-13 11:50 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -209,7 +209,7 @@
 | [#20675 [Bug]: Interactive shell does not show properly on Windows 10 when using arrow keys in external subshell prompts (v0.31.0)](https://github.com/google-gemini/gemini-cli/issues/20675) | [#23505](https://github.com/google-gemini/gemini-cli/pull/23505) | @KumarADITHYA123 | Test Failure | `2026-04-10` |
 | [#21264 docs(core): Add missing JSDoc comments to core utility functions](https://github.com/google-gemini/gemini-cli/issues/21264) | [#21270](https://github.com/google-gemini/gemini-cli/pull/21270) | @poyrazK | Test Failure | `2026-04-10` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#25220](https://github.com/google-gemini/gemini-cli/pull/25220) | @AjayBora002 | Test Failure | `2026-04-12` |
-| [#24898 Gemini CLI crashes on an SQL INSERT (I think) in prompt](https://github.com/google-gemini/gemini-cli/issues/24898) | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | @renuka16032007 | Test Failure | `2026-04-12` |
+| [#24898 Gemini CLI crashes on an SQL INSERT (I think) in prompt](https://github.com/google-gemini/gemini-cli/issues/24898) | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | @renuka16032007 | Test Failure | `2026-04-13` |
 </details>
 
 ## 🌱 Community & Backlog
@@ -221,11 +221,12 @@
 
 | Issue | Days Idle |
 | :--- | :--- |
+| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 0 |
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 0 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 1 |
 | [#24547 'U+FFFD' character in file broken by `replace` tool](https://github.com/google-gemini/gemini-cli/issues/24547) | 1 |
 | [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 1 |
-| [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 1 |
+| [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 2 |
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | 2 |
 | [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | 2 |
 | [#2353 Option to choose shell (PowerShell) on Windows](https://github.com/google-gemini/gemini-cli/issues/2353) | 2 |
@@ -271,7 +272,6 @@
 | [#22541 Theme Dialog preview theme is not reverted when quitting via double Ctrl+C and Ctrl+D](https://github.com/google-gemini/gemini-cli/issues/22541) | 4 |
 | [#21505 docs(sdk): add JSDoc to exported interfaces in packages/sdk/src/types.ts](https://github.com/google-gemini/gemini-cli/issues/21505) | 4 |
 | [#22130 [UI] Refactor Hardcoded Layout Constants in ThemeDialog](https://github.com/google-gemini/gemini-cli/issues/22130) | 4 |
-| [#22029 Pasting something and throwing me error](https://github.com/google-gemini/gemini-cli/issues/22029) | 4 |
 | [#22309 Home Dir Warning - Even when in subfolder of home dir?](https://github.com/google-gemini/gemini-cli/issues/22309) | 4 |
 | [#22001 Terminal Instance Resource Retention in ShellExecutionService](https://github.com/google-gemini/gemini-cli/issues/22001) | 4 |
 | [#21602 Request: Wrap long prompts in Tool Confirmation Screen instead of truncating](https://github.com/google-gemini/gemini-cli/issues/21602) | 4 |
