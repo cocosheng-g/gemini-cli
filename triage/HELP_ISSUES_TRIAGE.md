@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-13 05:42 (UTC)*
+*Last Synchronized: 2026-04-13 08:03 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -38,7 +38,7 @@
 </details>
 
 <details>
-<summary><b>🛡️ Specialized Approval Required (22)</b> — <i>Specialized approval required.</i></summary>
+<summary><b>🛡️ Specialized Approval Required (23)</b> — <i>Specialized approval required.</i></summary>
 
 **Criteria: PRs requesting review from specialized teams (e.g., docs, prompts).**
 
@@ -46,6 +46,7 @@
 | :--- | :--- | :--- | :--- | :--- |
 | [#16122 Feature Request: Add gemini update command](https://github.com/google-gemini/gemini-cli/issues/16122) | [#24080](https://github.com/google-gemini/gemini-cli/pull/24080) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
 | [#18708 feat: Add /undo command to revert last conversation turn](https://github.com/google-gemini/gemini-cli/issues/18708) | [#20027](https://github.com/google-gemini/gemini-cli/pull/20027) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
+| [#24729 The newly created file is not detected by the @ function.](https://github.com/google-gemini/gemini-cli/issues/24729) | [#25256](https://github.com/google-gemini/gemini-cli/pull/25256) | `gemini-cli-askmode-approvers` | _None_ | 👀 Needs Maintainer Review |
 | [#19717 Fix unsafe type assertions in VS Code Companion (Phase 4.2)](https://github.com/google-gemini/gemini-cli/issues/19717) | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | `gemini-cli-askmode-approvers`, `gemini-cli-prompt-approvers` | @Adib234, @mrpmohiburrahman | 👀 Needs Maintainer Approval |
 | [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | `gemini-cli-docs` | @jacob314, @mrpmohiburrahman, @scidomino | 👀 Needs Maintainer Approval |
 | [#18751 feat(ui): support custom preferred themes for automatic light/dark switching](https://github.com/google-gemini/gemini-cli/issues/18751) | [#18753](https://github.com/google-gemini/gemini-cli/pull/18753) | `gemini-cli-docs` | _None_ | 👀 Needs Maintainer Review |
@@ -119,7 +120,7 @@
 </details>
 
 <details>
-<summary><b>🛠️ Active Development: Recently Assigned (66)</b> — <i>Assigned < 14 days ago.</i></summary>
+<summary><b>🛠️ Active Development: Recently Assigned (65)</b> — <i>Assigned < 14 days ago.</i></summary>
 
 **Criteria: Issues assigned < 14 days ago, no PR yet.**
 
@@ -187,9 +188,8 @@
 | [#14928 gemini mcp list connects to MCP servers](https://github.com/google-gemini/gemini-cli/issues/14928) | @ayush-devcore | `2026-04-12` |
 | [#16550 Command line recall doesn't remember in-flight edits if you accidentally scroll up too far](https://github.com/google-gemini/gemini-cli/issues/16550) | @abhishekblue | `2026-04-12` |
 | [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | @M-DEV-1 | `2026-04-12` |
-| [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | @Anjaligarhwal | `2026-04-12` |
 | [#22784 Bug Description: The grep_search tool fails with a spawn EFTYPE error on Windows (win32). It appears the underlying ripgrep binary is either incompatible with the current OS/architecture or corrupted.](https://github.com/google-gemini/gemini-cli/issues/22784) | @manas-raj999 | `2026-04-12` |
-| [#24729 The newly created file is not detected by the @ function.](https://github.com/google-gemini/gemini-cli/issues/24729) | @prassamin | `2026-04-12` |
+| [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | @Anjaligarhwal | `2026-04-13` |
 | [#21925 Gemini CLI shows the hand icon indicating that Action is required even when it is not required](https://github.com/google-gemini/gemini-cli/issues/21925) | @sanatan0511 | `2026-04-13` |
 </details>
 
@@ -231,7 +231,7 @@
 | [#2353 Option to choose shell (PowerShell) on Windows](https://github.com/google-gemini/gemini-cli/issues/2353) | 2 |
 | [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 2 |
 | [#21560 Detected terminal name: iTerm2 3.6.8 │ │ │ │ ℹ Loading extension: nanobanana │ │ ⚠ [STARTUP] Cannot start phase 'load_builtin_commands': phase is already active. Call end() before starting again. (x2) ▄│ │ ⚠ [STARTUP] Phase 'load_builtin_commands' was star](https://github.com/google-gemini/gemini-cli/issues/21560) | 2 |
-| [#18612 [VSCode Plugin] Unable to change root directory](https://github.com/google-gemini/gemini-cli/issues/18612) | 2 |
+| [#18612 [VSCode Plugin] Unable to change root directory](https://github.com/google-gemini/gemini-cli/issues/18612) | 3 |
 | [#18654 Enhanced Copy Workflow via External Editor Integration](https://github.com/google-gemini/gemini-cli/issues/18654) | 3 |
 | [#19387 should trust a folder if the rule matches the realpath flakes on windows](https://github.com/google-gemini/gemini-cli/issues/19387) | 3 |
 | [#12083 Container name collisions due to sequential numbering in container name generation](https://github.com/google-gemini/gemini-cli/issues/12083) | 3 |
