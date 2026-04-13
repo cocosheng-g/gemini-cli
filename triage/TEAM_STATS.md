@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
-*Reporting Period: **Monday 2026-04-06** to Today*
-*Last Updated: 2026-04-12 23:34 (UTC)*
+*Reporting Period: **Monday 2026-04-13** to Today*
+*Last Updated: 2026-04-13 02:37 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -9,10 +9,10 @@
 ## 📈 Weekly Summary
 | Maintainer | Closed/Merged (Week) | Current Open Queue |
 | :--- | :--- | :--- |
-| **Coco Sheng** (@cocosheng-g) | **7** | 5 |
-| **Tommaso Sciortino** (@scidomino) | **3** | 5 |
-| **Dev Randalpura** (@devr0306) | **2** | 2 |
-| **A.K.M. Adib** (@Adib234) | **1** | 2 |
+| **Coco Sheng** (@cocosheng-g) | **0** | 5 |
+| **Tommaso Sciortino** (@scidomino) | **0** | 5 |
+| **A.K.M. Adib** (@Adib234) | **0** | 2 |
+| **Dev Randalpura** (@devr0306) | **0** | 2 |
 | **Keith Schaab** (@kschaab) | **0** | 1 |
 | **Spencer Tang** (@spencer426) | **0** | 1 |
 | **Cynthia Long** (@cynthialong0-0) | **0** | 0 |
@@ -54,7 +54,7 @@
 > 3. **Monitor 🔴 Blocked PRs**: The triage script will automatically warn the author and eventually close stale/blocked PRs, but you can also provide guidance.
 
 <details>
-<summary><b>A.K.M. Adib (@Adib234)</b> — 🟢 Active Queue (2) | 🔴 Recently Closed (1)</summary>
+<summary><b>A.K.M. Adib (@Adib234)</b> — 🟢 Active Queue (2)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
@@ -62,15 +62,10 @@
 | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | [#19717](https://github.com/google-gemini/gemini-cli/issues/19717) | fix(vscode): resolve unsafe assignment lint errors | Needs gemini-cli-askmode-approvers, gemini-cli-prompt-approvers | `2026-04-05` |
 | [#23747](https://github.com/google-gemini/gemini-cli/pull/23747) | [#23441](https://github.com/google-gemini/gemini-cli/issues/23441) | fix: add guidance when no skills available (#23441) | Needs Author Update (Test Failure) | `2026-03-25` |
 
-#### 🔴 Recently Closed (Since Monday)
-| PR | Issue | Title | Status | Closed Date |
-| :--- | :--- | :--- | :--- | :--- |
-| [#15816](https://github.com/google-gemini/gemini-cli/pull/15816) | [#16717](https://github.com/google-gemini/gemini-cli/issues/16717) | docs(cli): updates f12 description to be more precise | `MERGED` | `2026-04-10` |
-
 </details>
 
 <details>
-<summary><b>Coco Sheng (@cocosheng-g)</b> — 🟢 Active Queue (5) | 🔴 Recently Closed (7)</summary>
+<summary><b>Coco Sheng (@cocosheng-g)</b> — 🟢 Active Queue (5)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
@@ -80,17 +75,6 @@
 | [#22619](https://github.com/google-gemini/gemini-cli/pull/22619) | [#22611](https://github.com/google-gemini/gemini-cli/issues/22611) | fix(cli): clear thought state on response completion to prevent UI ghosting | Needs Author Update (Resolve Comments) | `2026-04-12` |
 | [#22324](https://github.com/google-gemini/gemini-cli/pull/22324) | [#22321](https://github.com/google-gemini/gemini-cli/issues/22321) | feat(cli): Add 'list' subcommand to '/commands' | Needs Author Update (Resolve Comments) | `2026-04-12` |
 | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | [#24838](https://github.com/google-gemini/gemini-cli/issues/24838) | fix(mcp): treat GET 404 as 405 in StreamableHTTPClientTransport | Needs gemini-cli-prompt-approvers, Author Update (Resolve Comments) | `2026-04-10` |
-
-#### 🔴 Recently Closed (Since Monday)
-| PR | Issue | Title | Status | Closed Date |
-| :--- | :--- | :--- | :--- | :--- |
-| [#21636](https://github.com/google-gemini/gemini-cli/pull/21636) | [#21635](https://github.com/google-gemini/gemini-cli/issues/21635) | fix: improve audio MIME normalization and validation in file reads | `MERGED` | `2026-04-10` |
-| [#22624](https://github.com/google-gemini/gemini-cli/pull/22624) | [#22616](https://github.com/google-gemini/gemini-cli/issues/22616) | fix(cli): resolve text sanitization data loss due to C1 control characters | `MERGED` | `2026-04-10` |
-| [#23341](https://github.com/google-gemini/gemini-cli/pull/23341) | [#19851](https://github.com/google-gemini/gemini-cli/issues/19851) | fix: decode Uint8Array and multi-byte UTF-8 in API error messages | `MERGED` | `2026-04-10` |
-| [#22621](https://github.com/google-gemini/gemini-cli/pull/22621) | [#22613](https://github.com/google-gemini/gemini-cli/issues/22613) | fix(cli): suppress unhandled AbortError logs during request cancellation | `MERGED` | `2026-04-09` |
-| [#24773](https://github.com/google-gemini/gemini-cli/pull/24773) | [#14864](https://github.com/google-gemini/gemini-cli/issues/14864) | fix: respect hideContextPercentage when FooterConfigDialog is closed without changes | `MERGED` | `2026-04-09` |
-| [#21447](https://github.com/google-gemini/gemini-cli/pull/21447) | [#21445](https://github.com/google-gemini/gemini-cli/issues/21445) | fix(cli-ui): enable Ctrl+Backspace for word deletion in Windows Terminal | `MERGED` | `2026-04-09` |
-| [#22128](https://github.com/google-gemini/gemini-cli/pull/22128) | [#22127](https://github.com/google-gemini/gemini-cli/issues/22127) | chore: ignore conductor directory | `MERGED` | `2026-04-08` |
 
 </details>
 
@@ -105,19 +89,13 @@
 </details>
 
 <details>
-<summary><b>Dev Randalpura (@devr0306)</b> — 🟢 Active Queue (2) | 🔴 Recently Closed (2)</summary>
+<summary><b>Dev Randalpura (@devr0306)</b> — 🟢 Active Queue (2)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
 | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | [#20948](https://github.com/google-gemini/gemini-cli/issues/20948) | feat(cli): restore unsent draft before input history | 🟢 Active | `2026-04-10` |
 | [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | [#19711](https://github.com/google-gemini/gemini-cli/issues/19711) | fix(core): remove no-unsafe-type-assertion in core tool execution | Needs gemini-cli-prompt-approvers, Author Update (Merge Conflict) | `2026-03-30` |
-
-#### 🔴 Recently Closed (Since Monday)
-| PR | Issue | Title | Status | Closed Date |
-| :--- | :--- | :--- | :--- | :--- |
-| [#20546](https://github.com/google-gemini/gemini-cli/pull/20546) | [#19940](https://github.com/google-gemini/gemini-cli/issues/19940) | test(core): add missing tests for prompts/utils.ts | `CLOSED` | `2026-04-10` |
-| [#20973](https://github.com/google-gemini/gemini-cli/pull/20973) | [#20948](https://github.com/google-gemini/gemini-cli/issues/20948) | feat: Add Last Edited Buffer to command history (#20948) | `CLOSED` | `2026-04-09` |
 
 </details>
 
@@ -137,7 +115,7 @@
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
-| [#23215](https://github.com/google-gemini/gemini-cli/pull/23215) | [#22193](https://github.com/google-gemini/gemini-cli/issues/22193) | fix(vscode-ide-companion): restore terminal focus after closing diff tabs | Needs Author Update (Resolve Comments) | `2026-04-09` |
+| [#23215](https://github.com/google-gemini/gemini-cli/pull/23215) | [#22193](https://github.com/google-gemini/gemini-cli/issues/22193) | fix(vscode-ide-companion): restore terminal focus after closing diff tabs | Needs Author Update (Resolve Comments) | `2026-04-13` |
 
 </details>
 
@@ -172,7 +150,7 @@
 </details>
 
 <details>
-<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (5) | 🔴 Recently Closed (3)</summary>
+<summary><b>Tommaso Sciortino (@scidomino)</b> — 🟢 Active Queue (5)</summary>
 
 #### 🟢 Active Queue
 | PR | Issue | Title | Status & Next Step | Updated |
@@ -182,13 +160,6 @@
 | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | [#24337](https://github.com/google-gemini/gemini-cli/issues/24337) | fix(cli): clean up slash command IDE listeners | Needs Author Update (Resolve Comments) | `2026-04-12` |
 | [#23347](https://github.com/google-gemini/gemini-cli/pull/23347) | [#16363](https://github.com/google-gemini/gemini-cli/issues/16363) | fix: use synchronous stderr write before exit to prevent silent failures | Needs Author Update (Resolve Comments) | `2026-04-11` |
 | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | [#24898](https://github.com/google-gemini/gemini-cli/issues/24898) | fix: skip normalization for long strings to avoid ENAMETOOLONG crash | Needs Author Update (Test Failure) | `2026-04-12` |
-
-#### 🔴 Recently Closed (Since Monday)
-| PR | Issue | Title | Status | Closed Date |
-| :--- | :--- | :--- | :--- | :--- |
-| [#25079](https://github.com/google-gemini/gemini-cli/pull/25079) | [#15945](https://github.com/google-gemini/gemini-cli/issues/15945) | fix(core): resolve PTY exhaustion and orphan MCP subprocess leaks | `MERGED` | `2026-04-10` |
-| [#19025](https://github.com/google-gemini/gemini-cli/pull/19025) | [#18388](https://github.com/google-gemini/gemini-cli/issues/18388) | feat(cli): add /mcp remove slash command for interactive server removal | `CLOSED` | `2026-04-09` |
-| [#24870](https://github.com/google-gemini/gemini-cli/pull/24870) | [#21006](https://github.com/google-gemini/gemini-cli/issues/21006) | fix(core): dispose Scheduler to prevent McpProgress listener leak | `MERGED` | `2026-04-08` |
 
 </details>
 
