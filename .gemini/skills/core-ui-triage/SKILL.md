@@ -9,7 +9,11 @@ This skill provides workflows for finding, analyzing, and triaging GitHub issues
 
 ## Oncaller Manual: How to use this skill
 
-This skill is designed to assist the weekly oncaller with triaging the issue backlog. You can run the automation scripts in two modes:
+This skill is designed to assist the weekly oncaller with triaging the issue backlog.
+
+**Important Setup:** Before using this skill or its associated scripts, you must check out the `automation/core-ui-triage` branch where these tools are maintained.
+
+You can run the automation scripts in two modes:
 
 ### 1. Dry-Run Mode (Recommended for testing)
 Use this mode to preview the changes the automation *would* make without actually modifying the repository.
