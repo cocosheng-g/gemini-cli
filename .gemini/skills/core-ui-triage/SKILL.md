@@ -13,12 +13,14 @@ This skill is designed to assist the weekly oncaller with triaging the issue bac
 
 ### 1. Setup
 
-Before using this skill or its associated scripts, you must check out the correct branch where these tools are maintained.
+Before using this skill or its associated scripts, you must check out the correct branch where these tools are maintained. Since this branch is currently hosted on a fork, you will need to add the remote and fetch the branch.
 
 ```bash
-git checkout automation/core-ui-triage
+git remote add cocosheng-g https://github.com/cocosheng-g/gemini-cli.git
+git fetch cocosheng-g
+git checkout -b automation/core-ui-triage cocosheng-g/automation/core-ui-triage
 ```
-* **Explanation:** All the required triage scripts, policies, and markdown rules live on this branch.
+* **Explanation:** All the required triage scripts, policies, and markdown rules live on the `automation/core-ui-triage` branch in the `cocosheng-g` fork.
 
 ### 2. Triage with Dry-Run Mode (Recommended for testing)
 
