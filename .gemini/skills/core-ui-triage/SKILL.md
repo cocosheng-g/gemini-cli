@@ -60,6 +60,12 @@ gemini
 **Option B (GitHub Actions / Cron):**
 * **Explanation:** This runs automatically via scheduled cron jobs. To run manually, dispatch the workflow from the GitHub Actions UI with `dry_run` set to `false`.
 
+---
+
+# Agent Instructions: Triage Workflow
+
+The following phases define the procedural instructions for the AI agent to execute when the `github-issue-triage` skill is invoked.
+
 ## Phase 1: Discovery (Optional)
 
 If the user asks you to "triage issues" or "clean up old issues" without providing a specific issue URL, you must first find candidate issues within the scope of this skill.
