@@ -11,23 +11,54 @@ This skill provides workflows for finding, analyzing, and triaging GitHub issues
 
 This skill is designed to assist the weekly oncaller with triaging the issue backlog.
 
-**Important Setup:** Before using this skill or its associated scripts, you must check out the `automation/core-ui-triage` branch where these tools are maintained.
+### 1. Setup
 
-You can run the automation scripts in two modes:
+Before using this skill or its associated scripts, you must check out the correct branch where these tools are maintained.
 
-### 1. Dry-Run Mode (Recommended for testing)
-Use this mode to preview the changes the automation *would* make without actually modifying the repository.
-- **What it does:** Simulates the triage process, logs the intended actions (e.g., adding labels, unassigning users, closing PRs), but safely skips the API calls that modify state.
-- **How to trigger (GitHub Actions):** When manually dispatching the workflow from the GitHub Actions UI, set the `dry_run` input to `true`.
-- **How to trigger (Local Scripts):** If running scripts locally in your terminal, append the `--dry-run` flag (e.g., `npm run triage -- --dry-run`).
-- **How to trigger (Interactive CLI):** To perform a dry run while conversing with the Gemini CLI:
-  - **Option A (Plan Mode):** Switch to Plan Mode (`Shift+Tab` to toggle, or type `/plan`). The agent will analyze the issue and propose actions without executing modifying shell commands.
-  - **Option B (Natural Language):** Explicitly instruct the agent in your prompt (e.g., *"Activate the github-issue-triage skill and triage issue #123 in dry-run mode. Do not execute any modifying shell commands, just output the actions you would take."*).
+```bash
+git checkout automation/core-ui-triage
+```
+* **Explanation:** All the required triage scripts, policies, and markdown rules live on this branch.
 
-### 2. Normal (Production) Mode
-Use this mode to apply the triage changes directly to the repository.
-- **What it does:** Automatically labels issues, unassigns inactive contributors, closes stale PRs, and posts automated comments to communicate these actions.
-- **How to trigger:** This runs automatically via scheduled cron jobs. To run manually, dispatch the workflow with `dry_run` set to `false`.
+### 2. Triage with Dry-Run Mode (Recommended for testing)
+
+Use this mode to preview the changes the automation *would* make without actually modifying the repository. Simulates the triage process, logs the intended actions (e.g., adding labels, unassigning users, closing PRs), but safely skips the API calls that modify state.
+
+**Option A (Plan Mode via CLI):**
+```bash
+gemini --approval-mode plan
+# Then ask: "triage issue #123"
+```
+* **Explanation:** The agent will analyze the issue and propose actions in a written plan without executing modifying shell commands.
+
+**Option B (Natural Language via CLI):**
+```text
+Activate the github-issue-triage skill and triage issue #123 in dry-run mode. Do not execute any modifying shell commands, just output the actions you would take.
+```
+* **Explanation:** By explicitly instructing the agent, it will bypass modifying commands.
+
+**Option C (Local Scripts):**
+```bash
+npm run triage -- --dry-run
+```
+* **Explanation:** If running scripts locally in your terminal, append the `--dry-run` flag.
+
+**Option D (GitHub Actions):**
+* **Explanation:** When manually dispatching the workflow from the GitHub Actions UI, set the `dry_run` input to `true`.
+
+### 3. Triage with Normal (Production) Mode
+
+Use this mode to apply the triage changes directly to the repository. It automatically labels issues, unassigns inactive contributors, closes stale PRs, and posts automated comments to communicate these actions.
+
+**Option A (Interactive CLI):**
+```bash
+gemini
+# Then ask: "triage issue #123"
+```
+* **Explanation:** The agent will fully execute the triage rules, including making API calls to modify the issue state.
+
+**Option B (GitHub Actions / Cron):**
+* **Explanation:** This runs automatically via scheduled cron jobs. To run manually, dispatch the workflow from the GitHub Actions UI with `dry_run` set to `false`.
 
 ## Phase 1: Discovery (Optional)
 
