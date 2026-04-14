@@ -7,6 +7,20 @@ description: Analyzes and cleans up GitHub issues. DO NOT trigger this skill aut
 
 This skill provides workflows for finding, analyzing, and triaging GitHub issues to maintain a clean and actionable backlog.
 
+## Oncaller Manual: How to use this skill
+
+This skill is designed to assist the weekly oncaller with triaging the issue backlog. You can run the automation scripts in two modes:
+
+### 1. Dry-Run Mode (Recommended for testing)
+Use this mode to preview the changes the automation *would* make without actually modifying the repository.
+- **What it does:** Simulates the triage process, logs the intended actions (e.g., adding labels, unassigning users, closing PRs), but safely skips the API calls that modify state.
+- **How to trigger:** When manually dispatching the workflow from the GitHub Actions UI, set the `dry_run` input to `true`. Or, if running scripts locally, append the `--dry-run` flag (e.g., `npm run triage -- --dry-run`).
+
+### 2. Normal (Production) Mode
+Use this mode to apply the triage changes directly to the repository.
+- **What it does:** Automatically labels issues, unassigns inactive contributors, closes stale PRs, and posts automated comments to communicate these actions.
+- **How to trigger:** This runs automatically via scheduled cron jobs. To run manually, dispatch the workflow with `dry_run` set to `false`.
+
 ## Phase 1: Discovery (Optional)
 
 If the user asks you to "triage issues" or "clean up old issues" without providing a specific issue URL, you must first find candidate issues.
