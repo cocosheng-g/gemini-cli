@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-13** to Today*
-*Last Updated: 2026-04-14 10:45 (UTC)*
+*Last Updated: 2026-04-14 11:57 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -45,10 +45,10 @@
 | [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | [#20668](https://github.com/google-gemini/gemini-cli/pull/20668) | `2026-04-12` |
 | [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-12` |
 | [#22351 Improve diagnostics and error handling for malformed streaming responses](https://github.com/google-gemini/gemini-cli/issues/22351) | [#22352](https://github.com/google-gemini/gemini-cli/pull/22352) | `2026-04-12` |
-| [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | [#25324](https://github.com/google-gemini/gemini-cli/pull/25324) | `2026-04-13` |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | [#25273](https://github.com/google-gemini/gemini-cli/pull/25273) | `2026-04-13` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#25220](https://github.com/google-gemini/gemini-cli/pull/25220) | `2026-04-13` |
 | [#15430 CLI ignores GOOGLE_GEMINI_BASE_URL and forces Cloud Auth/Endpoints](https://github.com/google-gemini/gemini-cli/issues/15430) | [#25357](https://github.com/google-gemini/gemini-cli/pull/25357) | `2026-04-14` |
+| [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | [#25324](https://github.com/google-gemini/gemini-cli/pull/25324) | `2026-04-14` |
 
 ---
 ## 👤 Individual Review Queues

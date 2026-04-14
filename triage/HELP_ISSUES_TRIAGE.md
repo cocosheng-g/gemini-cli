@@ -1,6 +1,6 @@
 # 🔎 Gemini CLI Help Wanted Triage Dashboard
 
-*Last Synchronized: 2026-04-14 10:45 (UTC)*
+*Last Synchronized: 2026-04-14 11:57 (UTC)*
 
 > This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.
 
@@ -35,10 +35,10 @@
 | [#20606 Clean up unsafe returns suppressions](https://github.com/google-gemini/gemini-cli/issues/20606) | [#20668](https://github.com/google-gemini/gemini-cli/pull/20668) | `2026-04-12` |
 | [#21370 bug: Linuxbrew installations not detected in getInstallationInfo](https://github.com/google-gemini/gemini-cli/issues/21370) | [#21376](https://github.com/google-gemini/gemini-cli/pull/21376) | `2026-04-12` |
 | [#22351 Improve diagnostics and error handling for malformed streaming responses](https://github.com/google-gemini/gemini-cli/issues/22351) | [#22352](https://github.com/google-gemini/gemini-cli/pull/22352) | `2026-04-12` |
-| [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | [#25324](https://github.com/google-gemini/gemini-cli/pull/25324) | `2026-04-13` |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | [#25273](https://github.com/google-gemini/gemini-cli/pull/25273) | `2026-04-13` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#25220](https://github.com/google-gemini/gemini-cli/pull/25220) | `2026-04-13` |
 | [#15430 CLI ignores GOOGLE_GEMINI_BASE_URL and forces Cloud Auth/Endpoints](https://github.com/google-gemini/gemini-cli/issues/15430) | [#25357](https://github.com/google-gemini/gemini-cli/pull/25357) | `2026-04-14` |
+| [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | [#25324](https://github.com/google-gemini/gemini-cli/pull/25324) | `2026-04-14` |
 </details>
 
 <details>
@@ -48,6 +48,7 @@
 
 | Issue | Linked PR | Required Teams | Human Reviewers | Status |
 | :--- | :--- | :--- | :--- | :--- |
+| [#11462 Consider adding visual regression testing for terminal UI components](https://github.com/google-gemini/gemini-cli/issues/11462) | [#20695](https://github.com/google-gemini/gemini-cli/pull/20695) | `gemini-cli-askmode-approvers` | @hoteye | 👀 Needs Maintainer Approval |
 | [#16122 Feature Request: Add gemini update command](https://github.com/google-gemini/gemini-cli/issues/16122) | [#24080](https://github.com/google-gemini/gemini-cli/pull/24080) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
 | [#18708 feat: Add /undo command to revert last conversation turn](https://github.com/google-gemini/gemini-cli/issues/18708) | [#20027](https://github.com/google-gemini/gemini-cli/pull/20027) | `gemini-cli-askmode-approvers` | @mrpmohiburrahman | 👀 Needs Maintainer Approval |
 | [#19717 Fix unsafe type assertions in VS Code Companion (Phase 4.2)](https://github.com/google-gemini/gemini-cli/issues/19717) | [#19815](https://github.com/google-gemini/gemini-cli/pull/19815) | `gemini-cli-askmode-approvers`, `gemini-cli-prompt-approvers` | @Adib234, @mrpmohiburrahman | 👀 Needs Maintainer Approval |
@@ -65,7 +66,6 @@
 | [#20761 add Vertex AI region override to support preview models](https://github.com/google-gemini/gemini-cli/issues/20761) | [#25362](https://github.com/google-gemini/gemini-cli/pull/25362) | `gemini-cli-prompt-approvers` | _None_ | 👀 Needs Maintainer Review |
 | [#24933 Add `/rewind <user-message-index>` to rewind to a specific message](https://github.com/google-gemini/gemini-cli/issues/24933) | [#25150](https://github.com/google-gemini/gemini-cli/pull/25150) | `gemini-cli-docs` | _None_ | ✍️ Needs Author Update (Comments) |
 | [#24838 StreamableHTTPTransport fails when endpoint requires POST (e.g., n8n native MCP)](https://github.com/google-gemini/gemini-cli/issues/24838) | [#24847](https://github.com/google-gemini/gemini-cli/pull/24847) | `gemini-cli-prompt-approvers` | @cocosheng-g | ✍️ Needs Author Update (Comments) |
-| [#11462 Consider adding visual regression testing for terminal UI components](https://github.com/google-gemini/gemini-cli/issues/11462) | [#20695](https://github.com/google-gemini/gemini-cli/pull/20695) | `gemini-cli-askmode-approvers` | @hoteye | 🔴 Test Failure |
 | [#19649 extend /copy to capture output also from slash commands](https://github.com/google-gemini/gemini-cli/issues/19649) | [#19825](https://github.com/google-gemini/gemini-cli/pull/19825) | `gemini-cli-askmode-approvers` | @lesteral, @mrpmohiburrahman | 🔴 Merge Conflict |
 | [#18067 Feature Proposal: Unified Native Voice Input Architecture (Local-First)](https://github.com/google-gemini/gemini-cli/issues/18067) | [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | `gemini-cli-docs` | @jacob314, @mrpmohiburrahman, @scidomino | 🔴 Merge Conflict |
 | [#21221 Proposal: Interruptible responses for experimental voice mode](https://github.com/google-gemini/gemini-cli/issues/21221) | [#21226](https://github.com/google-gemini/gemini-cli/pull/21226) | `gemini-cli-docs` | _None_ | 🔴 Merge Conflict |
@@ -237,7 +237,7 @@
 | [#22125 `gemini extensions link` should return exit code 0 if extension is already installed](https://github.com/google-gemini/gemini-cli/issues/22125) | 1 |
 | [#22274 Bug: image paste fails in WSL2 when clipboard exposes image/bmp and XDG_SESSION_TYPE is unset](https://github.com/google-gemini/gemini-cli/issues/22274) | 2 |
 | [#24675 Tables in screenReader mode break](https://github.com/google-gemini/gemini-cli/issues/24675) | 2 |
-| [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 2 |
+| [#22627 Feature request: Mermaid diagram preview for generated mermaid code](https://github.com/google-gemini/gemini-cli/issues/22627) | 3 |
 | [#12824 Optimize github app installation](https://github.com/google-gemini/gemini-cli/issues/12824) | 3 |
 | [#17437 Before confirming changes, I used CTRL + S to see the differences in the file; it no longer works.](https://github.com/google-gemini/gemini-cli/issues/17437) | 3 |
 | [#14623 [Doc/UI Mismatch] "Session Retention" setting is missing from `/settings` UI but present in documentation](https://github.com/google-gemini/gemini-cli/issues/14623) | 4 |
