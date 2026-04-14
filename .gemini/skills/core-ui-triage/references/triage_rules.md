@@ -2,7 +2,7 @@
 
 **Important Note on CLI Commands**: When posting comments via the `gh` CLI that contain newlines (e.g. `\n`), you MUST use bash command substitution with `echo -e` so the newlines are rendered correctly. For example: `gh issue comment <issue_url> --body "$(echo -e "### Triage Summary\n\n<your summary>")"`.
 
-When executing triage on an issue, you must evaluate the following steps sequentially using the data provided from `scripts/analyze_issue.cjs` and the issue comments (`gh issue view <issue_url> --json comments`).
+When executing triage on an issue, you must evaluate the following steps sequentially using the data provided from `.gemini/skills/core-ui-triage/scripts/analyze_issue.cjs` and the issue comments (`gh issue view <issue_url> --json comments`).
 
 ## Categorization Guide: Help-wanted
 When categorizing an issue, determine if it is a good candidate for community contributions. Only use the **Help-wanted** label for these types of issues. Everything else remains unassigned to a specific whitelist label. Examples of **Help-wanted** issues include:

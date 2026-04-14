@@ -27,13 +27,15 @@ Use this mode to apply the triage changes directly to the repository.
 
 ## Phase 1: Discovery (Optional)
 
-If the user asks you to "triage issues" or "clean up old issues" without providing a specific issue URL, you must first find candidate issues.
+If the user asks you to "triage issues" or "clean up old issues" without providing a specific issue URL, you must first find candidate issues within the scope of this skill.
 
-Run the following script to get a list of issues:
-`node scripts/find_issues.cjs <owner/repo>` (e.g., `node scripts/find_issues.cjs google-gemini/gemini-cli`)
+This skill ONLY triages issues that match the following criteria:
+- State: Open
+- Labels: `area/core`, `area/extensions`, or `area/site`
+- Sorted by: Recently updated
 
-You may optionally pass a custom search string and limit.
-`node scripts/find_issues.cjs <owner/repo> "<search_string>" <limit>`
+To retrieve the list of candidate issues, run the following GitHub CLI command:
+`gh issue list --repo google-gemini/gemini-cli --search "is:issue state:open label:area/core,area/extensions,area/site sort:updated-desc"`
 
 Pick the first issue from the list to triage and proceed to Phase 2. If the user provided a specific issue URL, start at Phase 2 directly.
 
@@ -42,7 +44,7 @@ Pick the first issue from the list to triage and proceed to Phase 2. If the user
 For the target issue, you must run the analysis script to gather metadata and determine staleness/inactivity heuristics.
 
 Run:
-`node scripts/analyze_issue.cjs <issue_url> "<optional_comma_separated_maintainers>"`
+`node .gemini/skills/core-ui-triage/scripts/analyze_issue.cjs <issue_url> "<optional_comma_separated_maintainers>"`
 
 Read the JSON output carefully.
 - If `is_stale` is `true`, the issue has already been marked as stale and should be closed according to the rules in Phase 3.
