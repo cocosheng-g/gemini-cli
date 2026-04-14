@@ -14,7 +14,11 @@ This skill is designed to assist the weekly oncaller with triaging the issue bac
 ### 1. Dry-Run Mode (Recommended for testing)
 Use this mode to preview the changes the automation *would* make without actually modifying the repository.
 - **What it does:** Simulates the triage process, logs the intended actions (e.g., adding labels, unassigning users, closing PRs), but safely skips the API calls that modify state.
-- **How to trigger:** When manually dispatching the workflow from the GitHub Actions UI, set the `dry_run` input to `true`. Or, if running scripts locally, append the `--dry-run` flag (e.g., `npm run triage -- --dry-run`).
+- **How to trigger (GitHub Actions):** When manually dispatching the workflow from the GitHub Actions UI, set the `dry_run` input to `true`.
+- **How to trigger (Local Scripts):** If running scripts locally in your terminal, append the `--dry-run` flag (e.g., `npm run triage -- --dry-run`).
+- **How to trigger (Interactive CLI):** To perform a dry run while conversing with the Gemini CLI:
+  - **Option A (Plan Mode):** Switch to Plan Mode (`Shift+Tab` to toggle, or type `/plan`). The agent will analyze the issue and propose actions without executing modifying shell commands.
+  - **Option B (Natural Language):** Explicitly instruct the agent in your prompt (e.g., *"Activate the github-issue-triage skill and triage issue #123 in dry-run mode. Do not execute any modifying shell commands, just output the actions you would take."*).
 
 ### 2. Normal (Production) Mode
 Use this mode to apply the triage changes directly to the repository.
