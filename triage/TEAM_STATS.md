@@ -1,7 +1,7 @@
 # 📊 Gemini CLI Weekly Team Review Stats (help-wanted)
 
 *Reporting Period: **Monday 2026-04-13** to Today*
-*Last Updated: 2026-04-14 02:31 (UTC)*
+*Last Updated: 2026-04-14 05:23 (UTC)*
 
 > This dashboard provides a consolidated view of each maintainer's active review queue and weekly closed PRs.
 > Let's keep the contribution pipeline flowing smoothly! Please try to pick up pending PRs and aim to merge/close at least **3 PRs per week**. Your reviews make a huge difference! 🚀
@@ -20,15 +20,12 @@
 | **Ruomeng Zhang** (@ruomengz) | **0** | 0 |
 | **Sri Pasumarthi** (@sripasg) | **0** | 0 |
 
-### 🆕 Awaiting Reviewer Pickup (26)
+### 🆕 Awaiting Reviewer Pickup (24)
 **These contributors are waiting for your feedback! All tests are passing and there are no conflicts. Please try to pick up PRs with the oldest last update time first.**
 
 | Issue | Linked PR | Last Update |
 | :--- | :--- | :--- |
-| [#12137 Login url is truncated](https://github.com/google-gemini/gemini-cli/issues/12137) | [#24853](https://github.com/google-gemini/gemini-cli/pull/24853) | `2026-04-07` |
-| [#20888 AskUser format code without borders](https://github.com/google-gemini/gemini-cli/issues/20888) | [#21254](https://github.com/google-gemini/gemini-cli/pull/21254) | `2026-04-08` |
 | [#22591 fix(cli): mapToDisplay uses unbounded JSON.stringify for ErroredToolCall description](https://github.com/google-gemini/gemini-cli/issues/22591) | [#22594](https://github.com/google-gemini/gemini-cli/pull/22594) | `2026-04-08` |
-| [#16559 Most /slash command args counts are not validated](https://github.com/google-gemini/gemini-cli/issues/16559) | [#25069](https://github.com/google-gemini/gemini-cli/pull/25069) | `2026-04-09` |
 | [#19713 Fix unsafe type assertions in CLI Config (Phase 3.1)](https://github.com/google-gemini/gemini-cli/issues/19713) | [#24905](https://github.com/google-gemini/gemini-cli/pull/24905) | `2026-04-09` |
 | [#20385 Terminal output flooded with repeated '0c/' string](https://github.com/google-gemini/gemini-cli/issues/20385) | [#24596](https://github.com/google-gemini/gemini-cli/pull/24596) | `2026-04-09` |
 | [#21546 web_fetch: pressing Ctrl+C while a URL is loading causes silent retries instead of immediate cancellation](https://github.com/google-gemini/gemini-cli/issues/21546) | [#24320](https://github.com/google-gemini/gemini-cli/pull/24320) | `2026-04-09` |
@@ -51,6 +48,7 @@
 | [#16091 Spam loop `Editor is not supported: ${currentPreference}` when the `preferredEditor` is an invalid value](https://github.com/google-gemini/gemini-cli/issues/16091) | [#25324](https://github.com/google-gemini/gemini-cli/pull/25324) | `2026-04-13` |
 | [#21406 [Ask User] Copy Paste Multi-Line String Error](https://github.com/google-gemini/gemini-cli/issues/21406) | [#25273](https://github.com/google-gemini/gemini-cli/pull/25273) | `2026-04-13` |
 | [#22844 Fix TypeScript execution in “CLI: Run Current File” debug configuration](https://github.com/google-gemini/gemini-cli/issues/22844) | [#25220](https://github.com/google-gemini/gemini-cli/pull/25220) | `2026-04-13` |
+| [#15430 CLI ignores GOOGLE_GEMINI_BASE_URL and forces Cloud Auth/Endpoints](https://github.com/google-gemini/gemini-cli/issues/15430) | [#25357](https://github.com/google-gemini/gemini-cli/pull/25357) | `2026-04-14` |
 
 ---
 ## 👤 Individual Review Queues
@@ -102,7 +100,7 @@
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
 | [#21215](https://github.com/google-gemini/gemini-cli/pull/21215) | [#20948](https://github.com/google-gemini/gemini-cli/issues/20948) | feat(cli): restore unsent draft before input history | 🟢 Active | `2026-04-10` |
-| [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | [#19711](https://github.com/google-gemini/gemini-cli/issues/19711) | fix(core): remove no-unsafe-type-assertion in core tool execution | Needs gemini-cli-prompt-approvers, Author Update (Resolve Comments) | `2026-03-30` |
+| [#19755](https://github.com/google-gemini/gemini-cli/pull/19755) | [#19711](https://github.com/google-gemini/gemini-cli/issues/19711) | fix(core): remove no-unsafe-type-assertion in core tool execution | Needs gemini-cli-prompt-approvers, Author Update (Merge Conflict) | `2026-03-30` |
 
 </details>
 
@@ -163,10 +161,10 @@
 | PR | Issue | Title | Status & Next Step | Updated |
 | :--- | :--- | :--- | :--- | :--- |
 | [#25256](https://github.com/google-gemini/gemini-cli/pull/25256) | [#24729](https://github.com/google-gemini/gemini-cli/issues/24729) | feat: detect new files in @ recommendations with watcher based updates | 🟢 Active | `2026-04-13` |
-| [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | [#18067](https://github.com/google-gemini/gemini-cli/issues/18067) | feat: Add voice input with pluggable backend (Gemini zero-install + Whisper) | Needs gemini-cli-docs | `2026-04-12` |
 | [#23347](https://github.com/google-gemini/gemini-cli/pull/23347) | [#16363](https://github.com/google-gemini/gemini-cli/issues/16363) | fix: use synchronous stderr write before exit to prevent silent failures | Needs Author Update (Resolve Comments) | `2026-04-11` |
 | [#25009](https://github.com/google-gemini/gemini-cli/pull/25009) | [#24898](https://github.com/google-gemini/gemini-cli/issues/24898) | fix: skip normalization for long strings to avoid ENAMETOOLONG crash | Needs Author Update (Test Failure) | `2026-04-13` |
 | [#24397](https://github.com/google-gemini/gemini-cli/pull/24397) | [#24337](https://github.com/google-gemini/gemini-cli/issues/24337) | fix(cli): clean up slash command IDE listeners | Needs Author Update (Test Failure) | `2026-04-13` |
+| [#18499](https://github.com/google-gemini/gemini-cli/pull/18499) | [#18067](https://github.com/google-gemini/gemini-cli/issues/18067) | feat: Add voice input with pluggable backend (Gemini zero-install + Whisper) | Needs gemini-cli-docs, Author Update (Merge Conflict) | `2026-04-12` |
 
 #### 🔴 Recently Closed (Since Monday)
 | PR | Issue | Title | Status | Closed Date |
