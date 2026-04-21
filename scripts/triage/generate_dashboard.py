@@ -515,6 +515,7 @@ def main():
     print("LOG: Generating HELP_ISSUES_TRIAGE.md...")
     open_issues_count = len([i for i in all_issue_nodes if i['state'] == 'OPEN'])
     md_rev = f"# 🔎 Gemini CLI Help Wanted Triage Dashboard\n\n*Last Synchronized: {now.strftime('%Y-%m-%d %H:%M')} (UTC)*\n\n"
+    md_rev += "> **Note: Automated issue cleanup and contributor unassignment is currently DISABLED.**\n"
     md_rev += "> This dashboard tracks the status of `help wanted` issues and their linked PRs to help maintainers efficiently review external contributions, unblock stale items, and ensure timely feedback.\n\n"
     md_rev += f"**Total Issues Tracked: {open_issues_count} open issues**\n\n"
     
@@ -530,12 +531,12 @@ def main():
     if not oncaller_attention: md_rev += "| - | - | - | - | - |\n"
     md_rev += "</details>\n"
 
-    md_rev += f"\n<details>\n<summary><b>🚩 Stale Assignments ({len(stale_assignments)})</b> — <i>Auto-cleanup.</i></summary>\n\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
+    md_rev += f"\n<details>\n<summary><b>🚩 Stale Assignments ({len(stale_assignments)})</b> — <i>Auto-cleanup DISABLED.</i></summary>\n\n**Criteria: Assigned issues with no open PR, idle for >{STALE_ASSIGNMENT_DAYS} days.**\n\n| Issue | Assignee | Days Stale |\n| :--- | :--- | :--- |\n"
     for i in stale_assignments: md_rev += f"| {i['issue_md']} | @{', @'.join(i['assignees'])} | {i['days_stale']} |\n"
     if not stale_assignments: md_rev += "| - | - | - |\n"
     md_rev += "</details>\n"
 
-    md_rev += f"\n<details>\n<summary><b>🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})</b> — <i>Auto-cleanup.</i></summary>\n\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS_WARNING} days will receive a warning comment tagging the author. If there is no response for 1 week, it will be considered blocked & stale and auto-cleaned up.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
+    md_rev += f"\n<details>\n<summary><b>🚧 Blocked & Stale PRs ({len(blocked_stale_prs)})</b> — <i>Auto-cleanup DISABLED.</i></summary>\n\n**Criteria: PRs with conflicts or failures untouched for >{STALE_BLOCKED_PR_DAYS_WARNING} days will receive a warning comment tagging the author. If there is no response for 1 week, it will be considered blocked & stale.**\n\n| Issue | PR | Reason | Author | Days Stale |\n| :--- | :--- | :--- | :--- | :--- |\n"
     for i in blocked_stale_prs: md_rev += f"| {i['issue_md']} | [#{i['pr_no']}]({i['pr_url']}) | {i['reason']} | @{i['author']} | {i['days_stale']} |\n"
     if not blocked_stale_prs: md_rev += "| - | - | - | - | - |\n"
     md_rev += "</details>\n"
