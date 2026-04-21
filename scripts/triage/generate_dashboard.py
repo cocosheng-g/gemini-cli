@@ -203,8 +203,8 @@ def automate_cleanup(stale_assignments, stale_blocked_prs, warn_blocked_prs):
             for user in item['assignees']:
                 print(f"LOG: Unassigning @{user} from #{issue_no}...")
                 comment = UNASSIGN_COMMENT.format(author=user)
-                subprocess.run(['gh', 'issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
-                subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO], capture_output=True)
+                # subprocess.run(['gh', 'issue', 'comment', str(issue_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
+                # subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', user, '-R', TARGET_REPO], capture_output=True)
 
     # 2. Handle Stale Blocked PRs (Close PR + Unassign Issue)
     if stale_blocked_prs:
@@ -216,9 +216,9 @@ def automate_cleanup(stale_assignments, stale_blocked_prs, warn_blocked_prs):
             
             print(f"LOG: Closing stale PR #{pr_no} and unassigning #{issue_no} from @{author}...")
             comment = CLOSE_PR_COMMENT.format(author=author)
-            subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
-            subprocess.run(['gh', 'pr', 'close', str(pr_no), '-R', TARGET_REPO], capture_output=True)
-            subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO], capture_output=True)
+            # subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
+            # subprocess.run(['gh', 'pr', 'close', str(pr_no), '-R', TARGET_REPO], capture_output=True)
+            # subprocess.run(['gh', 'issue', 'edit', str(issue_no), '--remove-assignee', author, '-R', TARGET_REPO], capture_output=True)
 
     # 3. Handle Warning for Blocked PRs
     if warn_blocked_prs:
@@ -229,7 +229,7 @@ def automate_cleanup(stale_assignments, stale_blocked_prs, warn_blocked_prs):
             
             print(f"LOG: Warning stale PR #{pr_no} for @{author}...")
             comment = WARNING_PR_COMMENT.format(author=author)
-            subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
+            # subprocess.run(['gh', 'pr', 'comment', str(pr_no), '--body', comment, '-R', TARGET_REPO], capture_output=True)
 
 def main():
     print(f"LOG: Starting dashboard generation for {TARGET_REPO}...")
@@ -622,7 +622,7 @@ def main():
     with open("triage/TEAM_STATS.md", "w") as f: f.write(md_stats)
     print("LOG: Dashboard generation complete.")
 
-    automate_cleanup(stale_assignments, blocked_stale_prs, warn_blocked_prs)
+    # automate_cleanup(stale_assignments, blocked_stale_prs, warn_blocked_prs)
 
 if __name__ == "__main__":
     main()
